@@ -1,0 +1,85 @@
+.Contact{
+    font-family: "Poltawski Nowy", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0px 130px 0 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* -------------- Banner Image -------------- */
+.contactBanner{
+    width: 100%;
+    height: fit-content;
+}
+
+.contactBanner img{
+    width: 100%;
+    height: 100%;
+}
+
+
+
+/* -------------- Contact Description Section -------------- */
+.contactDesc{
+    background-color: rgba(234, 100, 26, 0.2) !important;
+    margin-top: 100px;
+    margin-bottom: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 70px 70px;
+    width: 100%;
+    height: fit-content;
+}
+
+.contactDesc-1{
+    background-color: white;
+    width: 80%;
+    height: fit-content;
+    padding: 70px !important;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 35px;
+}
+
+.half {
+    width: 48%;
+    margin-right: 4%;
+}
+
+.half:nth-child(2n) {
+    margin-right: 0;
+}
+
+.full {
+    width: 100%;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+textarea {
+    resize: none;
+}

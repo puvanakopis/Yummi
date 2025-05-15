@@ -1,0 +1,96 @@
+.HomeMenu {
+    font-family: "Poltawski Nowy", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0px 130px 100px 130px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+
+
+/* --------- Items ---------  */
+.Items {
+    width: 100%;
+}
+
+/* Menu item */
+.ItemList {
+    justify-content: center;
+    width: 300px;
+    height: 390px;
+    border-radius: 8px;
+    margin: 20px 80px;
+    border: rgba(0, 0, 0, 0.123) 2px solid;
+    transition: all 0.3s ease-in-out;
+}
+
+.ItemList:hover {
+    transform: scale(1.02);
+}
+
+/* Food image */
+.ItemList img {
+    width: 300px;
+    height: 250px;
+    border-radius: 8px 8px 0 0;
+}
+
+/* Name and star rating row */
+.naming {
+    padding: 20px 15px 0 15px;
+    height: 50px;
+    font-weight: 700;
+    width: 100%;
+}
+
+.naming .rate {
+    display: flex;
+    align-items: center;
+}
+
+.naming .name {
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+}
+
+/* Price and order button */
+.naming2 {
+    padding: 7px 15px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.naming2 .price {
+    color: #EA641A;
+    padding-bottom: 10px;
+    width: 100%;
+    font-weight: 700;
+}
+
+.naming2 .order {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #EA641A;
+    border-radius: 5px;
+    padding: 5px 25px;
+    width: fit-content;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.naming2 .order:hover {
+    color: white;
+}
+
+/* Navigation button to menu page  */
+.navigate {
+    margin-top: 40px;
+}

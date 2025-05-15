@@ -1,0 +1,178 @@
+/* Import Tailwind and custom fonts */
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Tamil:ital,wght@0,100..900;1,100..900&family=Praise&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Tamil:ital,wght@0,100..900;1,100..900&family=Poltawski+Nowy:ital,wght@0,400..700;1,400..700&family=Praise&display=swap');
+
+
+.navbar {
+    font-family: "Poltawski Nowy", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0px 130px 15px 130px;
+    padding: 16px 24px;
+    font-size: 18px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+
+
+/* ------------- Left section of the navbar ------------- */
+.first {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo */
+.logo {
+    height: fit-content;
+    position: relative;
+    width: 20%;
+    cursor: pointer;
+}
+
+.first .logo-1 {
+    font-family: "Praise", serif;
+    font-weight: 100;
+    font-size: 70px;
+    font-style: normal;
+    text-shadow: 5px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.first .logo-2 {
+    position: absolute;
+    right: 50px;
+    bottom: 10px;
+    font-weight: 400;
+    font-size: 11px;
+    font-style: normal;
+    text-shadow: 5px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Search bar */
+.first .search-bar {
+    display: flex;
+    width: 60%;
+    justify-content: center;
+    align-items: center;
+}
+
+.first .search-bar div {
+    display: flex;
+    align-items: center;
+    background-color: #f8e9e4;
+    padding: 0 10px;
+    margin: 30px;
+    border-radius: 5px;
+    box-shadow: 5px 3px 6px rgba(0, 0, 0, 0.3);
+    width: 80%;
+}
+
+.first .search-bar div input {
+    border: none;
+    background: none;
+    padding: 10px;
+    outline: none;
+    width: 100%;
+    font-size: 15px;
+}
+
+/* Favorite/Wishlist icon  */
+.first .like-item {
+    display: flex;
+    width: 7%;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    cursor: pointer;
+    position: relative;
+}
+
+.first .like-item .dot {
+    position: absolute;
+    min-width: 17px;
+    min-height: 17px;
+    background-color: #EA641A;
+    border-radius: 50px;
+    top: -5px;
+    right: 20px;
+    font-size: 13px;
+    text-align: center;
+    color: #ffff;
+}
+
+/* Shopping bag icon wrapper */
+.order-item {
+    display: flex;
+    width: 7%;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    cursor: pointer;
+    position: relative;
+}
+
+.order-item .dot {
+    position: absolute;
+    min-width: 17px;
+    min-height: 17px;
+    background-color: #EA641A;
+    border-radius: 50px;
+    top: -5px;
+    right: 25px;
+    font-size: 13px;
+    text-align: center;
+    color: #ffff;
+}
+
+/* User account icon  */
+.login {
+    display: flex;
+    width: 8%;
+    justify-content: center;
+    align-items: center;
+}
+
+.login .image {
+    cursor: pointer;
+    display: flex;
+    width: 5%;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    height: 50px;
+    width: 50px;
+    border-radius: 60px;
+}
+
+
+
+
+
+
+
+/* ------------- Right section of the navbar ------------- */
+.last ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5vw;
+}
+
+.last li {
+    cursor: pointer;
+}
+
+.last .list {
+    transition: all .3s ease-in-out;
+}
+
+.last .list:hover {
+    color: #EA641A;
+}
+
+.navbar .active {
+    color: #EA641A;
+}

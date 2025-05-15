@@ -1,0 +1,97 @@
+.Footer {
+    font-family: "Poltawski Nowy", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 15px;
+    height: 18vw;
+    background-color: #D9D9D9;
+}
+
+/* -------------------- Logo & Social Media Section --------------------  */
+.f1 {
+    height: fit-content;
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+}
+
+/* Brand Logo */
+.Footer .logo {
+    width: 100%;
+}
+
+.Footer .logo .logo-1 {
+    font-family: "Praise", serif;
+    font-weight: 100;
+    font-size: 70px;
+    font-style: normal; 
+    text-shadow: 5px 3px 3px rgba(0, 0, 0, 0.3); 
+}
+
+.Footer .logo .logo-2 {
+    position: absolute;
+    right: 110px;
+    bottom: 10px;
+    font-weight: 400;
+    font-size: 11px;
+    font-style: normal; 
+    text-shadow: 5px 3px 3px rgba(0, 0, 0, 0.3); 
+}
+
+
+/* Social Media Icons */
+.Footer .social_media {
+    position: relative;
+}
+
+.Footer .social_media .media {
+    color: #EA641A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50px;
+    background-color: white;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.Footer .social_media .media:hover {
+    scale: 1.1;
+}
+
+
+
+
+/* Sections CSS */
+.f2, .f3, .f4 {
+    height: 18vw;
+    padding: 60px 60px;
+}
+
+.f2 h1, .f3 h1, .f4 h1 {
+    font-size: 24px;
+}
+
+.f2 ul, .f3 ul, .f4 ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 5px 15px;
+    color: #606060;
+    cursor: pointer;
+}
+
+.f2 ul li, .f3 ul li, .f4 ul li {
+    transition: all 0.3s; 
+}
+
+.f2 ul li:hover, .f3 ul li:hover, .f4 ul li:hover {
+    color: #EA641A;
+    transform: translateX(10px); 
+}

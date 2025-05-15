@@ -1,0 +1,64 @@
+.DeliveryForm {
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 80px;
+    margin-bottom: 100px;
+}
+
+
+.DeliveryForm-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #d85d2454;
+    border-radius: 4px;
+    padding: 40px;
+    width: 1000px;
+    height: fit-content;
+}
+
+
+
+
+/*  Form container*/
+.DeliveryForm-box {
+    background: white;
+    padding: 60px 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    width: 600px;
+}
+
+.input_details{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+
+/* First Name , Last Name , Address, Postal Code and Phone input */
+.FName, .LName , .Address , .Postal_Code{
+    width: 250px;
+    margin-bottom: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+
+
+
+/* Submit button */
+.DeliveryFormButton {
+    margin-top: 30px;
+}

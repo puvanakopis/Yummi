@@ -1,0 +1,109 @@
+/* Main Login Section */
+.Login {
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 80px;
+}
+
+/* Outer Login Container */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #d85d2454;
+    border-radius: 4px;
+    padding: 40px;
+    width: 800px;
+    height: fit-content;
+}
+
+/*  Login Form Box */
+.login-box {
+    background: white;
+    padding: 60px 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    width: 450px;
+}
+
+/* Email , Phone and Password Fields */
+.email, .phone , .password {
+    width: 100%;
+    margin-bottom: 35px;
+}
+
+.email label, .phone label, .password label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.email input, .phone input , .password input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Remember Me & Forgot Password */
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.options .options2 {
+    color: #E7641A;
+}
+
+.options label {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.options input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+
+
+/* Login Button */
+.login-btn {
+    width: 100%;
+    background-color: #E7641A;
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.login-btn:hover {
+    color: black;
+}
+
+/*Redirect to Sign Up*/
+.signup-text {
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.signup-text a {
+    color: #E7641A;
+    text-decoration: none;
+    font-weight: bold;
+}

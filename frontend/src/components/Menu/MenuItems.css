@@ -1,0 +1,155 @@
+.CategoryMenu {
+    font-family: "Poltawski Nowy", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0px 130px 100px 130px;
+    flex-direction: row;
+    display: flex;
+    align-items: start !important;
+    justify-content: start !important;
+}
+
+
+
+/* ----------------- Sidebar Menu ----------------- */
+.table{
+    height: 100vh;
+}
+
+table {
+    background-color: rgba(234, 100, 26, 0.2) !important;
+    width: 200px !important;
+}
+
+.table table,
+th,
+td {
+    border: 2px solid #e07c47;
+    width: 100%;
+}
+
+.table td {
+    font-weight: bold;
+    font-style: italic;
+    padding-left: 50px;
+    height: 55px;
+    transition: all .3s;
+    cursor: pointer;
+}
+
+.table td:hover {
+    background-color: #ea641a66;
+}
+
+
+
+/* ----------------- All items ----------------- */
+
+/* items */
+.all-items{
+    display: flex;
+    flex-direction: column;
+}
+.items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 28px;
+    row-gap: 60px;
+    font-weight: 300;
+}
+
+.itemsList {
+    height: 240px;
+    width: 250px;
+    border-radius: 5px;
+    border: rgba(0, 0, 0, 0.123) 2px solid;
+    transition: all 0.2s ease-in-out;
+}
+
+.itemsList:hover {
+    transform: scale(1.02);
+}
+
+.itemsList img {
+    width: 250px;
+    height: 150px;
+    border-radius: 5px 5px 0 0;
+}
+
+.itemsDesc {
+    padding: 10px;
+    height: 100px;
+}
+
+.itemsDesc .name {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.itemsDesc .price {
+    font-size: 15px;
+    font-weight: 300;
+}
+
+.itemsDesc .order {
+    font-size: 15px;
+    background-color: #e07c47;
+    color: white;
+    padding: 4px 2px;
+    border-radius: 5px;
+    cursor: pointer;
+    height: fit-content;
+}
+
+.itemsDesc .order:hover {
+    color: #000000;
+}
+
+
+
+
+/* Page Number */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 60px 0 ;
+}
+
+.pagination button {
+    border-top: 2px solid #EA641A;
+    border-bottom: 2px solid #EA641A;
+    border-left: none;
+    border-right: none;
+    padding: 10px 15px;
+    width: 60px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pageNumber{
+    background-color: #f8a375;
+    border-left: 1px solid #EA641A !important;
+    border-right: 1px solid #EA641A !important;
+}
+
+.pagination .pre {
+    border-left: 2px solid #EA641A;
+    border-right: 1px solid #EA641A;
+}
+
+.pagination .next {
+    border-right: 2px solid #EA641A;
+    border-left: 1px solid #EA641A;
+}
+
+.pagination .pre,
+.pagination .next {
+    background-color: #fe935966;
+}
+
+.currentPage{
+    background-color: #EA641A   !important;
+}

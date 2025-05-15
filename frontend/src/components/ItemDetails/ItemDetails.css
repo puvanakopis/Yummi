@@ -1,0 +1,139 @@
+.ItemDetails{
+    font-family: "Poltawski Nowy", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 50px 130px 80px 130px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.item{
+    width: 90%;
+    height: 800px;
+    padding: 50px 80px;
+    background-color: rgba(234, 100, 26, 0.2) !important;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+/*  Item Heading  */
+.item .divMainHeading{
+    height: 100px;
+}
+
+.itemDec{
+    height: 600px;
+    display: flex;
+    flex-direction: row;
+}
+
+/* ---------------- Item Image ---------------- */
+.itemDecImg{
+    height: 600px;
+    padding: 80px 50px;
+}
+
+.itemDecImg img{
+    height: 440px;
+    width: fit-content;
+    border-radius: 5px;
+}
+
+/* ---------------- Texts Description ---------------- */
+.itemDecText{
+    height: 600px;
+    padding: 80px 50px;
+}
+
+/* Item Description */
+.itemDecText .itemDecText1{
+    display: flex;
+    align-items: center;
+    height: 100px;
+    font-size: large;
+    font-style: italic;
+}
+
+
+/* Item category Description */
+.itemDecText2{
+    display: flex;
+    font-style: italic;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 150px !important;
+}
+
+.itemDecText2 .itemDecText2-1{
+    display: flex;
+    flex-direction: row;
+    height: 20px;
+}
+
+.itemDecText2 .itemDecText2-1-1{
+    width: 150px;
+    height: 20px;
+    font-weight: bold;
+    padding-left: 5%;
+}
+
+.itemDecText2 .itemDecText2-1-2{
+    width: 300px;
+    height: 20px;
+}
+
+/* Item Rating and Price */
+.itemDecText3{
+    height: 200px !important;
+}
+.itemDecText3 .itemDecText3-1{
+    display: flex;
+    align-items: center;
+    height: 75px;
+}
+.itemDecText3 .itemDecText3-2{
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color:#EA641A;
+    font-weight: bold;
+}
+.itemDecText3 .itemDecText3-3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75px;
+}
+
+/* ProductCard */
+.ProductCard{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    color: rgb(0, 0, 0);
+    width: fit-content;
+    padding: 5px 15px;
+    border-radius: 5px;
+    gap: 2px;
+}
+
+.ProductCard button{
+    color: black;
+    cursor: pointer;
+    width: fit-content;
+    padding: 3px 15px;
+}
+
+.ProductCard span{
+    font-size: larger;
+    font-weight: bold;
+    width: fit-content;
+    padding: 3px 15px;
+}
