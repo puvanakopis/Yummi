@@ -11,7 +11,11 @@ const About = () => {
 
   return (
     <div className='About'>
+
+      {/* -------------- banner -------------- */}
       <div className='aboutBanner'><img src={banner.AboutBanner} alt="" /></div>
+      
+      {/* -------------- Description section -------------- */}
       <div className='aboutDesc '>
         <h1 className="MainHeading">About Us</h1>
         <div className='aboutDesc-1'>
