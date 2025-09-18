@@ -13,7 +13,7 @@ const Contact = () => {
 
 
 
-      {/* -------------- Contact Description Section -------------- */}
+      {/* -------------- Contact Section -------------- */}
       <div className="contactDesc">
         <h1 className="MainHeading">Contact Us</h1>
         <div className="contactDesc-1">

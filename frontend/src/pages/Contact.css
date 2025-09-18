@@ -1,85 +1,146 @@
-.Contact{
-    font-family: "Poltawski Nowy", serif;
-    font-weight: 400;
-    font-style: normal;
-    margin: 0px 130px 0 130px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.Contact {
+  font-family: "Poltawski Nowy", serif;
+  font-weight: 400;
+  font-style: normal;
+  margin: 0 auto;
+  max-width: 1300px; 
+  padding: 0 20px;   
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* -------------- Banner Image -------------- */
-.contactBanner{
-    width: 100%;
-    height: fit-content;
+.contactBanner {
+  width: 100%;
+  height: auto;
+  max-height: 450px;
+  overflow: hidden;
 }
 
-.contactBanner img{
-    width: 100%;
-    height: 100%;
+.contactBanner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-
-
-/* -------------- Contact Description Section -------------- */
-.contactDesc{
-    background-color: rgba(234, 100, 26, 0.2) !important;
-    margin-top: 100px;
-    margin-bottom: 150px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 70px 70px;
-    width: 100%;
-    height: fit-content;
+/* -------------- Contact Section -------------- */
+.contactDesc {
+  background-color: rgba(234, 100, 26, 0.2);
+  margin-top: 60px;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  width: 100%;
+  border-radius: 12px;
 }
 
-.contactDesc-1{
-    background-color: white;
-    width: 80%;
-    height: fit-content;
-    padding: 70px !important;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+.contactDesc-1 {
+  background-color: white;
+  width: 100%;
+  max-width: 800px;
+  padding: 40px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Form Styling */
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .form-group {
-    margin-bottom: 35px;
+  margin-bottom: 20px;
 }
 
 .half {
-    width: 48%;
-    margin-right: 4%;
-}
-
-.half:nth-child(2n) {
-    margin-right: 0;
+  flex: 1 1 calc(50% - 10px);
 }
 
 .full {
-    width: 100%;
-}
-
-form {
-    display: flex;
-    flex-wrap: wrap;
+  flex: 1 1 100%;
 }
 
 label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
 }
 
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 14px;
+input,
+textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
 textarea {
-    resize: none;
+  resize: none;
+}
+
+/* Submit Button */
+.mainButton {
+  background: #ea641a;
+  color: white;
+  font-weight: bold;
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+}
+
+.mainButton:hover {
+  background: #c55215;
+}
+
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+  .contactDesc {
+    padding: 30px 20px;
+  }
+  .contactDesc-1 {
+    padding: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contactDesc {
+    margin-top: 40px;
+    margin-bottom: 60px;
+    padding: 20px;
+  }
+
+  .contactDesc-1 {
+    padding: 20px;
+  }
+
+  .half {
+    flex: 1 1 100%; 
+  }
+}
+
+@media (max-width: 480px) {
+  .contactDesc-1 {
+    padding: 15px;
+  }
+
+  input,
+  textarea {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .mainButton {
+    width: 100%; 
+    text-align: center;
+  }
 }
