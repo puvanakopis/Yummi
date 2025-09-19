@@ -25,20 +25,19 @@ const HomeMenu = () => {
   };
 
   return (
-    <div className='HomeMenu'>
-      {/* Main heading */}
+    <div className='HomeMenu'> 
+      {/* --------- Main heading --------- */}
       <div><h1 className='MainHeading'>Most Popular Items</h1></div>
 
-      {/* items */}
+      {/* --------- Items --------- */}
       <div className='Items grid grid-cols-3 gap-4'>
         {homeMenu.map((item, index) => (
 
-          // Menu item
+          // --------- Menu item ---------
           <div key={index} className='ItemList'>
-            {/* Food image */}
+
             <img src={item.Img} alt={item.Name} />
 
-            {/* Name and rating row */}
             <div className='naming flex flex-cols-2'>
               <div className='name w-4/5'>{item.Name}</div>
               <div className='rate w-1/5'>
@@ -47,7 +46,6 @@ const HomeMenu = () => {
               </div>
             </div>
 
-            {/* Price and order button */}
             <div className='naming2'>
               <div className='price'>Rs {item.Price}.00</div>
               <div className="order" onClick={() => navigateToItemDetails(item)}>Order</div>
@@ -56,7 +54,7 @@ const HomeMenu = () => {
         ))}
       </div>
 
-      {/* Navigation button to menu page */}
+      {/* --------- Navigation button --------- */}
       <div className='navigate mainButton' onClick={() => navigator('/Menu')}>Menu &gt;&gt;</div>
     </div>
   );

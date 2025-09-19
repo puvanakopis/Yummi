@@ -8,7 +8,7 @@
     align-items: center;}
 
 
-/* Main container */
+/* -------------- Main container -------------- */
 .div{
     display: flex;
     width: 100%;
@@ -45,4 +45,102 @@
 .div2 .div2-3{
     display: flex;
     justify-self: end;   
+}
+
+.div2 .div2-3:hover{
+    display: flex;
+    justify-self: end;  
+    background-color: #EA641A; 
+}
+
+
+
+
+/* ---------------- Responsive Breakpoints ---------------- */
+
+@media (max-width: 1024px) {
+  .Offers {
+    margin: 0px 60px 100px 60px;
+  }
+
+  .div {
+    height: auto;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .div1, .div2 {
+    width: 100% !important; 
+  }
+
+  .div1 img {
+    width: 100%;
+    height: auto;
+  }
+
+  .div2 .div2-1 {
+    font-size: 40px;
+  }
+
+  .div2 .div2-2 {
+    font-size: 20px;
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .div2 .div2-3 {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .Offers {
+    margin: 0px 40px 80px 40px;
+  }
+
+  .div {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
+
+  .div2 .div2-1 {
+    font-size: 32px;
+  }
+
+  .div2 .div2-2 {
+    font-size: 18px;
+  }
+
+  .div2 .div2-3 {
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .Offers {
+    margin: 0px 20px 60px 20px;
+  }
+
+  .div1 img {
+    border-radius: 8px;
+  }
+
+  .div2 .div2-1 {
+    font-size: 26px;
+    line-height: 1.3;
+  }
+
+  .div2 .div2-2 {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .div2 .div2-3 {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
 }

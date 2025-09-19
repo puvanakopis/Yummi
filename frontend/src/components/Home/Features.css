@@ -11,14 +11,13 @@
 
 
 
-/* Features list container */
+/* -------------- Features list container -------------- */
 .Features{
     height: 350px; 
     width: 100%;
     margin-top: 30px;
 }
 
-/* Features list container */
 .Features-list{
     height: 350px; 
     padding: 10px 40px;
@@ -56,4 +55,84 @@
 
 .Features-list p{
     text-align: justify ;
+}
+
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 1024px) {
+  .Feature {
+    margin: 0px 60px 100px 60px;
+    margin-top: 80px;
+  }
+
+  .Features {
+    flex-wrap: wrap; 
+    height: auto;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .Features-list {
+    width: 40%;
+    height: auto;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .Feature {
+    margin: 0px 40px 80px 40px;
+    margin-top: 60px;
+  }
+
+  .Features {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    gap: 30px;
+  }
+
+  .Features-list {
+    width: 80%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .Features-list h1 {
+    font-size: 20px;
+  }
+
+  .Features-list p {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Feature {
+    margin: 0px 20px 60px 20px;
+    margin-top: 40px;
+  }
+
+  .Features-list {
+    width: 100%;
+    padding: 15px;
+  }
+
+  .Features-list h1 {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .Features-list p {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .Features-list div {
+    padding: 18px;
+  }
+
+  .Features-list div img {
+    width: 40px;
+  }
 }

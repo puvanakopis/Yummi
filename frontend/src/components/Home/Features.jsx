@@ -5,12 +5,12 @@ const Features = () => {
   return (
     <div className="Feature">
 
-      {/* Main heading*/}
+      {/* -------------- Main heading -------------- */}
       <div>
         <h1 className="MainHeading">Why Choose Our Food</h1>
       </div>
 
-      {/* Features list container */}
+      {/* -------------- Features list container -------------- */}
       <div className="flex justify-center Features gap-x-25">
         
         <div className="Features-list w-1/4">

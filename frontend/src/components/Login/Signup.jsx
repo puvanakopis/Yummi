@@ -29,8 +29,8 @@ const Signup = () => {
 
                         {/* Phone number Field */}
                         <div className="phone">
-                            <label htmlFor="email">Phone Number</label>
-                            <input type="number" id="number" placeholder="Enter Your Phone Number" required />
+                            <label htmlFor="number">Phone Number</label>
+                            <input type="phone" id="number" placeholder="Enter Your Phone Number" required />
                         </div>
 
                         {/* Password Field */}

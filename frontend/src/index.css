@@ -3,33 +3,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Tamil:ital,wght@0,100..900;1,100..900&family=Poltawski+Nowy:ital,wght@0,400..700;1,400..700&family=Praise&display=swap');
 
 
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-body{
+body {
   min-height: 100vh;
 }
 
-a{
+a {
   text-decoration: none;
   color: inherit;
 }
 
-.MainHeading{
+.MainHeading {
   font-family: "Poltawski Nowy", serif;
   font-size: 35px;
   font-style: italic;
   font-weight: bold;
-  text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3); 
+  text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.3);
   text-align: center;
   margin-bottom: 50px;
   padding: 0 150px 0 150px;
   position: relative;
   display: inline-block;
-  border-bottom: 2px solid #EA641A; 
+  border-bottom: 2px solid #EA641A;
 }
 
 .mainButton {
@@ -45,8 +45,9 @@ a{
 }
 
 
-.mainButton:hover{
+.mainButton:hover {
   color: black;
+  background-color: #EA641A !important;
 }
 
 .ScrollingAnimation {
@@ -67,8 +68,26 @@ a{
     opacity: 0;
     transform: scale(0.5);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+
+@media (max-width: 768px) {
+  .MainHeading {
+    font-size: 28px;
+    padding: 0 80px;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .MainHeading {
+    font-size: 22px;
+    padding: 0 20px;
+    margin-bottom: 30px;
   }
 }

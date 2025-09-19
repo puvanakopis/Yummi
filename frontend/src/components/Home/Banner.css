@@ -1,11 +1,16 @@
-.bannar{
-    display: flex;
-    margin: 0px 0px 100px 0px;
+.bannar {
+    max-width: 1300px;
     height: fit-content;
-    width: 100%;
+    display: flex;
+    padding: 0 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 80px auto;
 }
 
-.bannar img{
+.bannar img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
 }

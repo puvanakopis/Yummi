@@ -8,53 +8,50 @@
     align-items: center;
 }
 
-
-/* -------------------  heading ------------------- */
+/* ------------------- heading ------------------- */
 .heading {
-    background-color: rgba(234, 100, 26, 0.2) !important;
+    background-color: rgba(234, 100, 26, 0.2);
     width: 100%;
     padding: 10px 20px;
     height: fit-content;
     display: flex;
 }
 
-
-
-
 /* ------------------- Table ------------------- */
 .Table {
     width: 100%;
     text-align: center;
+    border-collapse: collapse;
 }
 
-
-
-
+/* Table scroll container */
+.TableScroll {
+    max-height: 400px; 
+    overflow-y: auto;
+    width: 100%;
+}
 
 /* Table heading */
 .TableHeading {
-    background-color: hwb(21 16% 7% / 0.38) !important;
+    background-color: hwb(21 16% 7% / 0.38);
     border: 1px #ec5b0d8d solid;
-    margin-top: 30px;
     width: 100%;
     height: fit-content;
     padding: 8px 20px;
     font-weight: bold;
     display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .TableHeading .title {
     margin: 5px;
 }
 
-
-
-
-
-
 /* Table items */
 .TableItem {
-    background-color: rgba(234, 100, 26, 0.2) !important;
+    background-color: rgba(234, 100, 26, 0.2);
     width: 100%;
     height: fit-content;
     padding: 8px 20px;
@@ -73,6 +70,7 @@
     padding: 5px;
     width: 150px;
     height: 100px;
+    object-fit: cover;
 }
 
 .TableItem .desc {
@@ -87,21 +85,13 @@
     justify-content: center;
 }
 
-
-
-
-
-
-
-
-
 /* Order summary */
 .top {
     margin-top: 5px;
 }
 
 .summary {
-    background-color: rgba(234, 100, 26, 0.2) !important;
+    background-color: rgba(234, 100, 26, 0.2);
     width: 100%;
     height: fit-content;
     padding: 8px 20px;
@@ -111,16 +101,73 @@
     align-items: center;
 }
 
-.summary_item{
+.summary_item {
     text-align: start;
 }
 
-
-
-
-/* Delivery Information */
 .checkout {
     display: flex;
     justify-content: end;
     margin-top: 50px;
+}
+
+/* Button */
+.mainButton {
+    background: #ea641a;
+    color: white;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mainButton:hover {
+    background: #c55215;
+}
+
+/* ------------------- Responsive ------------------- */
+@media (max-width: 1024px) {
+    .OrderItem {
+        margin: 30px 50px 60px 50px;
+    }
+
+    .TableItem .img img {
+        width: 120px;
+        height: 80px;
+    }
+}
+
+@media (max-width: 768px) {
+    .OrderItem {
+        margin: 20px 20px 50px 20px;
+    }
+
+    .TableItem .img img {
+        width: 100px;
+        height: 70px;
+    }
+
+    .TableHeading .title,
+    .TableItem .desc {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .TableHeading,
+    .TableItem {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .TableItem .img img {
+        width: 80px;
+        height: 60px;
+    }
+
+    .mainButton {
+        width: 100%;
+        text-align: center;
+    }
 }

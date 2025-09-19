@@ -1,9 +1,15 @@
-/* Main Login Section */
+/* ---------- Main Login Section ---------- */
 .Login {
-    height: fit-content;
+    font-family: "Poltawski Nowy", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0 auto;
+    max-width: 1300px;
+    padding: 0 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     margin-bottom: 80px;
 }
 
@@ -14,27 +20,29 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    background-color: #d85d2454;
-    border-radius: 4px;
-    padding: 40px;
-    width: 800px;
-    height: fit-content;
+    background-color: rgba(216, 93, 36, 0.33);
+    border-radius: 8px;
+    padding: 40px 20px;
+    width: 100%;
+    max-width: 800px;
 }
 
-/*  Login Form Box */
+/* Login Form Box */
 .login-box {
     background: white;
     padding: 60px 40px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     text-align: left;
-    width: 450px;
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
 }
 
 /* Email , Phone and Password Fields */
-.email, .phone , .password {
+.email, .phone, .password {
     width: 100%;
-    margin-bottom: 35px;
+    margin-bottom: 25px;
 }
 
 .email label, .phone label, .password label {
@@ -44,11 +52,11 @@
     margin-bottom: 5px;
 }
 
-.email input, .phone input , .password input {
+.email input, .phone input, .password input {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 6px;
     font-size: 14px;
 }
 
@@ -57,7 +65,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     width: 100%;
 }
 
@@ -75,19 +83,17 @@
     margin-right: 5px;
 }
 
-
-
 /* Login Button */
 .login-btn {
     width: 100%;
     background-color: #E7641A;
     color: white;
     border: none;
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 6px;
     transition: all 0.3s;
 }
 
@@ -95,10 +101,10 @@
     color: black;
 }
 
-/*Redirect to Sign Up*/
+/* Redirect to Sign Up / Log In */
 .signup-text {
     font-size: 14px;
-    margin-top: 10px;
+    margin-top: 15px;
     text-align: center;
 }
 
@@ -106,4 +112,51 @@
     color: #E7641A;
     text-decoration: none;
     font-weight: bold;
+}
+
+/* ---------- Responsive Breakpoints ---------- */
+@media (max-width: 1024px) {
+    .login-container {
+        padding: 30px 20px;
+    }
+
+    .login-box {
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        padding: 20px;
+        margin-bottom: 60px;
+    }
+
+    .login-box {
+        padding: 20px;
+    }
+
+    .email, .phone, .password {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-box {
+        padding: 15px;
+    }
+
+    input {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .login-btn {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .signup-text {
+        font-size: 13px;
+    }
 }

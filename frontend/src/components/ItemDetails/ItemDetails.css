@@ -1,17 +1,17 @@
-.ItemDetails{
+.ItemDetails {
     font-family: "Poltawski Nowy", serif;
     font-weight: 400;
     font-style: normal;
-    margin: 50px 130px 80px 130px;
-    margin-top: 50px;
+    margin: 50px auto;
     display: flex;
     justify-content: center;
+    padding: 0 20px;
 }
 
-.item{
+.item {
     width: 90%;
-    height: 800px;
-    padding: 50px 80px;
+    max-width: 1200px;
+    padding: 30px 20px;
     background-color: rgba(234, 100, 26, 0.2) !important;
     border-radius: 5px;
     display: flex;
@@ -19,121 +19,221 @@
     flex-direction: column;
 }
 
-
-/*  Item Heading  */
-.item .divMainHeading{
-    height: 100px;
+/* Item Heading */
+.item .divMainHeading {
+    height: auto;
+    margin-bottom: 20px;
+    text-align: center;
 }
 
-.itemDec{
-    height: 600px;
+.itemDec {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    width: 100%;
 }
 
 /* ---------------- Item Image ---------------- */
-.itemDecImg{
-    height: 600px;
-    padding: 80px 50px;
+.itemDecImg {
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
 }
 
-.itemDecImg img{
-    height: 440px;
-    width: fit-content;
+.itemDecImg img {
+    max-height: 400px;
+    width: auto;
+    max-width: 100%;
     border-radius: 5px;
+    object-fit: contain;
 }
 
 /* ---------------- Texts Description ---------------- */
-.itemDecText{
-    height: 600px;
-    padding: 80px 50px;
+.itemDecText {
+    padding: 20px 0;
 }
 
 /* Item Description */
-.itemDecText .itemDecText1{
+.itemDecText .itemDecText1 {
     display: flex;
     align-items: center;
-    height: 100px;
+    min-height: 80px;
     font-size: large;
     font-style: italic;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-
 /* Item category Description */
-.itemDecText2{
+.itemDecText2 {
     display: flex;
     font-style: italic;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    height: 150px !important;
+    align-items: flex-start;
+    margin-bottom: 20px;
 }
 
-.itemDecText2 .itemDecText2-1{
+.itemDecText2 .itemDecText2-1 {
     display: flex;
     flex-direction: row;
-    height: 20px;
+    margin-bottom: 8px;
+    width: 100%;
 }
 
-.itemDecText2 .itemDecText2-1-1{
-    width: 150px;
-    height: 20px;
+.itemDecText2 .itemDecText2-1-1 {
+    min-width: 100px;
     font-weight: bold;
-    padding-left: 5%;
 }
 
-.itemDecText2 .itemDecText2-1-2{
-    width: 300px;
-    height: 20px;
+.itemDecText2 .itemDecText2-1-2 {
+    flex: 1;
 }
 
 /* Item Rating and Price */
-.itemDecText3{
-    height: 200px !important;
+.itemDecText3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
-.itemDecText3 .itemDecText3-1{
+
+.itemDecText3 .itemDecText3-1 {
     display: flex;
     align-items: center;
-    height: 75px;
+    justify-content: center;
+    margin-bottom: 15px;
+    width: 100%;
 }
-.itemDecText3 .itemDecText3-2{
-    height: 50px;
+
+.itemDecText3 .itemDecText3-2 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    color:#EA641A;
+    justify-content: center;
+    color: #EA641A;
     font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
 }
-.itemDecText3 .itemDecText3-3{
+
+.itemDecText3 .itemDecText3-3 {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 75px;
+    gap: 15px;
+    width: 100%;
 }
 
 /* ProductCard */
-.ProductCard{
+.ProductCard {
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: white;
     color: rgb(0, 0, 0);
-    width: fit-content;
-    padding: 5px 15px;
+    width: 100%;
+    max-width: 200px;
+    padding: 8px 15px;
     border-radius: 5px;
-    gap: 2px;
+    gap: 15px;
 }
 
-.ProductCard button{
+.ProductCard button {
     color: black;
     cursor: pointer;
-    width: fit-content;
-    padding: 3px 15px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    padding: 0 10px;
 }
 
-.ProductCard span{
+.ProductCard span {
     font-size: larger;
     font-weight: bold;
-    width: fit-content;
-    padding: 3px 15px;
+}
+
+/* Button */
+.mainButton {
+    background: #ea641a;
+    color: white;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+    width: 100%;
+    max-width: 200px;
+}
+
+.mainButton:hover {
+    background: #c55215;
+}
+
+/* -------------- Responsive Breakpoints -------------- */
+@media (min-width: 1024px) {
+    .item {
+        padding: 50px 80px;
+    }
+
+    .itemDecImg {
+        padding: 80px 50px;
+    }
+
+    .itemDecText {
+        padding: 80px 50px;
+    }
+
+    .itemDecImg img {
+        height: 440px;
+    }
+}
+
+@media (min-width: 768px) {
+    .ItemDetails {
+        margin: 50px auto 80px;
+    }
+
+    .item {
+        padding: 50px 40px;
+    }
+
+    .itemDec {
+
+        flex-direction: row;
+    }
+
+    .itemDecImg {
+        width: 40%;
+        padding: 40px 20px;
+    }
+
+    .itemDecText {
+        width: 60%;
+        padding: 40px 20px;
+    }
+
+    .itemDecText .itemDecText1 {
+        text-align: left;
+    }
+
+    .itemDecText3 .itemDecText3-3 {
+        flex-direction: row;
+    }
+
+    .ProductCard {
+        width: 50%;
+    }
+
+    .mainButton {
+        width: 50%;
+    }
+}
+
+@media (min-width: 400px) {
+    .itemDec {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

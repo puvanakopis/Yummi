@@ -2,76 +2,82 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { LiaShoppingBagSolid } from "react-icons/lia";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
-import "./Navbar.css";
 import { MyContext } from "../../Context/MyContext";
 import { useContext, useEffect, useState } from "react";
+import { HiMenu, HiX } from "react-icons/hi";
+import './Navbar.css'
+
 const Navbar = () => {
+  const location = useLocation();
+  const currentPath = location.pathname;
 
-  const location = useLocation()
-  const currentParth = location.pathname
-
-
-  
-  // Up dating the Count of Add to Card
   const { cardItems } = useContext(MyContext);
   const [numberOfItem, setNumberOfItem] = useState(0);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     setNumberOfItem(cardItems.length);
   }, [cardItems]);
 
-
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <div className="navbar">
+    <nav className="navbar">
 
-      {/* Left section of the navbar */}
-      <div className="first">
-
-        {/* Logo  */}
-        <Link to={'/'}  className="logo w-1/5">
+      <div className="navbar-container">
+        {/* ---------------- Logo ---------------- */}
+        <Link to='/' className="logo">
           <div className="logo-1">Yummi</div>
           <div className="logo-2">FOOD & RESTAURANT</div>
         </Link>
 
-        {/* Search bar */}
-        <div className="search-bar">
-          <div>
-            <input type="text" placeholder="Search for products, categories or brands..." />
-          </div>
-        </div>
-
-        {/* Favorite/Wishlist icon */}
-        <div className="like-item">
-          <MdFavoriteBorder />
-          <div className="dot">0</div>
-        </div>
-
-        {/* Shopping bag icon */}
-        <Link to='addToCard' className="order-item">
-          <LiaShoppingBagSolid />
-          <div className="dot">{numberOfItem}</div>
-        </Link>
-
-        {/* User account icon */}
-        <div className="login">
-          <Link className="image" to={"Login"}><MdOutlineAccountCircle /></Link>
-        </div>
-      </div>
-
-
-
-      {/* Right section of the navbar */}
-      <div className="last">
-        <ul>
-          <Link to="/" className={`list ${currentParth === "/" ? "active" : ""}`}>Home</Link>
-          <Link to="/Menu" className={`list ${currentParth === "/Menu" ? "active" : ""}`}>Menu</Link>
-          <Link to="/About" className={`list ${currentParth === "/About" ? "active" : ""}`}>About</Link>
-          <Link to="/Contact" className={`list ${currentParth === "/Contact" ? "active" : ""}`}>Contact</Link>
-
+        {/* ---------------- Desktop Menu ---------------- */}
+        <ul className="nav-links">
+          <Link to="/" className={`list ${currentPath === "/" ? "active" : ""}`}>Home</Link>
+          <Link to="/Menu" className={`list ${currentPath === "/Menu" ? "active" : ""}`}>Menu</Link>
+          <Link to="/About" className={`list ${currentPath === "/About" ? "active" : ""}`}>About</Link>
+          <Link to="/Contact" className={`list ${currentPath === "/Contact" ? "active" : ""}`}>Contact</Link>
         </ul>
+
+        {/* ---------------- Right Icons ---------------- */}
+        <div className="nav-icons">
+          <div className="like-item">
+            <MdFavoriteBorder />
+            <div className="dot">0</div>
+          </div>
+
+          <Link to='addToCard' className="order-item">
+            <LiaShoppingBagSolid />
+            <div className="dot">{numberOfItem}</div>
+          </Link>
+
+          <Link to="Login" className="login">
+            <MdOutlineAccountCircle />
+          </Link>
+        </div>
+
+
+
+
+        {/* ---------------- Mobile Menu Toggle ---------------- */}
+        <div className="mobile-toggle" onClick={toggleMenu}>
+          {isMenuOpen ? <HiX /> : <HiMenu />}
+        </div>
+
+
+        {/* ---------------- Mobile Menu ---------------- */}
+        {isMenuOpen && (
+          <ul className="mobile-menu">
+            <Link to="/" className={`list ${currentPath === "/" ? "active" : ""}`} onClick={toggleMenu}>Home</Link>
+            <Link to="/Menu" className={`list ${currentPath === "/Menu" ? "active" : ""}`} onClick={toggleMenu}>Menu</Link>
+            <Link to="/About" className={`list ${currentPath === "/About" ? "active" : ""}`} onClick={toggleMenu}>About</Link>
+            <Link to="/Contact" className={`list ${currentPath === "/Contact" ? "active" : ""}`} onClick={toggleMenu}>Contact</Link>
+            <Link to="/Favorite" className={`list ${currentPath === "/Favorite" ? "active" : ""}`} onClick={toggleMenu}>Favorite</Link>
+            <Link to="/Login" className={`list ${currentPath === "/Login" ? "active" : ""}`} onClick={toggleMenu}>Login</Link>
+          </ul>
+        )}
       </div>
-    </div>
+    </nav>
   );
 };
 

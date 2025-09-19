@@ -55,7 +55,7 @@ const OrderItem = () => {
             <div className="Table">
 
                 {/* Table heading */}
-                <div className="TableHeading">
+                <div className="TableHeading TableScroll">
                     <div className="title w-1/6">Product</div>
                     <div className="title w-1/6">Name</div>
                     <div className="title w-1/6">Price</div>
@@ -68,7 +68,7 @@ const OrderItem = () => {
                 {/* Table items */}
                 {cardItems.length > 0 ? (
                     cardItems.map((item, index) => (
-                        <div key={index} className="TableItem">
+                        <div key={index} className="TableItem TableScroll">
                             <div className="img w-1/6">
                                 <img src={item.Img} alt={item.Name} />
                             </div>

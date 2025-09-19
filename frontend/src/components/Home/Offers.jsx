@@ -5,10 +5,10 @@ const Offers = () => {
   return (
     <div className='Offers'>
 
-      {/* Main heading*/}
+      {/* -------------- Main heading --------------*/}
       <h1 className='MainHeading'>Featured Offers and Deals</h1>
 
-      {/* Main container */}
+      {/* -------------- Main container -------------- */}
       <div className='div'>
 
         {/* Left side - img */}
