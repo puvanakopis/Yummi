@@ -1,12 +1,11 @@
 import { useContext, useRef, useState } from 'react';
-import './MenuItems.css'
-import { mainMenu } from '../../assets/assets'
-import { FaStar } from 'react-icons/fa'
+import './MenuItems.css';
+import { mainMenu } from '../../assets/assets';
+import { FaStar, FaBars, FaTimes } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import {MyContext} from '../../Context/MyContext.jsx'
+import { MyContext } from '../../Context/MyContext.jsx';
 
 const MenuItems = () => {
-    //Add the all category
     const categories = [
         "AllCategories",
         "Breakfast",
@@ -18,55 +17,61 @@ const MenuItems = () => {
         "Biscuits",
     ];
 
-    //For set the selected category
-    const [category, setCategory] = useState('AllCategories')
-
-
-    // Filter the items using category
+    const [category, setCategory] = useState('AllCategories');
     const filteredItem = mainMenu.filter((item) =>
-        category === 'AllCategories' || item.ItemCategory === category)
+        category === 'AllCategories' || item.ItemCategory === category
+    );
 
+    const itemsPerPage = 20;
+    const [currentPage, setCurrentPage] = useState(1);
+    const totalPages = Math.ceil(filteredItem.length / itemsPerPage);
 
-    //Adding Page number
-    const itemsPerPage = 20
-    const [currentPage, setCurrentPage] = useState(1)
-    const totalPages = Math.ceil(filteredItem.length / itemsPerPage)
-
-
-    //Create pages
-    const menuRef = useRef(null)
+    const menuRef = useRef(null);
     const handlePageChange = (newPage) => {
         if (newPage > 0 && newPage <= totalPages) {
-            setCurrentPage(newPage)
+            setCurrentPage(newPage);
             window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
         }
-    }
+    };
 
-
-    //Slice the items for eath pages
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
     const currentItems = filteredItem.slice(startIndex, endIndex);
 
-
-    // Navigate 
-    const navigate = useNavigate()
-
-    
-    //Sent the item to MyContext to show
+    const navigate = useNavigate();
     const { showItem } = useContext(MyContext);
     const navigateToItemDetails = (item) => {
         window.scrollTo({ top: 0, behavior: "smooth" });
         navigate('/ItemDetails');
-        showItem(item)
-      };
-    
+        showItem(item);
+    };
+
+    // Sidebar toggle for all screens
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
-        <div className='CategoryMenu flex'>
+        <div className='CategoryMenu'>
 
-            {/* ----------------- Sidebar Menu ----------------- */}
-            <div className="Menu w-1/5">
+            {/* --------------- Sidebar Toggle Button --------------- */}
+            <div className='Sidebar'>
+                <button onClick={() => setSidebarOpen(!sidebarOpen)} className="menu-toggle">
+                    <FaBars size={24} />
+                </button>
+            </div>
+
+
+            {/* --------------- Overlay --------------- */}
+            {sidebarOpen && <div className="overlay" onClick={() => setSidebarOpen(false)}></div>}
+
+
+            {/* --------------- Sidebar --------------- */}
+            <div className={`Menu ${sidebarOpen ? "open" : ""}`}>
+                <div className="sidebar-header">
+                    <h2>Categories</h2>
+                    <button onClick={() => setSidebarOpen(false)} className="close-btn">
+                        <FaTimes size={20} />
+                    </button>
+                </div>
                 <div className="table">
                     <table>
                         <tbody>
@@ -74,6 +79,7 @@ const MenuItems = () => {
                                 <tr key={index} onClick={() => {
                                     setCategory(categoryName);
                                     setCurrentPage(1);
+                                    setSidebarOpen(false);
                                 }}>
                                     <td className={`p-2 ${category === categoryName ? 'bg-[#ea641a66]' : 'bg-transparent'}`}>
                                         {categoryName}
@@ -86,12 +92,9 @@ const MenuItems = () => {
             </div>
 
 
-
-            {/* ----------------- All items ----------------- */}
-
-            {/* items */}
-            <div className="all-items w-4/5">
-                <div ref={menuRef} className='items '>
+            {/* --------------- Items --------------- */}
+            <div className="all-items">
+                <div ref={menuRef} className='items'>
                     {currentItems.map((item) => (
                         <div key={item.id} className="itemsList">
                             <img src={item.Img} alt={item.Name} />
@@ -115,28 +118,19 @@ const MenuItems = () => {
                 </div>
 
 
-                {/* Page Number */}
+                {/* --------------- Pagination --------------- */}
                 <div className="pagination">
-                    <button className='pre' onClick={() => handlePageChange(currentPage - 1)}>
-                        Pre
-                    </button >
-
-
+                    <button className='pre' onClick={() => handlePageChange(currentPage - 1)}>Pre</button>
                     {[...Array(totalPages)].map((_, index) =>
-                        <button key={index} onClick={() => handlePageChange(index + 1)} className={`pageNumber ${currentPage === index + 1 ? "currentPage" : ""}`}
-                        >
+                        <button key={index} onClick={() => handlePageChange(index + 1)} className={`pageNumber ${currentPage === index + 1 ? "currentPage" : ""}`}>
                             {index + 1}
-                        </button>)
-
-                    }
-
-                    <button onClick={() => handlePageChange(currentPage + 1)} className='next'>
-                        Next
-                    </button>
+                        </button>
+                    )}
+                    <button onClick={() => handlePageChange(currentPage + 1)} className='next'>Next</button>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default MenuItems;

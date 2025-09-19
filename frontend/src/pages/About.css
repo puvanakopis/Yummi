@@ -3,8 +3,8 @@
   font-weight: 400;
   font-style: normal;
   margin: 0 auto;
-  max-width: 1300px; 
-  padding: 0 20px;   
+  max-width: 1300px;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@
 .aboutBanner {
   width: 100%;
   height: auto;
-  max-height: 450px; 
+  max-height: 450px;
   overflow: hidden;
 }
 

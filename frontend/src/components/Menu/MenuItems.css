@@ -2,67 +2,128 @@
     font-family: "Poltawski Nowy", serif;
     font-weight: 400;
     font-style: normal;
-    margin: 0px 130px 100px 130px;
-    flex-direction: row;
+    margin: 0 auto;
+    max-width: 1300px;
+    padding: 0 20px;
     display: flex;
-    align-items: start !important;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* --------------- Sidebar Toggle Button --------------- */
+.Sidebar {
+    padding: 2% 0;
+    width: 100%;
+    display: flex;
     justify-content: start !important;
+    align-items: start !important;
+}
+
+.menu-toggle {
+    background: #ea641a;
+    display: flex;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* --------------- Overlay --------------- */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1000;
 }
 
 
-
-/* ----------------- Sidebar Menu ----------------- */
-.table{
-    height: 100vh;
+/*  --------------- Sidebar --------------- */
+.Menu {
+    position: fixed;
+    top: 0;
+    left: -260px;
+    width: 250px;
+    height: 100%;
+    background-color: #ffebe1;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease-in-out;
+    z-index: 1100;
+    overflow-y: auto;
+    padding-bottom: 50px;
 }
 
-table {
-    background-color: rgba(234, 100, 26, 0.2) !important;
-    width: 200px !important;
+.Menu.open {
+    left: 0;
 }
 
-.table table,
-th,
-td {
-    border: 2px solid #e07c47;
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 20px;
+    background: #ea641a;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    position: sticky;
+    top: 0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+}
+
+.table {
+    margin-top: 0;
     width: 100%;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
 .table td {
-    font-weight: bold;
-    font-style: italic;
-    padding-left: 50px;
-    height: 55px;
-    transition: all .3s;
+    padding: 15px 20px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .table td:hover {
     background-color: #ea641a66;
 }
 
+.table td.bg-active {
+    background-color: #ea641a66;
+    color: #000;
+}
 
 
-/* ----------------- All items ----------------- */
 
-/* items */
-.all-items{
+/* --------------- Items --------------- */
+.all-items {
+    width: 100%;
     display: flex;
     flex-direction: column;
 }
+
 .items {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    column-gap: 28px;
-    row-gap: 60px;
-    font-weight: 300;
+    gap: 28px 28px;
 }
 
 .itemsList {
-    height: 240px;
-    width: 250px;
-    border-radius: 5px;
     border: rgba(0, 0, 0, 0.123) 2px solid;
+    border-radius: 5px;
     transition: all 0.2s ease-in-out;
 }
 
@@ -71,24 +132,14 @@ td {
 }
 
 .itemsList img {
-    width: 250px;
+    width: 100%;
     height: 150px;
     border-radius: 5px 5px 0 0;
+    object-fit: cover;
 }
 
 .itemsDesc {
     padding: 10px;
-    height: 100px;
-}
-
-.itemsDesc .name {
-    font-size: 18px;
-    font-weight: 500;
-}
-
-.itemsDesc .price {
-    font-size: 15px;
-    font-weight: 300;
 }
 
 .itemsDesc .order {
@@ -98,58 +149,91 @@ td {
     padding: 4px 2px;
     border-radius: 5px;
     cursor: pointer;
-    height: fit-content;
 }
 
 .itemsDesc .order:hover {
-    color: #000000;
+    color: #000;
 }
 
 
-
-
-/* Page Number */
-
+/* --------------- Pagination --------------- */
 .pagination {
     display: flex;
     justify-content: center;
-    margin: 60px 0 ;
+    align-items: center;
+    margin: 40px 0;
+    flex-wrap: wrap;
 }
 
 .pagination button {
+    padding: 8px 16px;
+    min-width: 50px;
     border-top: 2px solid #EA641A;
     border-bottom: 2px solid #EA641A;
-    border-left: none;
-    border-right: none;
-    padding: 10px 15px;
-    width: 60px;
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.pageNumber{
-    background-color: #f8a375;
-    border-left: 1px solid #EA641A !important;
-    border-right: 1px solid #EA641A !important;
-}
-
-.pagination .pre {
-    border-left: 2px solid #EA641A;
-    border-right: 1px solid #EA641A;
-}
-
-.pagination .next {
-    border-right: 2px solid #EA641A;
     border-left: 1px solid #EA641A;
+    border-right: 1px solid #EA641A;
+    background-color: #f8a375;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pagination button:hover {
+    background-color: #ea641a;
+    color: #fff;
+}
+
+.pagination .currentPage {
+    background-color: #EA641A !important;
+    color: white;
+    border: 2px solid #EA641A;
 }
 
 .pagination .pre,
 .pagination .next {
-    background-color: #fe935966;
+    background-color: #ffffff;
+    color: #EA641A;
+    font-weight: bold;
 }
 
-.currentPage{
-    background-color: #EA641A   !important;
+.pagination .next {
+    border-right: 2px solid #EA641A;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.pagination .pre {
+    border-left: 2px solid #EA641A;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination .pre:hover,
+.pagination .next:hover {
+    background-color: #EA641A;
+    color: #fff;
+}
+
+
+
+/* --------------- Responsive --------------- */
+@media (max-width: 1024px) {
+    .items {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .pagination button {
+        padding: 6px 12px;
+        min-width: 40px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .items {
+        grid-template-columns: 1fr;
+    }
 }
