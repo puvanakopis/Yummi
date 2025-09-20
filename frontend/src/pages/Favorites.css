@@ -1,0 +1,130 @@
+.FavoritesPage {
+    font-family: "Poltawski Nowy", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0 auto;
+    max-width: 1300px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80vh;
+    background-color: rgba(234, 100, 26, 0.2);
+  margin-bottom: 100px;
+    padding: 40px 20px;
+  border-radius: 12px;
+}
+
+.MainHeading {
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.empty-msg {
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+}
+
+/* Grid layout */
+.favorites-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+}
+
+/* Single favorite item */
+.favoriteItem {
+    position: relative;
+    border: rgba(0, 0, 0, 0.123) 2px solid;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.favoriteItem:hover {
+    transform: scale(1.02);
+}
+
+/* Favorite heart icon */
+.favoriteIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.favoriteIcon:hover {
+    transform: scale(1.2);
+}
+
+/* Item image */
+.favoriteItem img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px 5px 0 0;
+}
+
+/* Item description */
+.itemsDesc {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.itemsDesc .flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.name {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.rate {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.price {
+    font-size: 15px;
+    font-weight: bold;
+    color: #EA641A;
+}
+
+.order {
+    font-size: 14px;
+    background-color: #ea641a;
+    color: white;
+    padding: 4px 2px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.order:hover {
+    background-color: #c55215;
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1024px) {
+    .favorites-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .favorites-grid {
+        grid-template-columns: 1fr;
+    }
+}

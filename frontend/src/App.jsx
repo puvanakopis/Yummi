@@ -9,6 +9,7 @@ import OrderItems from "./pages/OrderItems";
 import SignUp from "./pages/Signup";
 import Login from "./pages/Login";
 import Account from './pages/Account';
+import Favorites from './pages/Favorites';
 
 import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
@@ -33,6 +34,7 @@ const App = () => {
           <Route path="/ItemDetails" element={<ItemDetails />} />
           <Route path="/deliveryform" element={<DeliveryFormPage />} />
           <Route path="/Account" element={<Account />} />
+          <Route path="/Favorites" element={<Favorites />} />
         </Routes>
       </MyContextProvider>
       <Footer />

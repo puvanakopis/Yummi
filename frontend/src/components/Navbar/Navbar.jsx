@@ -11,8 +11,10 @@ const Navbar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  const { cardItems, user, logout } = useContext(MyContext);
+  const { cardItems, favoriteItems, user, logout } = useContext(MyContext);
+
   const [numberOfItem, setNumberOfItem] = useState(0);
+  const [numberOfFavorites, setNumberOfFavorites] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAccountOpen, setIsAccountOpen] = useState(false);
 
@@ -20,11 +22,11 @@ const Navbar = () => {
 
   useEffect(() => {
     setNumberOfItem(cardItems.length);
-  }, [cardItems]);
+    setNumberOfFavorites(favoriteItems.length);
+  }, [cardItems, favoriteItems]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
-  // Close account dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (accountRef.current && !accountRef.current.contains(event.target)) {
@@ -55,10 +57,10 @@ const Navbar = () => {
 
         {/* ---------------- Right Icons ---------------- */}
         <div className="nav-icons">
-          <div className="like-item">
+          <Link to='/Favorites' className="like-item">
             <MdFavoriteBorder />
-            <div className="dot">0</div>
-          </div>
+            <div className="dot">{numberOfFavorites}</div>
+          </Link>
 
           <Link to='/addToCard' className="order-item">
             <LiaShoppingBagSolid />
@@ -114,7 +116,9 @@ const Navbar = () => {
             <Link to="/Menu" className={`list ${currentPath === "/Menu" ? "active" : ""}`} onClick={toggleMenu}>Menu</Link>
             <Link to="/About" className={`list ${currentPath === "/About" ? "active" : ""}`} onClick={toggleMenu}>About</Link>
             <Link to="/Contact" className={`list ${currentPath === "/Contact" ? "active" : ""}`} onClick={toggleMenu}>Contact</Link>
-            <Link to="/Favorite" className={`list ${currentPath === "/Favorite" ? "active" : ""}`} onClick={toggleMenu}>Favorite</Link>
+            <Link to="/Favorites" className={`list ${currentPath === "/Favorites" ? "active" : ""}`} onClick={toggleMenu}>
+              Favorites {numberOfFavorites > 0 && `(${numberOfFavorites})`}
+            </Link>
             {user ? (
               <>
                 <Link to="/Account" className="list" onClick={toggleMenu}>My Account</Link>

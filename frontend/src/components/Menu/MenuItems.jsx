@@ -1,7 +1,7 @@
 import { useContext, useRef, useState } from 'react';
 import './MenuItems.css';
 import { mainMenu } from '../../assets/assets';
-import { FaStar, FaBars, FaTimes } from 'react-icons/fa';
+import { FaStar, FaBars, FaTimes, FaHeart} from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../../Context/MyContext.jsx';
 
@@ -39,32 +39,29 @@ const MenuItems = () => {
     const currentItems = filteredItem.slice(startIndex, endIndex);
 
     const navigate = useNavigate();
-    const { showItem } = useContext(MyContext);
+    const { showItem, toggleFavorite, isFavorite } = useContext(MyContext);
     const navigateToItemDetails = (item) => {
         window.scrollTo({ top: 0, behavior: "smooth" });
         navigate('/ItemDetails');
         showItem(item);
     };
 
-    // Sidebar toggle for all screens
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
         <div className='CategoryMenu'>
 
-            {/* --------------- Sidebar Toggle Button --------------- */}
+            {/* Sidebar Toggle Button */}
             <div className='Sidebar'>
                 <button onClick={() => setSidebarOpen(!sidebarOpen)} className="menu-toggle">
                     <FaBars size={24} />
                 </button>
             </div>
 
-
-            {/* --------------- Overlay --------------- */}
+            {/* Overlay */}
             {sidebarOpen && <div className="overlay" onClick={() => setSidebarOpen(false)}></div>}
 
-
-            {/* --------------- Sidebar --------------- */}
+            {/* Sidebar */}
             <div className={`Menu ${sidebarOpen ? "open" : ""}`}>
                 <div className="sidebar-header">
                     <h2>Categories</h2>
@@ -91,12 +88,14 @@ const MenuItems = () => {
                 </div>
             </div>
 
-
-            {/* --------------- Items --------------- */}
+            {/* Items */}
             <div className="all-items">
                 <div ref={menuRef} className='items'>
                     {currentItems.map((item) => (
                         <div key={item.id} className="itemsList">
+                            <div className="favoriteIcon" onClick={() => toggleFavorite(item)}>
+                                {isFavorite(item) ? <FaHeart color="#ea641a" /> : <FaHeart color="#ffff" />}
+                            </div>
                             <img src={item.Img} alt={item.Name} />
                             <div className="itemsDesc grid grid-row-2">
                                 <div className="flex">
@@ -117,8 +116,7 @@ const MenuItems = () => {
                     ))}
                 </div>
 
-
-                {/* --------------- Pagination --------------- */}
+                {/* Pagination */}
                 <div className="pagination">
                     <button className='pre' onClick={() => handlePageChange(currentPage - 1)}>Pre</button>
                     {[...Array(totalPages)].map((_, index) =>

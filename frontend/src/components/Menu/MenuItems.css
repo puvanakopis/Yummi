@@ -10,6 +10,26 @@
     align-items: center;
 }
 
+/* --------------- Favorite icon --------------- */
+.itemsList {
+    position: relative;
+}
+
+.favoriteIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+
+.favoriteIcon:hover {
+    transform: scale(1.2);
+}
+
+
 
 /* --------------- Sidebar Toggle Button --------------- */
 .Sidebar {
@@ -153,6 +173,7 @@ table {
 
 .itemsDesc .order:hover {
     color: #000;
+    background-color: #e07c47 !important;
 }
 
 
