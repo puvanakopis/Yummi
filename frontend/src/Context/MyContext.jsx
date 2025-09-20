@@ -11,8 +11,7 @@ export function MyContextProvider({ children }) {
     setViewItem(newItem);
   };
 
-
-  // ---------- add to card ----------
+  // ---------- Add to cart ----------
   const [cardItems, setCardItems] = useState([])
 
   const addToCard = (item, quantity) => {
@@ -33,9 +32,35 @@ export function MyContextProvider({ children }) {
     }
   };
 
+  // ---------- User Login ----------
+  const [user, setUser] = useState(null); // will store logged-in user info
+
+  const login = (email, password) => {
+    if (email === "puvanakopis@gmail.com" && password === "123456") {
+      setUser({ email });
+      return { success: true, message: "Login successful!" };
+    } else {
+      return { success: false, message: "Invalid email or password" };
+    }
+  };
+
+  const logout = () => {
+    setUser(null);
+  };
 
   return (
-    <MyContext.Provider value={{ viewItem, showItem, cardItems, addToCard , setCardItems}}>
+    <MyContext.Provider 
+      value={{ 
+        viewItem, 
+        showItem, 
+        cardItems, 
+        addToCard, 
+        setCardItems,
+        user,
+        login,
+        logout
+      }}
+    >
       {children}
     </MyContext.Provider>
   );
