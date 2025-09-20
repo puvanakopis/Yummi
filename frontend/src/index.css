@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Tamil:ital,wght@0,100..900;1,100..900&family=Praise&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif+Tamil:ital,wght@0,100..900;1,100..900&family=Poltawski+Nowy:ital,wght@0,400..700;1,400..700&family=Praise&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Poltawski+Nowy:ital,wght@0,400..700;1,400..700&family=Praise&display=swap');
 
 * {
   padding: 0;
@@ -36,7 +36,7 @@ a {
   cursor: pointer;
   background-color: #EA641A;
   height: max-content;
-  width: max-content;
+  width: fit-content !important;
   padding: 8px 35px;
   color: white;
   border-radius: 5px;
