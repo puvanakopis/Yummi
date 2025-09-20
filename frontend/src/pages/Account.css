@@ -1,0 +1,120 @@
+.AccountPage {
+    font-family: "Poltawski Nowy", serif;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0 auto;
+    max-width: 1300px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.AccountPage-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(216, 93, 36, 0.15);
+    border-radius: 8px;
+    padding: 40px 20px;
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 100px;
+}
+
+.AccountPage-box {
+    background: white;
+    padding: 60px 40px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    width: 100%;
+    max-width: 600px;
+}
+
+.AccountPage-title {
+    margin-bottom: 30px;
+}
+
+.account_details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.detail label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.detail input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    background-color: #f9f9f9;
+}
+
+.AccountPageButton {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.mainButton {
+    background: #ea641a;
+    color: white;
+    font-weight: bold;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.mainButton:hover {
+    background: #c55215;
+}
+
+/* ---------- Responsive Breakpoints ---------- */
+@media (max-width: 1024px) {
+    .AccountPage-container {
+        padding: 30px 20px;
+    }
+
+    .AccountPage-box {
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .AccountPage-container {
+        padding: 20px;
+        margin-bottom: 60px;
+    }
+
+    .AccountPage-box {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .AccountPage-box {
+        padding: 15px;
+    }
+
+    input {
+        font-size: 13px;
+        padding: 10px;
+    }
+
+    .mainButton {
+        width: 100%;
+        text-align: center;
+    }
+}

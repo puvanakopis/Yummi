@@ -77,7 +77,7 @@ const Navbar = () => {
               <div className="dropdown-menu">
                 {user ? (
                   <>
-                    <span className="dropdown-item">My Account</span>
+                    <Link to="/Account" className="dropdown-item">My Account</Link>
                     <span
                       className="dropdown-item"
                       onClick={() => {
@@ -117,7 +117,7 @@ const Navbar = () => {
             <Link to="/Favorite" className={`list ${currentPath === "/Favorite" ? "active" : ""}`} onClick={toggleMenu}>Favorite</Link>
             {user ? (
               <>
-                <span className="list" onClick={toggleMenu}>My Account</span>
+                <Link to="/Account" className="list" onClick={toggleMenu}>My Account</Link>
                 <span className="list" onClick={() => { logout(); toggleMenu(); }}>Logout</span>
               </>
             ) : (
