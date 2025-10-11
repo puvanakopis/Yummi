@@ -53,6 +53,7 @@ export function MyContextProvider({ children }) {
         showItem,
         cardItems,
         addToCard,
+        setCardItems,
         favoriteItems,
         toggleFavorite,
         isFavorite,

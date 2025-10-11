@@ -1,4 +1,4 @@
-.About {
+.about-page {
   font-family: "Poltawski Nowy", serif;
   font-weight: 400;
   font-style: normal;
@@ -7,25 +7,25 @@
   padding: 0 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; 
 }
 
 /* -------------- Banner -------------- */
-.aboutBanner {
+.about-page .banner {
   width: 100%;
   height: auto;
   max-height: 450px;
   overflow: hidden;
 }
 
-.aboutBanner img {
+.about-page .banner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
 /* -------------- Description section -------------- */
-.aboutDesc {
+.about-page .desc {
   background-color: rgba(234, 100, 26, 0.2);
   margin-top: 60px;
   margin-bottom: 100px;
@@ -37,20 +37,20 @@
   border-radius: 12px;
 }
 
-.MainHeading {
+.about-page .mainHeading {
   margin-top: 0;
   font-size: 2rem;
   text-align: center;
 }
 
-.aboutDesc-1 {
+.about-page .desc-1 {
   font-size: 18px;
   text-align: center;
   line-height: 1.6;
   margin-top: 20px;
 }
 
-.aboutDesc-2 {
+.about-page .desc-2 {
   font-size: 18px;
   font-style: italic;
   font-weight: bold;
@@ -59,7 +59,7 @@
 }
 
 /* Button */
-.mainButton {
+.about-page .mainButton {
   background: #ea641a;
   color: white;
   font-weight: bold;
@@ -69,51 +69,50 @@
   transition: all 0.3s ease;
 }
 
-.mainButton:hover {
+.about-page .mainButton:hover {
   background: #c55215;
 }
 
-
 /* -------------- Responsive Breakpoints -------------- */
 @media (max-width: 1024px) {
-  .aboutDesc {
+  .about-page .desc {
     padding: 30px 20px;
   }
 
-  .aboutDesc-1,
-  .aboutDesc-2 {
+  .about-page .desc-1,
+  .about-page .desc-2 {
     font-size: 16px;
   }
 }
 
 @media (max-width: 768px) {
-  .MainHeading {
+  .about-page .mainHeading {
     font-size: 1.8rem;
   }
 
-  .aboutDesc {
+  .about-page .desc {
     margin-top: 40px;
     margin-bottom: 60px;
     padding: 20px;
   }
 
-  .aboutDesc-1,
-  .aboutDesc-2 {
+  .about-page .desc-1,
+  .about-page .desc-2 {
     font-size: 15px;
   }
 }
 
 @media (max-width: 480px) {
-  .MainHeading {
+  .about-page .mainHeading {
     font-size: 1.5rem;
   }
 
-  .aboutDesc-1,
-  .aboutDesc-2 {
+  .about-page .desc-1,
+  .about-page .desc-2 {
     font-size: 14px;
   }
 
-  .mainButton {
+  .about-page .mainButton {
     width: 100%;
     text-align: center;
   }

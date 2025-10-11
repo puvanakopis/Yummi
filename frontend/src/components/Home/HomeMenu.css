@@ -1,5 +1,4 @@
-.HomeMenu {
-  font-family: "Poltawski Nowy", serif;
+.home-menu {
   font-weight: 400;
   font-style: normal;
   margin: 0px 130px 100px 130px;
@@ -9,71 +8,72 @@
 }
 
 /* --------- Items ---------  */
-.Items {
+.home-menu .Items {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   justify-items: center;
+  
 }
 
 /* --------- Menu item ---------*/
-.ItemList {
+.home-menu .ItemList {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 300px;
-  padding-bottom: 40px;
   height: fit-content;
   border-radius: 8px;
   border: rgba(0, 0, 0, 0.123) 2px solid;
   transition: all 0.3s ease-in-out;
 }
 
-.ItemList:hover {
+.home-menu .ItemList:hover {
   transform: scale(1.02);
 }
 
-.ItemList img {
+.home-menu .ItemList img {
   width: 300px;
   height: 250px;
   border-radius: 8px 8px 0 0;
 }
 
-.naming {
+.home-menu .naming {
   padding: 20px 15px 0 15px;
   height: 50px;
   font-weight: 700;
   width: 100%;
 }
 
-.naming .rate {
+.home-menu .naming .rate {
   display: flex;
   align-items: center;
 }
 
-.naming .name {
+.home-menu .naming .name {
   display: flex;
   align-items: center;
   font-size: 18px;
 }
 
-.naming2 {
-  padding: 7px 15px;
-  height: 50px;
+.home-menu .naming2 {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 7px 15px;
+  height: fit-content;
+  width: 100%;
   align-items: center;
 }
 
-.naming2 .price {
+.home-menu .naming2 .price {
   color: #EA641A;
-  padding-bottom: 10px;
   width: 100%;
   font-weight: 700;
 }
 
-.naming2 .order {
+.home-menu .naming2 .order {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,112 +85,110 @@
   transition: all 0.3s ease-in-out;
 }
 
-.naming2 .order:hover {
+.home-menu .naming2 .order:hover {
   color: white;
 }
 
 /* --------- Navigation button ---------  */
-.navigate {
+.home-menu .navigate {
   margin-top: 40px;
 }
 
-
-
 /* ---------------- Responsive ---------------- */
 @media (max-width: 1224px) {
-  .HomeMenu {
+  .home-menu {
     margin: 0px 50px 100px 50px;
   }
 }
 
 @media (max-width: 1024px) {
-  .HomeMenu {
+  .home-menu {
     margin: 0px 60px 80px 60px;
   }
 
-  .Items {
+  .home-menu .Items {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .ItemList {
+  .home-menu .ItemList {
     margin: 20px 40px;
     width: 280px;
     height: auto;
   }
 
-  .ItemList img {
+  .home-menu .ItemList img {
     width: 280px;
     height: 220px;
   }
 }
 
 @media (max-width: 900px) {
-  .HomeMenu {
+  .home-menu {
     margin: 0px 40px 60px 40px;
   }
 
-  .Items {
+  .home-menu .Items {
     grid-template-columns: 1fr;
   }
 
-  .ItemList {
+  .home-menu .ItemList {
     margin: 20px 0;
     width: 260px;
     height: auto;
   }
 
-  .ItemList img {
+  .home-menu .ItemList img {
     width: 260px;
     height: 200px;
   }
 
-  .naming {
+  .home-menu .naming {
     font-size: 16px;
     padding: 15px 10px 0 10px;
   }
 
-  .naming2 {
+  .home-menu .naming2 {
     padding: 10px;
   }
 }
 
 @media (max-width: 480px) {
-  .HomeMenu {
+  .home-menu {
     margin: 0px 20px 40px 20px;
   }
 
-  .Items {
+  .home-menu .Items {
     grid-template-columns: 1fr;
     gap: 15px;
   }
 
-  .ItemList {
+  .home-menu .ItemList {
     width: 100%;
     max-width: 240px;
     height: auto;
     margin: 10px auto;
   }
 
-  .ItemList img {
+  .home-menu .ItemList img {
     width: 100%;
     height: 180px;
   }
 
-  .naming {
+  .home-menu .naming {
     font-size: 14px;
     padding: 12px 8px 0 8px;
   }
 
-  .naming2 .price {
+  .home-menu .naming2 .price {
     font-size: 14px;
   }
 
-  .naming2 .order {
+  .home-menu .naming2 .order {
     font-size: 14px;
     padding: 5px 15px;
   }
 
-  .navigate {
+  .home-menu .navigate {
     font-size: 14px;
     margin-top: 30px;
   }

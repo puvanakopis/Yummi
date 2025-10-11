@@ -3,7 +3,7 @@ import { HomeFeatures } from "../../assets/assets";
 
 const Features = () => {
   return (
-    <div className="Feature">
+    <div className="home-feature">
 
       {/* -------------- Main heading -------------- */}
       <div>
@@ -11,7 +11,7 @@ const Features = () => {
       </div>
 
       {/* -------------- Features list container -------------- */}
-      <div className="flex justify-center Features gap-x-25">
+      <div className="Features gap-x-25">
         
         <div className="Features-list w-1/4">
           <div>

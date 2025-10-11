@@ -1,42 +1,40 @@
-.FavoritesPage {
-    font-family: "Poltawski Nowy", serif;
+.favorites-page {
     font-weight: 400;
     font-style: normal;
     margin: 0 auto;
     max-width: 1300px;
-    padding: 20px;
+    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 80vh;
+    min-height: 80vh;
     background-color: rgba(234, 100, 26, 0.2);
-  margin-bottom: 100px;
-    padding: 40px 20px;
-  border-radius: 12px;
+    margin-bottom: 100px;
+    border-radius: 12px;
 }
 
-.MainHeading {
+.favorites-page .MainHeading {
     text-align: center;
     font-size: 35px;
     font-weight: bold;
     margin-bottom: 30px;
 }
 
-.empty-msg {
+.favorites-page .empty-msg {
     text-align: center;
     font-size: 18px;
     color: #555;
 }
 
 /* Grid layout */
-.favorites-grid {
+.favorites-page .favorites-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 28px;
 }
 
 /* Single favorite item */
-.favoriteItem {
+.favorites-page .favoriteItem {
     position: relative;
     border: rgba(0, 0, 0, 0.123) 2px solid;
     border-radius: 5px;
@@ -45,12 +43,12 @@
     background-color: #fff;
 }
 
-.favoriteItem:hover {
+.favorites-page .favoriteItem:hover {
     transform: scale(1.02);
 }
 
 /* Favorite heart icon */
-.favoriteIcon {
+.favorites-page .favoriteIcon {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -59,12 +57,12 @@
     transition: transform 0.2s ease-in-out;
 }
 
-.favoriteIcon:hover {
+.favorites-page .favoriteIcon:hover {
     transform: scale(1.2);
 }
 
 /* Item image */
-.favoriteItem img {
+.favorites-page .favoriteItem img {
     width: 100%;
     height: 150px;
     object-fit: cover;
@@ -72,37 +70,37 @@
 }
 
 /* Item description */
-.itemsDesc {
+.favorites-page .itemsDesc {
     padding: 10px;
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.itemsDesc .flex {
+.favorites-page .itemsDesc .flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.name {
+.favorites-page .name {
     font-size: 16px;
     font-weight: bold;
 }
 
-.rate {
+.favorites-page .rate {
     display: flex;
     align-items: center;
     font-size: 14px;
 }
 
-.price {
+.favorites-page .price {
     font-size: 15px;
     font-weight: bold;
     color: #EA641A;
 }
 
-.order {
+.favorites-page .order {
     font-size: 14px;
     background-color: #ea641a;
     color: white;
@@ -112,19 +110,78 @@
     text-align: center;
 }
 
-.order:hover {
+.favorites-page .order:hover {
     background-color: #c55215;
+}
+
+/* Pagination */
+.favorites-page .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+.favorites-page .pagination button {
+    padding: 8px 16px;
+    min-width: 50px;
+    border-top: 2px solid #EA641A;
+    border-bottom: 2px solid #EA641A;
+    border-left: 1px solid #EA641A;
+    border-right: 1px solid #EA641A;
+    background-color: #f8a375;
+    color: #000;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.favorites-page .pagination button:hover {
+    background-color: #ea641a;
+    color: #fff;
+}
+
+.favorites-page .pagination .currentPage {
+    background-color: #EA641A !important;
+    color: white;
+    border: 2px solid #EA641A;
+}
+
+.favorites-page .pagination .pre,
+.favorites-page .pagination .next {
+    background-color: #ffffff;
+    color: #EA641A;
+    font-weight: bold;
+}
+
+.favorites-page .pagination .next {
+    border-right: 2px solid #EA641A;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.favorites-page .pagination .pre {
+    border-left: 2px solid #EA641A;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.favorites-page .pagination .pre:hover,
+.favorites-page .pagination .next:hover {
+    background-color: #EA641A;
+    color: #fff;
 }
 
 /* Responsive breakpoints */
 @media (max-width: 1024px) {
-    .favorites-grid {
+    .favorites-page .favorites-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 480px) {
-    .favorites-grid {
+    .favorites-page .favorites-grid {
         grid-template-columns: 1fr;
     }
 }

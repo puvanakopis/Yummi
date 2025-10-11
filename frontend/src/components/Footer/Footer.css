@@ -1,5 +1,4 @@
-.Footer {
-    font-family: "Poltawski Nowy", serif;
+.footer {
     font-weight: 400;
     font-style: normal;
     font-size: 15px;
@@ -9,12 +8,11 @@
     align-items: flex-start;
     padding: 2% 0;
     flex-wrap: wrap;
-    /* allows stacking on small screens */
     gap: 30px;
 }
 
 /* -------------------- Logo & Social Media -------------------- */
-.f1 {
+.footer .f1 {
     flex: 1 1 250px;
     display: flex;
     flex-direction: column;
@@ -23,11 +21,11 @@
 }
 
 /* Brand Logo */
-.Footer .logo {
+.footer .logo {
     width: 100%;
 }
 
-.Footer .logo .logo-1 {
+.footer .logo .logo-1 {
     font-family: "Praise", serif;
     font-weight: 100;
     font-size: 50px;
@@ -35,7 +33,7 @@
     text-shadow: 5px 3px 3px rgba(0, 0, 0, 0.3);
 }
 
-.Footer .logo .logo-2 {
+.footer .logo .logo-2 {
     font-weight: 400;
     font-size: 12px;
     text-shadow: 5px 3px 3px rgba(0, 0, 0, 0.3);
@@ -43,7 +41,7 @@
 }
 
 /* Social Media */
-.Footer .social_media {
+.footer .social_media {
     margin-top: 15px;
     display: flex;
     justify-content: center;
@@ -51,7 +49,7 @@
     flex-wrap: wrap;
 }
 
-.Footer .social_media .media {
+.footer .social_media .media {
     color: #ea641a;
     display: flex;
     justify-content: center;
@@ -65,28 +63,28 @@
     transition: all 0.3s ease-in-out;
 }
 
-.Footer .social_media .media:hover {
+.footer .social_media .media:hover {
     scale: 1.1;
 }
 
 /* -------------------- Sections -------------------- */
-.f2,
-.f3,
-.f4 {
+.footer .f2,
+.footer .f3,
+.footer .f4 {
     flex: 1 1 200px;
     padding: 20px;
 }
 
-.f2 h1,
-.f3 h1,
-.f4 h1 {
+.footer .f2 h1,
+.footer .f3 h1,
+.footer .f4 h1 {
     font-size: 20px;
     margin-bottom: 15px;
 }
 
-.f2 ul,
-.f3 ul,
-.f4 ul {
+.footer .f2 ul,
+.footer .f3 ul,
+.footer .f4 ul {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -94,73 +92,73 @@
     cursor: pointer;
 }
 
-.f2 ul li,
-.f3 ul li,
-.f4 ul li {
+.footer .f2 ul li,
+.footer .f3 ul li,
+.footer .f4 ul li {
     transition: all 0.3s;
-    font-size: 18px !important;
+    font-size: 17px !important;
 }
 
-.f2 ul li:hover,
-.f3 ul li:hover,
-.f4 ul li:hover {
+.footer .f2 ul li:hover,
+.footer .f3 ul li:hover,
+.footer .f4 ul li:hover {
     color: #ea641a;
     transform: translateX(6px);
 }
 
 /* -------------------- Responsive Breakpoints -------------------- */
 @media (max-width: 1240px) {
-    .Footer {
+    .footer {
         padding: 30px 40px;
         gap: 20px;
     }
 
-    .Footer .logo .logo-1 {
+    .footer .logo .logo-1 {
         font-size: 40px;
     }
 
-    .f2,
-    .f3,
-    .f4 {
+    .footer .f2,
+    .footer .f3,
+    .footer .f4 {
         display: none;
     }
 
 }
 
 @media (max-width: 768px) {
-    .Footer {
+    .footer {
         padding: 20px;
     }
 
-    .f2,
-    .f3,
-    .f4 {
+    .footer .f2,
+    .footer .f3,
+    .footer .f4 {
         padding: 10px 0;
     }
 
-    .Footer .logo .logo-1 {
+    .footer .logo .logo-1 {
         font-size: 35px;
     }
 
-    .f4 {
+    .footer .f4 {
         display: none;
     }
 }
 
 @media (max-width: 480px) {
-    .Footer {
+    .footer {
         padding: 15px;
     }
 
-    .Footer .logo .logo-1 {
+    .footer .logo .logo-1 {
         font-size: 28px;
     }
 
-    .Footer .logo .logo-2 {
+    .footer .logo .logo-2 {
         font-size: 10px;
     }
 
-    .Footer .social_media .media {
+    .footer .social_media .media {
         font-size: 18px;
         width: 35px;
         height: 35px;

@@ -3,11 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import Home from './pages/Home'
 import Menu from './pages/Menu'
 import About from './pages/About'
-import DeliveryFormPage from './pages/DeliveryFormPage'
+import DeliveryInfor from './pages/DeliveryInfor'
 import Contact from './pages/Contact'
 import OrderItems from "./pages/OrderItems";
 import SignUp from "./pages/Signup";
-import Login from "./pages/Login";
+import Login from "./pages/login";
 import Account from './pages/Account';
 import Favorites from './pages/Favorites';
 
@@ -32,7 +32,7 @@ const App = () => {
           <Route path="/Login" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/ItemDetails" element={<ItemDetails />} />
-          <Route path="/deliveryform" element={<DeliveryFormPage />} />
+          <Route path="/DeliveryInfor" element={<DeliveryInfor />} />
           <Route path="/Account" element={<Account />} />
           <Route path="/Favorites" element={<Favorites />} />
         </Routes>

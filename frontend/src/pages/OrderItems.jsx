@@ -44,7 +44,7 @@ const OrderItem = () => {
 
 
     return (
-        <div className="OrderItem">
+        <div className="order-item-page">
 
             {/* ------------------- heading ------------------- */}
             <div className="heading">
@@ -120,7 +120,7 @@ const OrderItem = () => {
 
                 {/* Delivery Information */}
                 <div className="checkout">
-                    <div className="mainButton" onClick={() => navigator('/deliveryform')}>
+                    <div className="mainButton" onClick={() => navigator('/DeliveryInfor')}>
                         Add Delivery Address Information
                     </div>
                 </div>

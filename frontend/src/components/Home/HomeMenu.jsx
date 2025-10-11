@@ -25,7 +25,7 @@ const HomeMenu = () => {
   };
 
   return (
-    <div className='HomeMenu'> 
+    <div className='home-menu'> 
       {/* --------- Main heading --------- */}
       <div><h1 className='MainHeading'>Most Popular Items</h1></div>
 

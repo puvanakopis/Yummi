@@ -1,78 +1,77 @@
-.Feature{
-    font-family: "Poltawski Nowy", serif;
-    font-weight: 400;
-    font-style: normal;
-    margin: 0px 130px 150px 130px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 100px;
+.home-feature {
+  font-weight: 400;
+  font-style: normal;
+  margin: 0px 130px 150px 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
 }
-
-
 
 /* -------------- Features list container -------------- */
-.Features{
-    height: 350px; 
-    width: 100%;
-    margin-top: 30px;
+.home-feature .Features {
+  display: flex;
+  justify-content: center;
+  height: 350px;
+  width: 100%;
+  margin-top: 30px;
+  column-gap: 25px;
 }
 
-.Features-list{
-    height: 350px; 
-    padding: 10px 40px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 30px;
-    border: rgba(0, 0, 0, 0.123) 2px solid ;
-    background-color: #F0F0F0;
-    transition: all 0.2s ease-in-out;
+.home-feature .Features-list {
+  height: 350px;
+  padding: 10px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  border: rgba(0, 0, 0, 0.123) 2px solid;
+  background-color: #F0F0F0;
+  transition: all 0.2s ease-in-out;
 }
 
-.Features-list:hover{
-    transform: scale(1.03);
+.home-feature .Features-list:hover {
+  transform: scale(1.03);
 }
 
-.Features-list div{
-    background-color: #EA641A;
-    padding: 25px;
-    border-radius: 50px;
+.home-feature .Features-list div {
+  background-color: #EA641A;
+  padding: 25px;
+  border-radius: 50px;
 }
 
-.Features-list div img{
-    width: 50px;
+.home-feature .Features-list div img {
+  width: 50px;
 }
 
-.Features-list h1{
-    font-size: 25px;
-    font-style: italic;
-    font-weight: bold;
-    margin-top: 20px;
-    margin-bottom: 20px;
+.home-feature .Features-list h1 {
+  font-size: 25px;
+  font-style: italic;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
-.Features-list p{
-    text-align: justify ;
+.home-feature .Features-list p {
+  text-align: justify;
 }
-
 
 /* ---------------- Responsive ---------------- */
 @media (max-width: 1024px) {
-  .Feature {
+  .home-feature {
     margin: 0px 60px 100px 60px;
     margin-top: 80px;
   }
 
-  .Features {
-    flex-wrap: wrap; 
+  .home-feature .Features {
+    flex-wrap: wrap;
     height: auto;
     justify-content: center;
     gap: 20px;
   }
 
-  .Features-list {
+  .home-feature .Features-list {
     width: 40%;
     height: auto;
     padding: 20px;
@@ -80,59 +79,59 @@
 }
 
 @media (max-width: 768px) {
-  .Feature {
+  .home-feature {
     margin: 0px 40px 80px 40px;
     margin-top: 60px;
   }
 
-  .Features {
+  .home-feature .Features {
     flex-direction: column;
     align-items: center;
     height: auto;
     gap: 30px;
   }
 
-  .Features-list {
+  .home-feature .Features-list {
     width: 80%;
     height: auto;
     padding: 20px;
   }
 
-  .Features-list h1 {
+  .home-feature .Features-list h1 {
     font-size: 20px;
   }
 
-  .Features-list p {
+  .home-feature .Features-list p {
     font-size: 15px;
   }
 }
 
 @media (max-width: 480px) {
-  .Feature {
+  .home-feature {
     margin: 0px 20px 60px 20px;
     margin-top: 40px;
   }
 
-  .Features-list {
+  .home-feature .Features-list {
     width: 100%;
     padding: 15px;
   }
 
-  .Features-list h1 {
+  .home-feature .Features-list h1 {
     font-size: 18px;
     text-align: center;
   }
 
-  .Features-list p {
+  .home-feature .Features-list p {
     font-size: 14px;
     text-align: center;
   }
 
-  .Features-list div {
+  .home-feature .Features-list div {
     padding: 18px;
   }
 
-  .Features-list div img {
+  .home-feature .Features-list div img {
     width: 40px;
   }
 }

@@ -3,7 +3,7 @@ import { Offer } from '../../assets/assets';
 
 const Offers = () => {
   return (
-    <div className='Offers'>
+    <div className='home-offers'>
 
       {/* -------------- Main heading --------------*/}
       <h1 className='MainHeading'>Featured Offers and Deals</h1>

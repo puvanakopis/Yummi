@@ -1,5 +1,4 @@
-.DeliveryForm {
-    font-family: "Poltawski Nowy", serif;
+.delivery-infor-page {
     font-weight: 400;
     font-style: normal;
     margin: 0 auto;
@@ -10,7 +9,8 @@
     align-items: center;
 }
 
-.DeliveryForm-container {
+/* ------------ Form container ------------ */
+.delivery-infor-page .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,7 +24,7 @@
     margin-bottom: 100px;
 }
 
-.DeliveryForm-box {
+.delivery-infor-page .box {
     background: white;
     padding: 60px 40px;
     border-radius: 10px;
@@ -34,22 +34,22 @@
     max-width: 600px;
 }
 
-.input_details {
+.delivery-infor-page .input_details {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
 }
 
-.FName,
-.LName,
-.Address,
-.Postal_Code,
-.Phone_Number {
+.delivery-infor-page .FName,
+.delivery-infor-page .LName,
+.delivery-infor-page .Address,
+.delivery-infor-page .Postal_Code,
+.delivery-infor-page .Phone_Number {
     width: 100%;
     margin-bottom: 15px;
 }
 
-input {
+.delivery-infor-page input {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -57,14 +57,20 @@ input {
     font-size: 14px;
 }
 
-/* Submit button */
-.DeliveryFormButton {
+.delivery-infor-page input:focus {
+    outline: none;
+    border-color: #E7641A;
+}
+
+
+/* ------------ Submit button ------------ */
+.delivery-infor-page .button {
     margin-top: 30px;
     display: flex;
     justify-content: center;
 }
 
-.mainButton {
+.delivery-infor-page .mainButton {
     background: #ea641a;
     color: white;
     font-weight: bold;
@@ -75,50 +81,48 @@ input {
     border: none;
 }
 
-.mainButton:hover {
+.delivery-infor-page .mainButton:hover {
     background: #c55215;
 }
 
-
-
 /* ---------- Responsive Breakpoints ---------- */
 @media (max-width: 1024px) {
-    .DeliveryForm-container {
+    .delivery-infor-page .container {
         padding: 30px 20px;
     }
 
-    .DeliveryForm-box {
+    .delivery-infor-page .box {
         padding: 40px 30px;
     }
 }
 
 @media (max-width: 768px) {
-    .DeliveryForm-container {
+    .delivery-infor-page .container {
         padding: 20px;
         margin-bottom: 60px;
     }
 
-    .DeliveryForm-box {
+    .delivery-infor-page .box {
         padding: 20px;
     }
 
-    .input_details {
+    .delivery-infor-page .input_details {
         grid-template-columns: 1fr;
         gap: 15px;
     }
 }
 
 @media (max-width: 480px) {
-    .DeliveryForm-box {
+    .delivery-infor-page .box {
         padding: 15px;
     }
 
-    input {
+    .delivery-infor-page input {
         font-size: 13px;
         padding: 10px;
     }
 
-    .mainButton {
+    .delivery-infor-page .mainButton {
         width: 100%;
         text-align: center;
     }

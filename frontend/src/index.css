@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poltawski+Nowy:ital,wght@0,400..700;1,400..700&family=Praise&display=swap');
 
 * {
+  font-family: "Poltawski Nowy", serif;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -19,7 +20,6 @@ a {
 }
 
 .MainHeading {
-  font-family: "Poltawski Nowy", serif;
   font-size: 35px;
   font-style: italic;
   font-weight: bold;

@@ -15,7 +15,7 @@ const Footer = () => {
   };
 
   return (
-    <div className='Footer flex items-center justify-center'>
+    <div className='footer flex items-center justify-center'>
 
       {/* Logo & Social Media Section */}
       <div className='f1 w-3/10 flex flex-col'>

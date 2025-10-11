@@ -1,5 +1,4 @@
-.OrderItem {
-    font-family: "Poltawski Nowy", serif;
+.order-item-page {
     font-weight: 400;
     font-style: normal;
     margin: 50px 130px 100px 130px;
@@ -9,7 +8,7 @@
 }
 
 /* ------------------- heading ------------------- */
-.heading {
+.order-item-page .heading {
     background-color: rgba(234, 100, 26, 0.2);
     width: 100%;
     padding: 10px 20px;
@@ -18,21 +17,21 @@
 }
 
 /* ------------------- Table ------------------- */
-.Table {
+.order-item-page .Table {
     width: 100%;
     text-align: center;
     border-collapse: collapse;
 }
 
 /* Table scroll container */
-.TableScroll {
+.order-item-page .TableScroll {
     max-height: 400px; 
     overflow-y: auto;
     width: 100%;
 }
 
 /* Table heading */
-.TableHeading {
+.order-item-page .TableHeading {
     background-color: hwb(21 16% 7% / 0.38);
     border: 1px #ec5b0d8d solid;
     width: 100%;
@@ -45,12 +44,12 @@
     z-index: 10;
 }
 
-.TableHeading .title {
+.order-item-page .TableHeading .title {
     margin: 5px;
 }
 
 /* Table items */
-.TableItem {
+.order-item-page .TableItem {
     background-color: rgba(234, 100, 26, 0.2);
     width: 100%;
     height: fit-content;
@@ -58,7 +57,7 @@
     display: flex;
 }
 
-.TableItem .img {
+.order-item-page .TableItem .img {
     height: 110px;
     padding: 5px;
     display: flex;
@@ -66,31 +65,31 @@
     align-items: center;
 }
 
-.TableItem .img img {
+.order-item-page .TableItem .img img {
     padding: 5px;
     width: 150px;
     height: 100px;
     object-fit: cover;
 }
 
-.TableItem .desc {
+.order-item-page .TableItem .desc {
     padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.NoItems {
+.order-item-page .NoItems {
     display: flex;
     justify-content: center;
 }
 
 /* Order summary */
-.top {
+.order-item-page .top {
     margin-top: 5px;
 }
 
-.summary {
+.order-item-page .summary {
     background-color: rgba(234, 100, 26, 0.2);
     width: 100%;
     height: fit-content;
@@ -101,18 +100,18 @@
     align-items: center;
 }
 
-.summary_item {
+.order-item-page .summary_item {
     text-align: start;
 }
 
-.checkout {
+.order-item-page .checkout {
     display: flex;
     justify-content: end;
     margin-top: 50px;
 }
 
 /* Button */
-.mainButton {
+.order-item-page .mainButton {
     background: #ea641a;
     color: white;
     font-weight: bold;
@@ -122,51 +121,51 @@
     transition: all 0.3s ease;
 }
 
-.mainButton:hover {
+.order-item-page .mainButton:hover {
     background: #c55215;
 }
 
 /* ------------------- Responsive ------------------- */
 @media (max-width: 1024px) {
-    .OrderItem {
+    .order-item-page {
         margin: 30px 50px 60px 50px;
     }
 
-    .TableItem .img img {
+    .order-item-page .TableItem .img img {
         width: 120px;
         height: 80px;
     }
 }
 
 @media (max-width: 768px) {
-    .OrderItem {
+    .order-item-page {
         margin: 20px 20px 50px 20px;
     }
 
-    .TableItem .img img {
+    .order-item-page .TableItem .img img {
         width: 100px;
         height: 70px;
     }
 
-    .TableHeading .title,
-    .TableItem .desc {
+    .order-item-page .TableHeading .title,
+    .order-item-page .TableItem .desc {
         font-size: 14px;
     }
 }
 
 @media (max-width: 480px) {
-    .TableHeading,
-    .TableItem {
+    .order-item-page .TableHeading,
+    .order-item-page .TableItem {
         flex-direction: column;
         text-align: center;
     }
 
-    .TableItem .img img {
+    .order-item-page .TableItem .img img {
         width: 80px;
         height: 60px;
     }
 
-    .mainButton {
+    .order-item-page .mainButton {
         width: 100%;
         text-align: center;
     }

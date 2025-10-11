@@ -1,6 +1,4 @@
-/* Root feedback section */
-.feedBack {
-    font-family: "Poltawski Nowy", serif;
+.home-feedBack {
     font-weight: 400;
     font-style: normal;
     margin: 0px 130px 100px 130px;
@@ -11,7 +9,7 @@
 }
 
 /* --------------- Feedback content --------------- */
-.feedBack-area {
+.home-feedBack .feedBack-area {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -19,6 +17,6 @@
     width: 100%;
 }
 
-.feedBack-area .feedback-content p {
+.home-feedBack .feedBack-area .feedback-content p {
     padding: 20px 0px;
 }

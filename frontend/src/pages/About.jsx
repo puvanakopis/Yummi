@@ -10,18 +10,17 @@ const About = () => {
   };
 
   return (
-    <div className='About'>
+    <div className='about-page'>
 
-      {/* -------------- banner -------------- */}
-      <div className='aboutBanner'><img src={banner.AboutBanner} alt="" /></div>
-      
+      {/* -------------- Banner -------------- */}
+      <div className='banner'><img src={banner.AboutBanner} alt="" /></div>
+
       {/* -------------- Description section -------------- */}
-      <div className='aboutDesc '>
+      <div className='desc '>
         <h1 className="MainHeading">About Us</h1>
-        <div className='aboutDesc-1'>
-          Founded in 2017 in Colombo, Sri Lanka, YummiFoodShop.com has quickly become a beloved platform among the Sri Lankan community. Our mission is to make it easier for customers to enjoy delicious meals and send thoughtful gifts to their loved ones. With an innovative menu system, customers can enjoy a buffet-style dining experience where each person selects one starter, main course, and dessert from a broad range of dishes offered by top restaurants across Sri Lanka.
-        </div>
-        <div className='aboutDesc-2'>
+        <div className='desc-1'>
+          Founded in 2017 in Colombo, Sri Lanka, Yummi Food Shop has rapidly become a favorite among the local community. Our mission is to make it simple for customers to enjoy delicious meals and send thoughtful gifts to their loved ones. Through our innovative menu system, diners can experience a buffet-style selection, choosing one starter, one main course, and one dessert from a wide array of dishes offered by some of the top restaurants across Sri Lanka.        </div>
+        <div className='desc-2'>
           Yummi Food Shop – Sharing Love, One Meal at a Time.
         </div>
         <div className='mainButton' onClick={() => handleOrderNow("/Menu")}>

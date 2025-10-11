@@ -1,7 +1,7 @@
-import "./Login&Signup.css";
 import { useNavigate } from 'react-router-dom';
 import { useContext, useState } from "react";
 import { MyContext } from "../Context/MyContext";
+import './Login.css'
 
 const Login = () => {
     const navigate = useNavigate();
@@ -11,72 +11,65 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
 
-    // Handle login form submit
+    const navigator = (path) => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        navigate(path);
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const result = login(email, password);
-
         if (result.success) {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-            navigate("/");
+            navigator("/");
         } else {
             setError(result.message);
         }
     };
 
-    // Navigation to SignUp page
-    const handleOrderNow = () => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        navigate("/SignUp");
-    };
-
     return (
-        <div className='Login'>
+        <div className="login-page">
             <div className="login-container">
 
-                {/* Login Heading */}
-                <h2 className="login-title MainHeading">Log in</h2>
+                {/* --------- Login Heading --------- */}
+                <h2 className="login-title MainHeading">Log In</h2>
 
-                {/* Login Form Box */}
+                {/* --------- Login Form Box --------- */}
                 <div className="login-box">
                     <form onSubmit={handleSubmit}>
 
                         {/* Email Field */}
-                        <div className='email'>
+                        <div className="login-field">
                             <label htmlFor="email">Email Address</label>
-                            <input 
-                                type="email" 
-                                id="email" 
-                                placeholder="Enter Your Email" 
-                                required
+                            <input
+                                type="email"
+                                id="email"
+                                placeholder="Enter Your Email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                required
                             />
                         </div>
 
                         {/* Password Field */}
-                        <div className="password">
+                        <div className="login-field">
                             <label htmlFor="password">Password</label>
-                            <input 
-                                type="password" 
-                                id="password" 
-                                placeholder="Enter Your Password" 
-                                required
+                            <input
+                                type="password"
+                                id="password"
+                                placeholder="Enter Your Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
+                                required
                             />
                         </div>
 
-                        {/* Error Message */}
-                        {error && <p className="text-red-500 text-sm">{error}</p>}
-
-                        {/* Remember Me & Forgot Password */}
-                        <div className="options">
-                            <label className="options1 flex items-center space-x-2">
-                                <input type="checkbox" className="w-4 h-4" />
-                                <span>Remember&nbsp;Me</span>
+                        {/* Remember & Forgot */}
+                        <div className="login-options">
+                            <label className="remember">
+                                <input type="checkbox" />
+                                <span>Remember Me</span>
                             </label>
-                            <a href="#" className="options2 text-sm text-orange-600 font-bold">Forgot Password</a>
+                            <a href="" className="forgot-link">Forgot Password?</a>
                         </div>
 
                         {/* Login Button */}
@@ -84,12 +77,9 @@ const Login = () => {
 
                         {/* Redirect to Sign Up */}
                         <p className="signup-text">
-                            Don’t have an account?{" "}
-                            <a href="#" onClick={(e) => { e.preventDefault(); handleOrderNow(); }}>
-                                &nbsp; Sign Up
-                            </a>
+                            Don’t have an account?
+                            <a href="#" onClick={(e) => { e.preventDefault(); navigator("/signup"); }}> Sign Up</a>
                         </p>
-
                     </form>
                 </div>
             </div>

@@ -3,20 +3,17 @@ import { banner } from "../assets/assets";
 
 const Contact = () => {
   return (
-    <div className="Contact">
-
+    <div className="contact-page">
 
       {/* -------------- Banner Image -------------- */}
-      <div className="contactBanner">
+      <div className="banner">
         <img src={banner.ContactBanner} alt="Contact Banner" />
       </div>
 
-
-
       {/* -------------- Contact Section -------------- */}
-      <div className="contactDesc">
+      <div className="desc">
         <h1 className="MainHeading">Contact Us</h1>
-        <div className="contactDesc-1">
+        <div className="desc-1">
           <form>
             {/* First Name */}
             <div className="form-group half">

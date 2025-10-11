@@ -1,6 +1,6 @@
-import './DeliveryFormPage.css';
+import './DeliveryInfor.css';
 
-const DeliveryFormPage = () => {
+const DeliveryInfor = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -8,13 +8,13 @@ const DeliveryFormPage = () => {
   };
 
   return (
-    <div className='DeliveryForm'>
-      <div className="DeliveryForm-container">
+    <div className='delivery-infor-page'>
+      <div className="container">
 
-        <h2 className="DeliveryForm-title MainHeading">Delivery Information</h2>
+        <h2 className="title MainHeading">Delivery Information</h2>
 
-        {/* Form container */}
-        <div className="DeliveryForm-box">
+        {/*------------ Form container ------------ */}
+        <div className="box">
           <form onSubmit={handleSubmit}>
             <div className='input_details'>
 
@@ -40,18 +40,16 @@ const DeliveryFormPage = () => {
             </div>
 
 
-
-            {/* Submit button */}
-            <div className='DeliveryFormButton'>
+            {/* ------------ Submit button ------------ */}
+            <div className='button'>
               <button type="submit" className="mainButton">Delivery confirmed</button>
             </div>
 
           </form>
         </div>
-
       </div>
     </div>
   );
 };
 
-export default DeliveryFormPage;
+export default DeliveryInfor;

@@ -42,7 +42,7 @@ const FeedBack = () => {
   }, [index]);
 
   return (
-    <div className="feedBack">
+    <div className="home-feedBack">
      
       {/* Main heading */}
       <div>

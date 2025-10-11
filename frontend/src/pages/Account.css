@@ -1,5 +1,4 @@
-.AccountPage {
-    font-family: "Poltawski Nowy", serif;
+.account-page {
     font-weight: 400;
     font-style: normal;
     margin: 0 auto;
@@ -10,7 +9,7 @@
     align-items: center;
 }
 
-.AccountPage-container {
+.account-page .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,34 +23,34 @@
     margin-bottom: 100px;
 }
 
-.AccountPage-box {
+.account-page .box {
     background: white;
     padding: 60px 40px;
     border-radius: 10px;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
     text-align: left;
     width: 100%;
-    max-width: 600px;
+    max-width: 500px;
 }
 
-.AccountPage-title {
+.account-page .title {
     margin-bottom: 30px;
 }
 
-.account_details {
+.account-page .account_details {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
 }
 
-.detail label {
+.account-page .detail label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
     font-size: 14px;
 }
 
-.detail input {
+.account-page .detail input {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -60,13 +59,19 @@
     background-color: #f9f9f9;
 }
 
-.AccountPageButton {
+.account-page .detail input:focus {
+    outline: none;
+    border-color: #E7641A;
+}
+
+
+.account-page .account-button {
     margin-top: 30px;
     display: flex;
     justify-content: center;
 }
 
-.mainButton {
+.account-page .mainButton {
     background: #ea641a;
     color: white;
     font-weight: bold;
@@ -77,43 +82,43 @@
     border: none;
 }
 
-.mainButton:hover {
+.account-page .mainButton:hover {
     background: #c55215;
 }
 
-/* ---------- Responsive Breakpoints ---------- */
+/* ------------------- Responsive Breakpoints ------------------- */
 @media (max-width: 1024px) {
-    .AccountPage-container {
+    .account-page .container {
         padding: 30px 20px;
     }
 
-    .AccountPage-box {
+    .account-page .box {
         padding: 40px 30px;
     }
 }
 
 @media (max-width: 768px) {
-    .AccountPage-container {
+    .account-page .container {
         padding: 20px;
         margin-bottom: 60px;
     }
 
-    .AccountPage-box {
+    .account-page .box {
         padding: 20px;
     }
 }
 
 @media (max-width: 480px) {
-    .AccountPage-box {
+    .account-page .box {
         padding: 15px;
     }
 
-    input {
+    .account-page input {
         font-size: 13px;
         padding: 10px;
     }
 
-    .mainButton {
+    .account-page .mainButton {
         width: 100%;
         text-align: center;
     }

@@ -1,30 +1,27 @@
-.Offers{
-    font-family: "Poltawski Nowy", serif;
+.home-offers {
     font-weight: 400;
     font-style: normal;
     margin: 0px 130px 150px 130px;
     display: flex;
     flex-direction: column;
-    align-items: center;}
-
+    align-items: center;
+}
 
 /* -------------- Main container -------------- */
-.div{
+.home-offers .div {
     display: flex;
     width: 100%;
     height: 375px;
     padding-top: 25px;
 }
 
-
 /* Left side - img  */
-.div1 img{
+.home-offers .div1 img {
     border-radius: 10px;
 }
 
-
 /* Right side - text  */
-.div2 .div2-1{
+.home-offers .div2 .div2-1 {
     font-size: 50px;
     font-style: italic;
     text-align: center;
@@ -32,7 +29,7 @@
     text-shadow: 5px 3px 3px rgba(0, 0, 0, 0.3);
 }
 
-.div2 .div2-2{
+.home-offers .div2 .div2-2 {
     color: #EA641A;
     font-size: 25px;
     font-style: italic;
@@ -42,77 +39,74 @@
     margin-bottom: 30px;
 }
 
-.div2 .div2-3{
+.home-offers .div2 .div2-3 {
     display: flex;
     justify-self: end;   
 }
 
-.div2 .div2-3:hover{
+.home-offers .div2 .div2-3:hover {
     display: flex;
     justify-self: end;  
     background-color: #EA641A; 
 }
 
-
-
-
 /* ---------------- Responsive Breakpoints ---------------- */
-
 @media (max-width: 1024px) {
-  .Offers {
+  .home-offers {
     margin: 0px 60px 100px 60px;
   }
 
-  .div {
+  .home-offers .div {
     height: auto;
     flex-wrap: wrap;
     gap: 20px;
   }
 
-  .div1, .div2 {
+  .home-offers .div1, 
+  .home-offers .div2 {
     width: 100% !important; 
   }
 
-  .div1 img {
+  .home-offers .div1 img {
     width: 100%;
     height: auto;
   }
 
-  .div2 .div2-1 {
+  .home-offers .div2 .div2-1 {
     font-size: 40px;
   }
 
-  .div2 .div2-2 {
+  .home-offers .div2 .div2-2 {
     font-size: 20px;
     text-align: center;
     margin: 20px 0;
   }
 
-  .div2 .div2-3 {
+  .home-offers .div2 .div2-3 {
     justify-content: center;
   }
 }
 
 @media (max-width: 768px) {
-  .Offers {
+  .home-offers {
     margin: 0px 40px 80px 40px;
   }
 
-  .div {
+  .home-offers .div {
     flex-direction: column;
     align-items: center;
     height: auto;
   }
 
-  .div2 .div2-1 {
+  .home-offers .div2 .div2-1 {
     font-size: 32px;
   }
 
-  .div2 .div2-2 {
+  .home-offers .div2 .div2-2 {
     font-size: 18px;
   }
 
-  .div2 .div2-3 {
+  .home-offers .div2 .div2-3 {
     width: 80%;
     text-align: center;
     margin: 0 auto;
@@ -120,25 +114,25 @@
 }
 
 @media (max-width: 480px) {
-  .Offers {
+  .home-offers {
     margin: 0px 20px 60px 20px;
   }
 
-  .div1 img {
+  .home-offers .div1 img {
     border-radius: 8px;
   }
 
-  .div2 .div2-1 {
+  .home-offers .div2 .div2-1 {
     font-size: 26px;
     line-height: 1.3;
   }
 
-  .div2 .div2-2 {
+  .home-offers .div2 .div2-2 {
     font-size: 16px;
     text-align: center;
   }
 
-  .div2 .div2-3 {
+  .home-offers .div2 .div2-3 {
     width: 100%;
     font-size: 14px;
     padding: 10px;

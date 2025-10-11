@@ -1,0 +1,217 @@
+.login-page {
+    font-weight: 400;
+    font-style: normal;
+    margin: 0 auto;
+    max-width: 1300px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 80px;
+}
+
+/* --------- Login Container --------- */
+.login-page .login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: rgba(216, 93, 36, 0.33);
+    border-radius: 8px;
+    padding: 40px 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+/* --------- Login Heading --------- */
+.login-page .login-title {
+    color: #333;
+    margin-bottom: 30px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+/* --------- Login Form Box --------- */
+.login-page .login-box {
+    background: white;
+    padding: 60px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+}
+
+/* Form Fields */
+.login-page .login-field {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.login-page .login-field label {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.login-page .login-field input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.login-page .login-field input:focus {
+    outline: none;
+    border-color: #E7641A;
+}
+
+/* Remember & Forgot */
+.login-page .login-options {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.login-page .login-options input[type="checkbox"] {
+    width: 14px;
+    height: 14px;
+}
+
+.login-page .login-options label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+}
+
+.login-page .forgot-link {
+    color: #E7641A;
+    text-decoration: none;
+}
+
+.login-page .forgot-link:hover {
+    cursor: pointer;
+}
+
+
+/* Login Button */
+.login-page .login-btn {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    background-color: #E7641A;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+.login-page .login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.login-page .login-btn:active {
+    transform: translateY(0);
+}
+
+.login-page .login-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Redirect to Sign Up */
+.login-page .signup-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    text-align: center;
+    width: 100%;
+    color: #333;
+}
+
+.login-page .signup-text a {
+    color: #E7641A;
+    text-decoration: none;
+    margin-left: 5px;
+    transition: color 0.3s;
+}
+
+.login-page .signup-text a:hover {
+    text-decoration: underline;
+}
+
+
+/* ---------- Responsive Design ---------- */
+@media (max-width: 1024px) {
+    .login-page .login-container {
+        padding: 30px 20px;
+    }
+
+    .login-page .login-box {
+        padding: 40px 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .login-page .login-container {
+        padding: 20px;
+    }
+
+    .login-page .login-box {
+        padding: 30px 20px;
+    }
+
+    .login-page .login-title {
+        font-size: 1.75rem;
+    }
+
+    .login-page .login-field input {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .login-page .login-btn {
+        padding: 10px;
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-page .login-box {
+        padding: 20px 15px;
+    }
+
+    .login-page .login-title {
+        font-size: 1.5rem;
+    }
+
+    .login-page .login-options {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .login-page .signup-text {
+        font-size: 13px;
+    }
+}
