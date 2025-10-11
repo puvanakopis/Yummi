@@ -15,7 +15,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import ItemDetails from "./components/ItemDetails/ItemDetails";
 
-import { MyContextProvider } from './context/MyContext'
+import { MyContextProvider } from './Context/MyContext'
 
 const App = () => {
   return (

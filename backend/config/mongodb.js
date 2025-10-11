@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URL, {
-      dbName: 'userData',
+      dbName: 'yummiDB',
     });
     console.log('Database connected');
   } catch (err) {

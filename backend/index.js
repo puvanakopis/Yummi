@@ -5,6 +5,7 @@ import 'dotenv/config';
 
 import connectDB from './config/mongodb.js';
 import authRouter from './routes/authRouter.js';
+import itemRouter from './routes/itemRouter.js';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -22,5 +23,7 @@ app.get('/', (req, res) => res.send('API is working...'));
 
 // Auth routes
 app.use('/api/auth', authRouter);
+app.use('/api/items', itemRouter);
+
 
 app.listen(PORT, () => console.log(`Server started on PORT: ${PORT}`));
