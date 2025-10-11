@@ -1,28 +1,28 @@
 import { createContext, useState } from 'react';
+import axios from 'axios';
 
 export const MyContext = createContext();
 
 export function MyContextProvider({ children }) {
-
-  // ---------- View items ----------
   const [viewItem, setViewItem] = useState({});
+  const [cardItems, setCardItems] = useState([]);
+  const [favoriteItems, setFavoriteItems] = useState([]);
+  const [user, setUser] = useState(null);
+ 
+
   const showItem = (newItem) => setViewItem(newItem);
 
-  // ---------- Add to cart ----------
-  const [cardItems, setCardItems] = useState([]);
   const addToCard = (item, quantity) => {
-    const existingItemIndex = cardItems.findIndex(cartItem => cartItem.Name === item.Name);
+    const existingItemIndex = cardItems.findIndex(ci => ci.Name === item.Name);
     if (existingItemIndex !== -1) {
       const updatedItems = [...cardItems];
       updatedItems[existingItemIndex].quantity += quantity;
       setCardItems(updatedItems);
     } else {
-      setCardItems(prevItems => [...prevItems, { ...item, quantity }]);
+      setCardItems(prev => [...prev, { ...item, quantity }]);
     }
   };
 
-  // ---------- Favorites ----------
-  const [favoriteItems, setFavoriteItems] = useState([]);
   const toggleFavorite = (item) => {
     const exists = favoriteItems.find(fav => fav.id === item.id);
     if (exists) {
@@ -34,32 +34,25 @@ export function MyContextProvider({ children }) {
 
   const isFavorite = (item) => favoriteItems.some(fav => fav.id === item.id);
 
-  // ---------- User Login ----------
-  const [user, setUser] = useState(null);
-  const login = (email, password) => {
-    if (email === "puvanakopis@gmail.com" && password === "123456") {
-      setUser({ email });
-      return { success: true, message: "Login successful!" };
-    } else {
-      return { success: false, message: "Invalid email or password" };
+
+
+  const logout = async () => {
+    try {
+      axios.defaults.withCredentials = true;
+      await axios.post('http://localhost:4000/api/auth/logout', {}, { withCredentials: true });
+      setUser(null);
+    } catch (err) {
+      console.error('Logout failed:', err.message);
     }
   };
-  const logout = () => setUser(null);
 
   return (
     <MyContext.Provider
       value={{
-        viewItem,
-        showItem,
-        cardItems,
-        addToCard,
-        setCardItems,
-        favoriteItems,
-        toggleFavorite,
-        isFavorite,
-        user,
-        login,
-        logout
+        viewItem, showItem,
+        cardItems, addToCard, setCardItems,
+        favoriteItems, toggleFavorite, isFavorite,
+        user, logout, setUser 
       }}
     >
       {children}

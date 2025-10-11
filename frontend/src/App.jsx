@@ -7,7 +7,7 @@ import DeliveryInfor from './pages/DeliveryInfor'
 import Contact from './pages/Contact'
 import OrderItems from "./pages/OrderItems";
 import SignUp from "./pages/Signup";
-import Login from "./pages/login";
+import Login from "./pages/Login";
 import Account from './pages/Account';
 import Favorites from './pages/Favorites';
 
@@ -15,7 +15,7 @@ import Navbar from "./components/Navbar/Navbar";
 import Footer from "./components/Footer/Footer";
 import ItemDetails from "./components/ItemDetails/ItemDetails";
 
-import { MyContextProvider } from './Context/MyContext'
+import { MyContextProvider } from './context/MyContext'
 
 const App = () => {
   return (
@@ -36,7 +36,7 @@ const App = () => {
           <Route path="/Account" element={<Account />} />
           <Route path="/Favorites" element={<Favorites />} />
         </Routes>
-      </MyContextProvider>
+      </MyContextProvider >
       <Footer />
     </>
 

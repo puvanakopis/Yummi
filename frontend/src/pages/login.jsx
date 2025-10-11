@@ -1,24 +1,47 @@
 import { useNavigate } from 'react-router-dom';
 import { useContext, useState } from "react";
-import { MyContext } from "../Context/MyContext";
-import './Login.css'
+import axios from 'axios';
+import { MyContext } from '../context/MyContext';
+import './Login.css';
 
 const Login = () => {
     const navigate = useNavigate();
-    const { login } = useContext(MyContext);
+    const { setUser } = useContext(MyContext);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-
+    
     const navigator = (path) => {
         window.scrollTo({ top: 0, behavior: "smooth" });
         navigate(path);
     };
 
-    const handleSubmit = (e) => {
+    // ------------------- User Authentication -------------------
+    const login = async (email, password) => {
+        try {
+            axios.defaults.withCredentials = true;
+            const res = await axios.post(
+                'http://localhost:4000/api/auth/login',
+                { email, password },
+                { withCredentials: true }
+            );
+
+            if (res.data.success) {
+                setUser({ name: res.data.name, email, id: res.data.userId });
+                return { success: true, message: res.data.message };
+            } else {
+                return { success: false, message: res.data.message };
+            }
+        } catch (err) {
+            return { success: false, message: err.response?.data?.message || err.message };
+        }
+    };
+
+    // ------------------- Handle Form Submit -------------------
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const result = login(email, password);
+        const result = await login(email, password);
         if (result.success) {
             navigator("/");
         } else {
@@ -29,20 +52,13 @@ const Login = () => {
     return (
         <div className="login-page">
             <div className="login-container">
-
-                {/* --------- Login Heading --------- */}
                 <h2 className="login-title MainHeading">Log In</h2>
-
-                {/* --------- Login Form Box --------- */}
                 <div className="login-box">
                     <form onSubmit={handleSubmit}>
-
-                        {/* Email Field */}
                         <div className="login-field">
-                            <label htmlFor="email">Email Address</label>
+                            <label>Email Address</label>
                             <input
                                 type="email"
-                                id="email"
                                 placeholder="Enter Your Email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -50,12 +66,10 @@ const Login = () => {
                             />
                         </div>
 
-                        {/* Password Field */}
                         <div className="login-field">
-                            <label htmlFor="password">Password</label>
+                            <label>Password</label>
                             <input
                                 type="password"
-                                id="password"
                                 placeholder="Enter Your Password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -63,22 +77,21 @@ const Login = () => {
                             />
                         </div>
 
-                        {/* Remember & Forgot */}
-                        <div className="login-options">
-                            <label className="remember">
-                                <input type="checkbox" />
-                                <span>Remember Me</span>
-                            </label>
-                            <a href="" className="forgot-link">Forgot Password?</a>
-                        </div>
+                        {error && <p className="error-message">{error}</p>}
 
-                        {/* Login Button */}
                         <button type="submit" className="login-btn">Log In</button>
 
-                        {/* Redirect to Sign Up */}
                         <p className="signup-text">
                             Don’t have an account?
-                            <a href="#" onClick={(e) => { e.preventDefault(); navigator("/signup"); }}> Sign Up</a>
+                            <a
+                                href="#"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    navigator("/signup");
+                                }}
+                            >
+                                {" "}Sign Up
+                            </a>
                         </p>
                     </form>
                 </div>

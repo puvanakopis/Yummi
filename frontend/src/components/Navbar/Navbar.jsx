@@ -2,7 +2,7 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { LiaShoppingBagSolid } from "react-icons/lia";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
-import { MyContext } from "../../Context/MyContext";
+import { MyContext } from "../../context/MyContext";
 import { useContext, useEffect, useState, useRef } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import './Navbar.css'

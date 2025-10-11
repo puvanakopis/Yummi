@@ -62,7 +62,7 @@ export const login = async (req, res) => {
     );
 
     res.cookie('token', token, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 });
-    res.json({ success: true, message: 'Logged in successfully', userId: user._id });
+    res.json({ success: true, message: 'Logged in successfully', userId: user._id, name: user.name });
   } catch (error) {
     res.json({ success: false, message: error.message });
   }
@@ -74,4 +74,30 @@ export const login = async (req, res) => {
 export const logout = (req, res) => {
   res.clearCookie('token');
   res.json({ success: true, message: 'Logged out successfully' });
+};
+
+
+
+// ------------ get user data ------------
+export const getUser = async (req, res) => {
+  try {
+    const token = req.cookies.token;
+    if (!token) {
+      return res.json({ success: false, message: 'No token found' });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    const user = await userModel.findById(decoded.id).select('-password'); // exclude password
+    if (!user) {
+      return res.json({ success: false, message: 'User not found' });
+    }
+    res.json({
+      success: true,
+      user,
+    });
+
+  } catch (error) {
+    res.json({ success: false, message: error.message });
+  }
 };
