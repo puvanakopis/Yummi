@@ -5,14 +5,23 @@ const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
+  role: {
+    type: String,
+    enum: ['customer', 'admin'],
+    default: 'customer',
+  },
+  status: {
+    type: String,
+    enum: ['activate', 'inactivate'],
+    default: 'activate',
+  },
 }, {
-  autoIndex: false
+  timestamps: true,
+  autoIndex: false,
 });
 
 userSchema.pre('save', async function (next) {
-  if (!this.isNew || this._id) {
-    return next();
-  }
+  if (!this.isNew || this._id) return next();
 
   try {
     const lastUser = await mongoose.models.user
@@ -37,7 +46,6 @@ userSchema.pre('save', async function (next) {
 });
 
 const userModel = mongoose.model('user', userSchema);
-
 userModel.createIndexes();
 
 export default userModel;

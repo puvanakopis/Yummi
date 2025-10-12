@@ -1,180 +1,183 @@
 .admin-users {
-    max-width: 1200px;
-    margin: 30px auto;
-    padding: 0 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  font-family: "Poppins", sans-serif;
 }
 
-/* ----------- Page Header ----------- */
-.admin-users .header {
-    text-align: left;
-}
-
+/* Header */
 .admin-users .header h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: #EA641A;
-    margin-bottom: 5px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #ea641a;
+  margin-bottom: 5px;
 }
 
 .admin-users .header p {
-    font-size: 1rem;
-    color: #666;
+  color: #666;
+}
+
+/* Controls */
+.users-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.search-box input {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  width: 250px;
+  font-size: 1rem;
+}
+
+.search-box input:focus {
+  border-color: #ea641a;
+  box-shadow: 0 0 5px rgba(234, 100, 26, 0.3);
+}
+
+.add-user-btn {
+  padding: 10px 22px;
+  background-color: #ea641a;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.add-user-btn:hover {
+  background-color: #d8530f;
+}
+
+/* Table */
+.users-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.table-header,
+.table-row {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 1fr 1fr 1fr 2fr;
+  padding: 12px 15px;
+  border-radius: 12px;
+  align-items: center;
+}
+
+.table-header {
+  background: rgba(234, 100, 26, 0.15);
+  color: #ea641a;
+  font-weight: 700;
+}
+
+.table-row {
+  background: #fff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.table-row:hover {
+  background: rgba(234, 100, 26, 0.08);
+}
+
+/* Badges */
+.role-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  text-transform: capitalize;
+}
+
+.role-badge.admin {
+  background: rgba(234, 100, 26, 0.15);
+  color: #ea641a;
 }
 
 
-
-/* ----------- Search and Controls ----------- */
-.admin-users .users-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 10px;
+.status-badge {
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-transform: capitalize;
 }
 
-.admin-users .search-box input {
-    padding: 10px 15px;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    font-size: 1rem;
-    outline: none;
-    transition: all 0.3s ease;
-    width: 250px;
+.status-badge.inactivate {
+  background: rgba(234, 100, 26, 0.15);
+  color: #ea641a;
 }
 
-.admin-users .search-box input:focus {
-    border-color: #EA641A;
-    box-shadow: 0 0 5px rgba(234, 100, 26, 0.3);
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
 }
 
-.admin-users .add-user-btn {
-    padding: 10px 22px;
-    background-color: #EA641A;
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.btn {
+  padding: 6px 14px;
+  border-radius: 8px;
+  border: none;
+  background: rgba(234, 100, 26, 0.1);
+  color: #ea641a;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
 }
 
-.admin-users .add-user-btn:hover {
-    background-color: #d8530f;
+.btn:hover {
+  background: rgba(234, 100, 26, 0.25);
 }
 
 
-
-
-/* ----------- Users Table ----------- */
-.admin-users .users-table {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
 }
 
-.admin-users .table-header,
-.admin-users .table-row {
-    display: grid;
-    grid-template-columns: 1.5fr 2fr 1fr 1fr 1fr 2fr;
-    align-items: center;
-    padding: 12px 15px;
-    border-radius: 12px;
-    transition: all 0.3s ease;
+.modal {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
-.admin-users .table-header {
-    font-weight: 700;
-    background-color: rgba(234, 100, 26, 0.15);
-    color: #EA641A;
+.modal h2 {
+  color: #ea641a;
+  margin-bottom: 20px;
 }
 
-.admin-users .table-row {
-    background-color: #fff;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+.modal label {
+  display: block;
+  font-weight: 600;
+  margin: 10px 0 5px;
 }
 
-.admin-users .table-row:hover {
-    background-color: rgba(234, 100, 26, 0.1);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+.modal input,
+.modal select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
-
-/* ----------- Role and Status Badges ----------- */
-.admin-users .role-badge {
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-align: center;
-    display: inline-block;
-}
-
-.admin-users .role-badge.admin {
-    background-color: #EA641A;
-}
-
-.admin-users .status-badge {
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-align: center;
-    display: inline-block;
-}
-
-
-/* ----------- Action Buttons ----------- */
-.admin-users .actions {
-    display: flex;
-    gap: 8px;
-}
-
-.admin-users .btn {
-    padding: 6px 14px;
-    border: none;
-    border-radius: 8px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    background-color: rgba(234, 100, 26, 0.1);
-    color: #EA641A;
-}
-
-.admin-users .btn:hover {
-    background-color: rgba(234, 100, 26, 0.25);
-}
-
-/* ----------- Responsive ----------- */
-@media (max-width: 1024px) {
-
-    .admin-users .table-header,
-    .admin-users .table-row {
-        grid-template-columns: 1.5fr 2fr 1fr 1fr 1fr auto;
-    }
-}
-
-@media (max-width: 768px) {
-    .admin-users .users-controls {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .admin-users .table-header {
-        display: none;
-    }
-
-    .admin-users .table-row {
-        grid-template-columns: 1fr 1fr;
-        row-gap: 10px;
-        padding: 12px 15px;
-    }
-
-    .admin-users .table-row .actions {
-        grid-column: span 2;
-    }
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
 }
