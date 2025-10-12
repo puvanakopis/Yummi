@@ -1,18 +1,18 @@
 .admin-products {
-    max-width: 1200px;
-    margin: 30px auto;
-    padding: 0 20px;
-    font-family: "Poppins", sans-serif;
     display: flex;
     flex-direction: column;
+    font-family: "Poppins", sans-serif;
     gap: 30px;
+    margin: 30px auto;
+    max-width: 1200px;
+    padding: 0 20px;
 }
 
-/* Header */
+/* ------------- Header ------------- */
 .admin-products .header h1 {
+    color: #ea641a;
     font-size: 2rem;
     font-weight: 700;
-    color: #ea641a;
     margin-bottom: 5px;
 }
 
@@ -20,21 +20,21 @@
     color: #666;
 }
 
-/* Controls */
+/* ------------- Controls  ------------- */
 .admin-products .products-controls {
-    display: flex;
-    justify-content: space-between;
     align-items: center;
+    display: flex;
     flex-wrap: wrap;
     gap: 10px;
+    justify-content: space-between;
 }
 
 .admin-products .search-box {
-    padding: 10px 15px;
     border: 1px solid #ccc;
     border-radius: 12px;
-    width: 250px;
     font-size: 1rem;
+    padding: 10px 15px;
+    width: 250px;
 }
 
 .admin-products .search-box:focus {
@@ -43,20 +43,20 @@
 }
 
 .admin-products .add-product-btn {
-    padding: 10px 22px;
     background-color: #ea641a;
-    color: #fff;
     border: none;
     border-radius: 12px;
-    font-weight: 600;
+    color: #fff;
     cursor: pointer;
+    font-weight: 600;
+    padding: 10px 22px;
 }
 
 .admin-products .add-product-btn:hover {
     background-color: #d8530f;
 }
 
-/* Product Table */
+/* -------------   Product Table  ------------- */
 .admin-products .products-table {
     display: flex;
     flex-direction: column;
@@ -65,11 +65,11 @@
 
 .admin-products .table-header,
 .admin-products .table-row {
+    align-items: center;
+    border-radius: 12px;
     display: grid;
     grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr;
     padding: 12px 15px;
-    border-radius: 12px;
-    align-items: center;
 }
 
 .admin-products .table-header {
@@ -87,21 +87,21 @@
     background: rgba(234, 100, 26, 0.08);
 }
 
-/* Actions */
+/* ------------- Actions ------------- */
 .admin-products .actions {
     display: flex;
-    justify-content: flex-end;
     gap: 8px;
+    justify-content: flex-end;
 }
 
 .admin-products .btn {
-    padding: 6px 14px;
-    border-radius: 8px;
-    border: none;
     background: rgba(234, 100, 26, 0.1);
+    border: none;
+    border-radius: 8px;
     color: #ea641a;
-    font-weight: 600;
     cursor: pointer;
+    font-weight: 600;
+    padding: 6px 14px;
 }
 
 .admin-products .btn.edit:hover {
@@ -116,26 +116,26 @@
     background: rgba(234, 100, 26, 0.3);
 }
 
-/* Modal */
+/* ------------- Modal ------------- */
 .admin-products .modal-overlay {
-    position: fixed;
-    inset: 0;
+    align-items: center;
     background: rgba(0, 0, 0, 0.4);
     display: flex;
+    inset: 0;
     justify-content: center;
-    align-items: center;
+    position: fixed;
     z-index: 100;
 }
 
 .admin-products .modal {
     background: #fff;
-    padding: 30px;
     border-radius: 16px;
-    width: 400px;
-    max-width: 90%;
-    height: 70vh; 
-    overflow-y: auto;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    height: 70vh;
+    max-width: 90%;
+    overflow-y: auto;
+    padding: 30px;
+    width: 400px;
 }
 
 .admin-products .modal h2 {
@@ -151,15 +151,107 @@
 
 .admin-products .modal input,
 .admin-products .modal textarea {
-    width: 100%;
-    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 8px;
     margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
 }
 
 .admin-products .modal-actions {
     display: flex;
-    justify-content: flex-end;
     gap: 10px;
+    justify-content: flex-end;
+}
+
+/* -------------  Product Details Modal ------------- */
+.admin-products .product-details {
+    align-items: center;
+    animation: fadeIn 0.3s ease-in-out;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    max-height: 70vh;
+    max-width: 95%;
+    overflow-y: auto;
+    padding: 30px;
+    width: 600px;
+}
+
+/* Product Image */
+.admin-products .product-details .details-img {
+    border: 2px solid rgba(234, 100, 26, 0.3);
+    border-radius: 12px;
+    height: 200px;
+    margin-bottom: 20px;
+    object-fit: cover;
+    width: 200px;
+}
+
+/* Details Text */
+.admin-products .product-details .details-content {
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: left;
+    width: 100%;
+}
+
+.admin-products .product-details .details-content p {
+    border-bottom: 1px solid #f0f0f0;
+    margin: 8px 0;
+    padding-bottom: 4px;
+}
+
+.admin-products .product-details .details-content strong {
+    color: #ea641a;
+}
+
+/* Close Button */
+.admin-products .product-details .modal-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.admin-products .product-details .btn {
+    background-color: #ea641a;
+    border: none;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 10px 20px;
+    transition: all 0.3s;
+}
+
+.admin-products .product-details .btn:hover {
+    background-color: #d8530f;
+}
+
+/* -------------  Clickable Product Name ------------- */
+.admin-products .table-cell.clickable {
+    color: #ea641a;
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.admin-products .table-cell.clickable:hover {
+    color: #d8530f;
+    text-decoration: underline;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }

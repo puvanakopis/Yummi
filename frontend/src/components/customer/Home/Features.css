@@ -11,7 +11,7 @@
 /* -------------- Features list container -------------- */
 .home-feature .Features {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   height: 350px;
   width: 100%;
   margin-top: 30px;

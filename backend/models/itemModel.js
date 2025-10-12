@@ -3,9 +3,10 @@ import mongoose from 'mongoose';
 const itemSchema = new mongoose.Schema({
   _id: { type: String },
   Name: { type: String, required: true, trim: true },
-  Img: { type: String, required: true }, 
+  Img: { type: String, required: true },
   desc: { type: String, required: true },
   Price: { type: Number, required: true },
+  Stock: { type: Number, required: true, default: 0 },
   Brand: { type: String },
   Flavour: { type: String },
   DietType: { type: String },
@@ -15,6 +16,7 @@ const itemSchema = new mongoose.Schema({
   Reviews: { type: Number, default: 0 },
   Rating: { type: Number, default: 0 },
 }, { timestamps: true });
+
 
 itemSchema.pre('save', async function (next) {
   if (!this.isNew || this._id) return next();
