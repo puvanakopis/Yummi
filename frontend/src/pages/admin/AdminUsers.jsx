@@ -112,6 +112,7 @@ const AdminUsers = () => {
         user.email?.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    if (loading) return <p>Loading products...</p>;
 
     return (
         <div className="admin-users">

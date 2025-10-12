@@ -21,7 +21,7 @@
 }
 
 /* Controls */
-.users-controls {
+.admin-users .users-controls {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -29,7 +29,7 @@
   gap: 10px;
 }
 
-.search-box input {
+.admin-users .search-box input {
   padding: 10px 15px;
   border: 1px solid #ccc;
   border-radius: 12px;
@@ -37,12 +37,12 @@
   font-size: 1rem;
 }
 
-.search-box input:focus {
+.admin-users .search-box input:focus {
   border-color: #ea641a;
   box-shadow: 0 0 5px rgba(234, 100, 26, 0.3);
 }
 
-.add-user-btn {
+.admin-users .add-user-btn {
   padding: 10px 22px;
   background-color: #ea641a;
   color: #fff;
@@ -53,19 +53,19 @@
   cursor: pointer;
 }
 
-.add-user-btn:hover {
+.admin-users .add-user-btn:hover {
   background-color: #d8530f;
 }
 
 /* Table */
-.users-table {
+.admin-users .users-table {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.table-header,
-.table-row {
+.admin-users .table-header,
+.admin-users .table-row {
   display: grid;
   grid-template-columns: 1.5fr 2fr 1fr 1fr 1fr 2fr;
   padding: 12px 15px;
@@ -73,54 +73,53 @@
   align-items: center;
 }
 
-.table-header {
+.admin-users .table-header {
   background: rgba(234, 100, 26, 0.15);
   color: #ea641a;
   font-weight: 700;
 }
 
-.table-row {
+.admin-users .table-row {
   background: #fff;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
 
-.table-row:hover {
+.admin-users .table-row:hover {
   background: rgba(234, 100, 26, 0.08);
 }
 
 /* Badges */
-.role-badge {
+.admin-users .role-badge {
   padding: 6px 12px;
   border-radius: 20px;
   font-size: 0.875rem;
   text-transform: capitalize;
 }
 
-.role-badge.admin {
+.admin-users .role-badge.admin {
   background: rgba(234, 100, 26, 0.15);
   color: #ea641a;
 }
 
-
-.status-badge {
+.admin-users .status-badge {
   padding: 6px 12px;
   border-radius: 20px;
   text-transform: capitalize;
 }
 
-.status-badge.inactivate {
+.admin-users .status-badge.inactivate {
   background: rgba(234, 100, 26, 0.15);
   color: #ea641a;
 }
 
 /* Actions */
-.actions {
+.admin-users .actions {
   display: flex;
   justify-content: space-between;
   gap: 8px;
 }
 
-.btn {
+.admin-users .btn {
   padding: 6px 14px;
   border-radius: 8px;
   border: none;
@@ -131,13 +130,12 @@
   transition: 0.3s;
 }
 
-.btn:hover {
+.admin-users .btn:hover {
   background: rgba(234, 100, 26, 0.25);
 }
 
-
 /* Modal */
-.modal-overlay {
+.admin-users .modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.4);
@@ -147,7 +145,7 @@
   z-index: 100;
 }
 
-.modal {
+.admin-users .modal {
   background: #fff;
   padding: 30px;
   border-radius: 16px;
@@ -156,19 +154,19 @@
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 
-.modal h2 {
+.admin-users .modal h2 {
   color: #ea641a;
   margin-bottom: 20px;
 }
 
-.modal label {
+.admin-users .modal label {
   display: block;
   font-weight: 600;
   margin: 10px 0 5px;
 }
 
-.modal input,
-.modal select {
+.admin-users .modal input,
+.admin-users .modal select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -176,7 +174,7 @@
   margin-bottom: 10px;
 }
 
-.modal-actions {
+.admin-users .modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 10px;

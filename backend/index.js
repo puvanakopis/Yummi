@@ -6,7 +6,8 @@ import 'dotenv/config';
 import connectDB from './config/mongodb.js';
 import authRouter from './routes/authRouter.js';
 import itemRouter from './routes/itemRouter.js';
-import userRoutes from './routes/userRoutes.js'
+import userRoutes from './routes/userRoutes.js';
+import path from 'path';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -19,13 +20,15 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({ origin: allowedOrigins, credentials: true }));
 
+// uploaded images
+app.use('/uploads', express.static(path.join(process.cwd(), 'uploads')));
+
 // API test
 app.get('/', (req, res) => res.send('API is working...'));
 
-// Auth routes
+// Routes
 app.use('/api/auth', authRouter);
 app.use('/api/items', itemRouter);
 app.use('/api/users', userRoutes);
-
 
 app.listen(PORT, () => console.log(`Server started on PORT: ${PORT}`));

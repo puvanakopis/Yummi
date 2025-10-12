@@ -19,6 +19,7 @@ import ItemDetails from "./components/customer/ItemDetails/ItemDetails";
 
 import AdminDashboard from './pages/admin/AdminDashboard'
 import AdminUsers from "./pages/admin/AdminUsers";
+import AdminProducts from "./pages/admin/AdminProducts";
 
 import AdminNavbar from './components/admin/navbar/AdminNavbar'
 
@@ -36,6 +37,7 @@ const AppContent = () => {
         <Routes>
           <Route path="/" element={<AdminDashboard />} />
           <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/products" element={<AdminProducts />} />
           <Route path="/admin/profile" element={<Account />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />

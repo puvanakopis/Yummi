@@ -1,0 +1,165 @@
+.admin-products {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Header */
+.admin-products .header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ea641a;
+    margin-bottom: 5px;
+}
+
+.admin-products .header p {
+    color: #666;
+}
+
+/* Controls */
+.admin-products .products-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.admin-products .search-box {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    width: 250px;
+    font-size: 1rem;
+}
+
+.admin-products .search-box:focus {
+    border-color: #ea641a;
+    box-shadow: 0 0 5px rgba(234, 100, 26, 0.3);
+}
+
+.admin-products .add-product-btn {
+    padding: 10px 22px;
+    background-color: #ea641a;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.admin-products .add-product-btn:hover {
+    background-color: #d8530f;
+}
+
+/* Product Table */
+.admin-products .products-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.admin-products .table-header,
+.admin-products .table-row {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr;
+    padding: 12px 15px;
+    border-radius: 12px;
+    align-items: center;
+}
+
+.admin-products .table-header {
+    background: rgba(234, 100, 26, 0.15);
+    color: #ea641a;
+    font-weight: 700;
+}
+
+.admin-products .table-row {
+    background: #fff;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.admin-products .table-row:hover {
+    background: rgba(234, 100, 26, 0.08);
+}
+
+/* Actions */
+.admin-products .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.admin-products .btn {
+    padding: 6px 14px;
+    border-radius: 8px;
+    border: none;
+    background: rgba(234, 100, 26, 0.1);
+    color: #ea641a;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.admin-products .btn.edit:hover {
+    background: rgba(234, 100, 26, 0.25);
+}
+
+.admin-products .btn.delete {
+    background: rgba(234, 100, 26, 0.15);
+}
+
+.admin-products .btn.delete:hover {
+    background: rgba(234, 100, 26, 0.3);
+}
+
+/* Modal */
+.admin-products .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.admin-products .modal {
+    background: #fff;
+    padding: 30px;
+    border-radius: 16px;
+    width: 400px;
+    max-width: 90%;
+    height: 70vh; 
+    overflow-y: auto;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.admin-products .modal h2 {
+    color: #ea641a;
+    margin-bottom: 20px;
+}
+
+.admin-products .modal label {
+    display: block;
+    font-weight: 600;
+    margin: 10px 0 5px;
+}
+
+.admin-products .modal input,
+.admin-products .modal textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.admin-products .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
