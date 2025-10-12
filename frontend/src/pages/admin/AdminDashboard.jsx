@@ -1,7 +1,6 @@
 import './AdminDashboard.css';
 
 const AdminDashboard = () => {
-  // Mock data for dashboard stats
   const stats = [
     { title: 'Total Users', value: '1,234' },
     { title: 'Total Products', value: '567' },
@@ -20,6 +19,7 @@ const AdminDashboard = () => {
     <div className="admin-dashboard">
       <div className="header">
         <h1>Admin Dashboard</h1>
+        <p>View and manage overall system statistics, users, orders, and settings</p>
       </div>
 
       {/* ----------- Stats Cards ----------- */}

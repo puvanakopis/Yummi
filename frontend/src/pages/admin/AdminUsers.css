@@ -1,0 +1,180 @@
+.admin-users {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* ----------- Page Header ----------- */
+.admin-users .header {
+    text-align: left;
+}
+
+.admin-users .header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #EA641A;
+    margin-bottom: 5px;
+}
+
+.admin-users .header p {
+    font-size: 1rem;
+    color: #666;
+}
+
+
+
+/* ----------- Search and Controls ----------- */
+.admin-users .users-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.admin-users .search-box input {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 12px;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+    width: 250px;
+}
+
+.admin-users .search-box input:focus {
+    border-color: #EA641A;
+    box-shadow: 0 0 5px rgba(234, 100, 26, 0.3);
+}
+
+.admin-users .add-user-btn {
+    padding: 10px 22px;
+    background-color: #EA641A;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.admin-users .add-user-btn:hover {
+    background-color: #d8530f;
+}
+
+
+
+
+/* ----------- Users Table ----------- */
+.admin-users .users-table {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.admin-users .table-header,
+.admin-users .table-row {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr 1fr 1fr 1fr 2fr;
+    align-items: center;
+    padding: 12px 15px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+}
+
+.admin-users .table-header {
+    font-weight: 700;
+    background-color: rgba(234, 100, 26, 0.15);
+    color: #EA641A;
+}
+
+.admin-users .table-row {
+    background-color: #fff;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.admin-users .table-row:hover {
+    background-color: rgba(234, 100, 26, 0.1);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+
+/* ----------- Role and Status Badges ----------- */
+.admin-users .role-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-align: center;
+    display: inline-block;
+}
+
+.admin-users .role-badge.admin {
+    background-color: #EA641A;
+}
+
+.admin-users .status-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-align: center;
+    display: inline-block;
+}
+
+
+/* ----------- Action Buttons ----------- */
+.admin-users .actions {
+    display: flex;
+    gap: 8px;
+}
+
+.admin-users .btn {
+    padding: 6px 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: rgba(234, 100, 26, 0.1);
+    color: #EA641A;
+}
+
+.admin-users .btn:hover {
+    background-color: rgba(234, 100, 26, 0.25);
+}
+
+/* ----------- Responsive ----------- */
+@media (max-width: 1024px) {
+
+    .admin-users .table-header,
+    .admin-users .table-row {
+        grid-template-columns: 1.5fr 2fr 1fr 1fr 1fr auto;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-users .users-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-users .table-header {
+        display: none;
+    }
+
+    .admin-users .table-row {
+        grid-template-columns: 1fr 1fr;
+        row-gap: 10px;
+        padding: 12px 15px;
+    }
+
+    .admin-users .table-row .actions {
+        grid-column: span 2;
+    }
+}

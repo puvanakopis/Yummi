@@ -18,6 +18,7 @@ import Footer from "./components/customer/Footer/Footer";
 import ItemDetails from "./components/customer/ItemDetails/ItemDetails";
 
 import AdminDashboard from './pages/admin/AdminDashboard'
+import AdminUsers from "./pages/admin/AdminUsers";
 
 import AdminNavbar from './components/admin/navbar/AdminNavbar'
 
@@ -34,6 +35,7 @@ const AppContent = () => {
         <AdminNavbar />
         <Routes>
           <Route path="/" element={<AdminDashboard />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/admin/profile" element={<Account />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />

@@ -1,124 +1,127 @@
 .admin-dashboard {
-    margin: 30px auto;
-    padding: 0;
     max-width: 1200px;
-    font-family: Arial, sans-serif;
+    margin: 30px auto;
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
+    gap: 40px;
 }
 
+
+
+/* ----------- Header ----------- */
 .admin-dashboard .header {
     text-align: left;
 }
 
 .admin-dashboard .header h1 {
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: 700;
     color: #EA641A;
+    margin-bottom: 5px;
+}
+
+.admin-dashboard .header p {
+    font-size: 1rem;
+    color: #666;
 }
 
 
 
-/* ----------- Stats Cards ----------- */
+/* ----------- Stats Grid ----------- */
 .admin-dashboard .stats-grid {
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
 }
 
 .admin-dashboard .stat-card {
-    background-color: rgba(234, 100, 26, 0.2);
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
+    background-color: rgba(234, 100, 26, 0.1);
+    padding: 20px 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
-    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .admin-dashboard .stat-card:hover {
-    background-color: rgba(234, 100, 26, 0.3);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 .admin-dashboard .stat-card h3 {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-bottom: 10px;
+    font-size: 1rem;
+    color: #666;
+    font-weight: 600;
 }
 
-.admin-dashboard .stat-value {
-    font-size: 1.8rem;
-    font-weight: bold;
+.admin-dashboard .stat-card .stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
     color: #EA641A;
 }
 
 
 
-/* ----------- Recent Activities ----------- */
+/* ----------- Recent Activities Section ----------- */
 .admin-dashboard .dashboard-section {
-    background-color: rgba(234, 100, 26, 0.05);
-    padding: 20px;
-    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .admin-dashboard .dashboard-section h2 {
     font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 20px;
     color: #EA641A;
+    font-weight: 700;
+    margin-bottom: 10px;
 }
 
-
-
-/* ----------- Recent Activities ----------- */
 .admin-dashboard .activities-list {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 12px;
 }
 
 .admin-dashboard .activity-item {
+    background-color: #fff;
+    padding: 15px 20px;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    background-color: white;
-    border-radius: 5px;
-    box-shadow: 0px 2px 6px rgba(0,0,0,0.05);
     transition: all 0.3s ease;
-    cursor: pointer;
 }
 
 .admin-dashboard .activity-item:hover {
-    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    background-color: rgba(234, 100, 26, 0.1);
 }
 
 .admin-dashboard .activity-text {
     font-size: 1rem;
-    color: #333;
+    color: #444;
+    font-weight: 500;
 }
 
 .admin-dashboard .activity-time {
     font-size: 0.875rem;
-    color: gray;
+    color: #999;
 }
 
-/* -------------- Responsive Breakpoints -------------- */
-@media (min-width: 768px) {
+
+
+/* ----------- Responsive ----------- */
+@media (max-width: 768px) {
     .admin-dashboard .stats-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
     }
 
     .admin-dashboard .activity-item {
-        padding: 15px 30px;
-    }
-}
-
-@media (min-width: 1024px) {
-    .admin-dashboard .stats-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .admin-dashboard {
-        gap: 60px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
     }
 }
