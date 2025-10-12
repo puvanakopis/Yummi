@@ -1,0 +1,124 @@
+.admin-dashboard {
+    margin: 30px auto;
+    padding: 0;
+    max-width: 1200px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-dashboard .header {
+    text-align: left;
+}
+
+.admin-dashboard .header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #EA641A;
+}
+
+
+
+/* ----------- Stats Cards ----------- */
+.admin-dashboard .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.admin-dashboard .stat-card {
+    background-color: rgba(234, 100, 26, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.admin-dashboard .stat-card:hover {
+    background-color: rgba(234, 100, 26, 0.3);
+}
+
+.admin-dashboard .stat-card h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.admin-dashboard .stat-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #EA641A;
+}
+
+
+
+/* ----------- Recent Activities ----------- */
+.admin-dashboard .dashboard-section {
+    background-color: rgba(234, 100, 26, 0.05);
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.admin-dashboard .dashboard-section h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #EA641A;
+}
+
+
+
+/* ----------- Recent Activities ----------- */
+.admin-dashboard .activities-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.admin-dashboard .activity-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.admin-dashboard .activity-item:hover {
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+
+.admin-dashboard .activity-text {
+    font-size: 1rem;
+    color: #333;
+}
+
+.admin-dashboard .activity-time {
+    font-size: 0.875rem;
+    color: gray;
+}
+
+/* -------------- Responsive Breakpoints -------------- */
+@media (min-width: 768px) {
+    .admin-dashboard .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .admin-dashboard .activity-item {
+        padding: 15px 30px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .admin-dashboard .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .admin-dashboard {
+        gap: 60px;
+    }
+}

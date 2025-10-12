@@ -40,7 +40,7 @@ const AdminNavbar = () => {
 
         {/* ---------------- Desktop Menu ---------------- */}
         <ul className="nav-links">
-          <Link to="/" className={`list ${currentPath === "/admin" ? "active" : ""}`}>Dashboard</Link>
+          <Link to="/" className={`list ${currentPath === "/" ? "active" : ""}`}>Dashboard</Link>
           <Link to="/admin/users" className={`list ${currentPath === "/admin/users" ? "active" : ""}`}>Users</Link>
           <Link to="/admin/products" className={`list ${currentPath === "/admin/products" ? "active" : ""}`}>Products</Link>
           <Link to="/admin/orders" className={`list ${currentPath === "/admin/orders" ? "active" : ""}`}>Orders</Link>
