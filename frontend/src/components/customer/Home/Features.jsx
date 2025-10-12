@@ -1,5 +1,5 @@
 import "./Features.css";
-import { HomeFeatures } from "../../assets/assets";
+import { HomeFeatures } from "../../../assets/assets";
 
 const Features = () => {
   return (

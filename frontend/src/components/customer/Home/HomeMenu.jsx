@@ -1,9 +1,9 @@
 import { FaStar } from "react-icons/fa";
 import "./HomeMenu.css";
-import { homeMenu } from "../../assets/assets";
+import { homeMenu } from "../../../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { useContext } from "react";
-import { MyContext } from '../../Context/MyContext.jsx'
+import { MyContext } from '../../../Context/MyContext.jsx'
 
 const HomeMenu = () => {
 

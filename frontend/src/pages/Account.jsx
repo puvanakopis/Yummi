@@ -1,31 +1,12 @@
 import './Account.css';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { MyContext } from '../context/MyContext';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 const Account = () => {
-  const { user, setUser, logout } = useContext(MyContext);
+  const { user, logout } = useContext(MyContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        axios.defaults.withCredentials = true; 
-        const res = await axios.post('http://localhost:4000/api/auth/getUser');
-
-        if (res.data.success) {
-          setUser(res.data.user); 
-        } else {
-          console.log(res.data.message);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchUser();
-  }, [setUser]);
 
   const handleLogout = async () => {
     await logout();
@@ -60,7 +41,11 @@ const Account = () => {
             </div>
             <div className="detail">
               <label>User ID</label>
-              <input type="text" value={user._id} readOnly />
+              <input type="text" value={user.id} readOnly />
+            </div>
+            <div className="detail">
+              <label>Role</label>
+              <input type="text" value={user.role} readOnly />
             </div>
           </div>
           <div className='account-button'>

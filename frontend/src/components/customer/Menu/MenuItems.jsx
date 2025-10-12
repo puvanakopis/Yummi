@@ -1,9 +1,9 @@
 import { useContext, useRef, useState } from 'react';
 import './MenuItems.css';
-import { mainMenu } from '../../assets/assets';
-import { FaStar, FaBars, FaTimes, FaHeart} from 'react-icons/fa';
+import { mainMenu } from '../../../assets/assets.js';
+import { FaStar, FaBars, FaTimes, FaHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { MyContext } from '../../Context/MyContext.jsx';
+import { MyContext } from '../../../Context/MyContext.jsx';
 
 const MenuItems = () => {
     const categories = [

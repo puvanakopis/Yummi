@@ -1,5 +1,5 @@
 import "./Contact.css";
-import { banner } from "../assets/assets";
+import { banner } from "../../assets/assets";
 
 const Contact = () => {
   return (

@@ -1,15 +1,23 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 export const MyContext = createContext();
 
 export function MyContextProvider({ children }) {
+  const navigate = useNavigate()
+  
   const [viewItem, setViewItem] = useState({});
   const [cardItems, setCardItems] = useState([]);
   const [favoriteItems, setFavoriteItems] = useState([]);
-  const [user, setUser] = useState(null);
- 
+  const [user, setUser] = useState(() => {
+    const storedUser = localStorage.getItem('user');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
+  axios.defaults.withCredentials = true;
+
+  // ------------ Helper Functions ------------
   const showItem = (newItem) => setViewItem(newItem);
 
   const addToCard = (item, quantity) => {
@@ -34,17 +42,44 @@ export function MyContextProvider({ children }) {
 
   const isFavorite = (item) => favoriteItems.some(fav => fav.id === item.id);
 
-
-
+  // ------------ Logout Function ------------
   const logout = async () => {
     try {
-      axios.defaults.withCredentials = true;
-      await axios.post('http://localhost:4000/api/auth/logout', {}, { withCredentials: true });
+      await axios.post('http://localhost:4000/api/auth/logout');
       setUser(null);
+      localStorage.removeItem('user');
+      navigate('/');
     } catch (err) {
       console.error('Logout failed:', err.message);
     }
   };
+
+  // ------------ Fetch Logged User Info on Load ------------
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const res = await axios.get('http://localhost:4000/api/auth/user');
+        if (res.data.success) {
+          setUser(res.data.user);
+          localStorage.setItem('user', JSON.stringify(res.data.user));
+        }
+      } catch (err) {
+        console.error('User fetch failed:', err.message);
+      }
+    };
+    fetchUser();
+  }, []);
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem('user', JSON.stringify(user));
+    } else {
+      localStorage.removeItem('user');
+    }
+  }, [user]);
+
+
+
 
   return (
     <MyContext.Provider
@@ -52,7 +87,7 @@ export function MyContextProvider({ children }) {
         viewItem, showItem,
         cardItems, addToCard, setCardItems,
         favoriteItems, toggleFavorite, isFavorite,
-        user, logout, setUser 
+        user, logout, setUser
       }}
     >
       {children}

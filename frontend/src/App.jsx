@@ -1,27 +1,48 @@
 import { Routes, Route } from "react-router-dom";
+import { useContext } from "react";
 
-import Home from './pages/Home'
-import Menu from './pages/Menu'
-import About from './pages/About'
-import DeliveryInfor from './pages/DeliveryInfor'
-import Contact from './pages/Contact'
-import OrderItems from "./pages/OrderItems";
 import SignUp from "./pages/Signup";
-import Login from "./pages/Login";
+import Login from "./pages/login";
 import Account from './pages/Account';
-import Favorites from './pages/Favorites';
 
-import Navbar from "./components/Navbar/Navbar";
-import Footer from "./components/Footer/Footer";
-import ItemDetails from "./components/ItemDetails/ItemDetails";
+import Home from './pages/customer/Home'
+import Menu from './pages/customer/Menu'
+import About from './pages/customer/About'
+import DeliveryInfor from './pages/customer/DeliveryInfor'
+import Contact from './pages/customer/Contact'
+import OrderItems from "./pages/customer/OrderItems";
+import Favorites from './pages/customer/Favorites';
 
-import { MyContextProvider } from './Context/MyContext'
+import Navbar from "./components/customer/Navbar/Navbar";
+import Footer from "./components/customer/Footer/Footer";
+import ItemDetails from "./components/customer/ItemDetails/ItemDetails";
 
-const App = () => {
-  return (
+import AdminDashboard from './pages/admin/AdminDashboard'
 
-    <>
-      <MyContextProvider>
+import AdminNavbar from './components/admin/navbar/AdminNavbar'
+
+
+import { MyContextProvider } from './context/MyContext'
+import { MyContext } from './context/MyContext';
+
+const AppContent = () => {
+  const { user } = useContext(MyContext);
+
+  if (user?.role === 'admin') {
+    return (
+      <>
+        <AdminNavbar />
+        <Routes>
+          <Route path="/" element={<AdminDashboard />} />
+          <Route path="/admin/profile" element={<Account />} />
+          <Route path="/Login" element={<Login />} />
+          <Route path="/SignUp" element={<SignUp />} />
+        </Routes>
+      </>
+    );
+  } else {
+    return (
+      <>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -36,10 +57,18 @@ const App = () => {
           <Route path="/Account" element={<Account />} />
           <Route path="/Favorites" element={<Favorites />} />
         </Routes>
-      </MyContextProvider >
-      <Footer />
-    </>
+        <Footer />
+      </>
+    );
+  }
+};
 
+const App = () => {
+  return (
+    <MyContextProvider>
+      <AppContent />
+    </MyContextProvider>
   );
 };
+
 export default App;

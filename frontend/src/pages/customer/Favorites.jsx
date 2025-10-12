@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaStar, FaHeart } from 'react-icons/fa';
-import { MyContext } from '../Context/MyContext.jsx';
+import { MyContext } from '../../Context/MyContext.jsx';
 import './Favorites.css';
 
 const Favorites = () => {
@@ -44,7 +44,7 @@ const Favorites = () => {
                     <div className="favorites-grid">
                         {currentItems.map((item) => (
                             <div key={item.id} className="favoriteItem">
-                                
+
                                 {/* Favorite toggle icon */}
                                 <div
                                     className="favoriteIcon"
@@ -99,9 +99,8 @@ const Favorites = () => {
                         {[...Array(totalPages)].map((_, index) => (
                             <button
                                 key={index}
-                                className={`pageNumber ${
-                                    currentPage === index + 1 ? 'currentPage' : ''
-                                }`}
+                                className={`pageNumber ${currentPage === index + 1 ? 'currentPage' : ''
+                                    }`}
                                 onClick={() => handlePageChange(index + 1)}
                             >
                                 {index + 1}

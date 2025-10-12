@@ -1,5 +1,5 @@
 import "./About.css"
-import { banner } from "../assets/assets"
+import { banner } from "../../assets/assets"
 import { useNavigate } from "react-router-dom";
 
 const About = () => {

@@ -1,5 +1,5 @@
 import "./Offers.css";
-import { Offer } from '../../assets/assets';
+import { Offer } from '../../../assets/assets';
 
 const Offers = () => {
   return (

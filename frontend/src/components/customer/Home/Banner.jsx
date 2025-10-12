@@ -1,5 +1,5 @@
 import './banner.css'
-import {assets} from '../../assets/assets.js'
+import {assets} from '../../../assets/assets.js'
 
 const banner = () => {
   return (

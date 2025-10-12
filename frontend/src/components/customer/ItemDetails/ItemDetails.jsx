@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import "./ItemDetails.css";
-import { MyContext } from "../../Context/MyContext";
+import { MyContext } from "../../../Context/MyContext";
 import { useNavigate } from "react-router-dom";
 
 const ItemDetails = () => {
@@ -30,7 +30,7 @@ const ItemDetails = () => {
     };
 
 
-    
+
     //Navigating
     const navigate = useNavigate();
     const navigator = (path) => {
@@ -124,7 +124,7 @@ const ItemDetails = () => {
                                 </div>
 
                                 {/* Add to Cart Button */}
-                                <div className="w-1/2 mainButton" onClick={() => { handleAddToCart(); navigator('/ItemDetails')}}>
+                                <div className="w-1/2 mainButton" onClick={() => { handleAddToCart(); navigator('/ItemDetails') }}>
                                     Add To Cart
                                 </div>
                             </div>
