@@ -66,7 +66,7 @@ const MenuItems = () => {
 
     const navigateToItemDetails = (item) => {
         window.scrollTo({ top: 0, behavior: "smooth" });
-        navigate('/ItemDetails');
+        navigate(`/ItemDetails/${item._id}`);
         showItem(item);
     };
 

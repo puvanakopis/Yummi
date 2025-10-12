@@ -56,7 +56,7 @@ const AppContent = () => {
           <Route path="/AddToCard" element={<OrderItems />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />
-          <Route path="/ItemDetails" element={<ItemDetails />} />
+          <Route path="/ItemDetails/:id" element={<ItemDetails />} />
           <Route path="/DeliveryInfor" element={<DeliveryInfor />} />
           <Route path="/Account" element={<Account />} />
           <Route path="/Favorites" element={<Favorites />} />
