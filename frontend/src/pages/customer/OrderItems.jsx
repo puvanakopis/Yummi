@@ -1,6 +1,6 @@
 import "./OrderItems.css";
 import { FiMinusCircle } from "react-icons/fi";
-import { MyContext } from "../../Context/MyContext";
+import { MyContext } from "../../context/MyContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 

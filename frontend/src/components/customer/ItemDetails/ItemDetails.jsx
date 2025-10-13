@@ -1,13 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./ItemDetails.css";
-import { MyContext } from "../../../Context/MyContext.jsx";
+import { MyContext } from "../../../context/MyContext.jsx";
 
 const ItemDetails = () => {
     const { addToCard } = useContext(MyContext);
     const { id } = useParams();
-    const navigate = useNavigate();
 
     const [item, setItem] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -43,11 +42,6 @@ const ItemDetails = () => {
     const handleAddToCart = () => {
         addToCard(item, currentCount);
         alert(`${item.Name} (Quantity: ${currentCount}) has been added to your cart!`);
-    };
-
-    const navigator = (path) => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        navigate(path);
     };
 
     if (loading) return <p className="loading">Loading item details...</p>;
@@ -120,7 +114,7 @@ const ItemDetails = () => {
                                     </div>
                                 </div>
 
-                                <div className="w-1/2 mainButton" onClick={() => { handleAddToCart(); navigator('/ItemDetails') }}>
+                                <div className="w-1/2 mainButton" onClick={() => { handleAddToCart(); }}>
                                     Add To Cart
                                 </div>
                             </div>
