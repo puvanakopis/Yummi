@@ -11,9 +11,7 @@ const Navbar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  const { cardItems, favoriteItems, user, logout } = useContext(MyContext);
-
-  const [numberOfItem, setNumberOfItem] = useState(0);
+  const { cartItems, favoriteItems, user, logout  } = useContext(MyContext);
   const [numberOfFavorites, setNumberOfFavorites] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAccountOpen, setIsAccountOpen] = useState(false);
@@ -21,9 +19,8 @@ const Navbar = () => {
   const accountRef = useRef(null);
 
   useEffect(() => {
-    setNumberOfItem(cardItems.length);
     setNumberOfFavorites(favoriteItems.length);
-  }, [cardItems, favoriteItems]);
+  }, [ favoriteItems]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -64,7 +61,7 @@ const Navbar = () => {
 
           <Link to='/addToCard' className="order-item">
             <LiaShoppingBagSolid />
-            <div className="dot">{numberOfItem}</div>
+            <div className="dot">{cartItems.length}</div>
           </Link>
 
           {/* -------- Account Dropdown -------- */}

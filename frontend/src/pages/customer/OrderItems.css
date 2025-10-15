@@ -1,3 +1,4 @@
+/* =================== Order Item Page =================== */
 .order-item-page {
     font-weight: 400;
     font-style: normal;
@@ -7,7 +8,7 @@
     align-items: center;
 }
 
-/* ------------------- heading ------------------- */
+/* ------------------- Heading ------------------- */
 .order-item-page .heading {
     background-color: rgba(234, 100, 26, 0.2);
     width: 100%;
@@ -55,6 +56,7 @@
     height: fit-content;
     padding: 8px 20px;
     display: flex;
+    align-items: center;
 }
 
 .order-item-page .TableItem .img {
@@ -82,35 +84,68 @@
 .order-item-page .NoItems {
     display: flex;
     justify-content: center;
+    padding: 20px 0;
 }
 
-/* Order summary */
-.order-item-page .top {
-    margin-top: 5px;
+/* ------------------- Quantity Selector ------------------- */
+.quantity-input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    width: 100%;
+    max-width: 120px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    gap: 10px;
+    margin: 0 auto;
 }
 
+.quantity-input-wrapper button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.quantity-input-wrapper input {
+    width: 30px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+}
+
+/* ------------------- Order Summary ------------------- */
 .order-item-page .summary {
     background-color: rgba(234, 100, 26, 0.2);
     width: 100%;
     height: fit-content;
     padding: 8px 20px;
     display: flex;
+    align-items: center;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+    margin-top: 5px;
 }
 
 .order-item-page .summary_item {
     text-align: start;
 }
 
+.order-item-page .top {
+    margin-top: 5px;
+}
+
+/* ------------------- Checkout Button ------------------- */
 .order-item-page .checkout {
     display: flex;
     justify-content: end;
     margin-top: 50px;
 }
 
-/* Button */
 .order-item-page .mainButton {
     background: #ea641a;
     color: white;

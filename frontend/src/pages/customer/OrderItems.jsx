@@ -1,60 +1,66 @@
 import "./OrderItems.css";
 import { FiMinusCircle } from "react-icons/fi";
 import { MyContext } from "../../context/MyContext";
-import { useContext } from "react";
+import { useContext} from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const OrderItem = () => {
-    //Getting viewItem data and addToCard function
-    const { cardItems, setCardItems } = useContext(MyContext)
-
-
-    //Removing Item
-    const removeItem = (itemName) => {
-        const updatedItems = cardItems.filter(item => item.Name !== itemName);
-        setCardItems(updatedItems);
-    }
-
-    // Calculate subtotal
-    let subtotal = 0;
-    for (let i = 0; i < cardItems.length; i++) {
-        subtotal += cardItems[i].Price * cardItems[i].quantity;
-    }
-
-    // Add delivery fee
-    let deliveryFee;
-    if (cardItems.length === 0) {
-        deliveryFee = 0;
-    } else {
-        deliveryFee = 300;
-    }
-
-
-
-    // Calculate grand total
-    const grandTotal = subtotal + deliveryFee;
-
-
-    //Navigating to delivery form page
+    const { user , cartItems,loading, setCartItems } = useContext(MyContext);
     const navigate = useNavigate();
-    const navigator = (path) => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        navigate(path);
+
+
+
+    // Remove item
+    const removeItem = async (itemId) => {
+        try {
+            await axios.delete("http://localhost:4000/api/cart/delete", {
+                data: { userId: user.id, itemId },
+            });
+            setCartItems(prev => prev.filter(item => item._id !== itemId));
+        } catch (error) {
+            console.error("Error deleting item:", error);
+        }
     };
 
+    // Update item quantity
+    const updateQuantity = async (itemId, newQuantity) => {
+        if (newQuantity < 1) return;
+        try {
+            await axios.put("http://localhost:4000/api/cart/update", {
+                userId: user.id,
+                itemId,
+                quantity: newQuantity,
+            });
+            setCartItems(prev =>
+                prev.map(item =>
+                    item._id === itemId
+                        ? { ...item, quantity: newQuantity, total: item.Price * newQuantity }
+                        : item
+                )
+            );
+        } catch (error) {
+            console.error("Error updating quantity:", error);
+        }
+    };
+
+    // Calculate subtotal
+    const subtotal = cartItems.reduce((sum, item) => sum + item.total, 0);
+    const deliveryFee = cartItems.length > 0 ? 300 : 0;
+    const grandTotal = subtotal + deliveryFee;
+
+    const navigateToDelivery = () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        navigate("/DeliveryInfor");
+    };
+
+    if (loading) return <div>Loading cart...</div>;
 
     return (
         <div className="order-item-page">
+            <div className="heading">Items ({cartItems.length})</div>
 
-            {/* ------------------- heading ------------------- */}
-            <div className="heading">
-                Order Items
-            </div>
-
-            {/* ------------------- Table ------------------- */}
             <div className="Table">
-
-                {/* Table heading */}
                 <div className="TableHeading TableScroll">
                     <div className="title w-1/6">Product</div>
                     <div className="title w-1/6">Name</div>
@@ -64,20 +70,27 @@ const OrderItem = () => {
                     <div className="title w-1/6">Action</div>
                 </div>
 
-
-                {/* Table items */}
-                {cardItems.length > 0 ? (
-                    cardItems.map((item, index) => (
-                        <div key={index} className="TableItem TableScroll">
+                {cartItems.length > 0 ? (
+                    cartItems.map((item) => (
+                        <div key={item._id} className="TableItem TableScroll">
                             <div className="img w-1/6">
-                                <img src={item.Img} alt={item.Name} />
+                                <img src={`http://localhost:4000/${item.Img}`} alt={item.Name} />
                             </div>
                             <div className="desc w-1/6 font-bold">{item.Name}</div>
                             <div className="desc w-1/6">Rs {item.Price}.00</div>
-                            <div className="desc w-1/6">{item.quantity}</div>
-                            <div className="desc w-1/6">Rs {item.Price * item.quantity}.00</div>
+                            <div className="desc w-1/6">
+                                <div className="quantity-input-wrapper">
+                                    <button onClick={() => updateQuantity(item._id, item.quantity - 1)} disabled={item.quantity <= 1}>&lt;</button>
+                                    <span  >
+                                        {item.quantity}
+                                    </span>
+                                    <button onClick={() => updateQuantity(item._id, item.quantity + 1)}>&gt;</button>
+                                </div>
+                            </div>
+
+                            <div className="desc w-1/6">Rs {item.total}.00</div>
                             <div className="desc w-1/6 cursor-pointer">
-                                <FiMinusCircle onClick={() => removeItem(item.Name)} />
+                                <FiMinusCircle onClick={() => removeItem(item._id)} />
                             </div>
                         </div>
                     ))
@@ -85,18 +98,14 @@ const OrderItem = () => {
                     <div className="TableItem NoItems">No items in cart</div>
                 )}
 
-
-
-                {/* Order summary */}
                 <div className="summary top">
-                    <div className=" w-1/6"></div>
+                    <div className="w-1/6"></div>
                     <div className="summary_item w-1/6">Subtotal:</div>
                     <div className="w-1/6"></div>
                     <div className="w-1/6"></div>
-                    <div className="w-1/6"> Rs {subtotal}.00</div>
+                    <div className="w-1/6">Rs {subtotal}.00</div>
                     <div className="w-1/6"></div>
                 </div>
-
 
                 <div className="summary">
                     <div className="w-1/6"></div>
@@ -107,24 +116,20 @@ const OrderItem = () => {
                     <div className="w-1/6"></div>
                 </div>
 
-
                 <div className="summary">
                     <div className="w-1/6"></div>
-                    <div className="summary_item w-1/6 font-bold">Grand Total: </div>
+                    <div className="summary_item w-1/6 font-bold">Grand Total:</div>
                     <div className="w-1/6"></div>
                     <div className="w-1/6"></div>
                     <div className="w-1/6 font-bold">Rs {grandTotal}.00</div>
-                    <div className="w-1/6 "></div>
+                    <div className="w-1/6"></div>
                 </div>
 
-
-                {/* Delivery Information */}
                 <div className="checkout">
-                    <div className="mainButton" onClick={() => navigator('/DeliveryInfor')}>
+                    <div className="mainButton" onClick={navigateToDelivery}>
                         Add Delivery Address Information
                     </div>
                 </div>
-
             </div>
         </div>
     );

@@ -12,10 +12,10 @@ import DeliveryInfor from './pages/customer/DeliveryInfor'
 import Contact from './pages/customer/Contact'
 import OrderItems from "./pages/customer/OrderItems";
 import Favorites from './pages/customer/Favorites';
+import ItemDetails from "./pages/customer/ItemDetails";
 
 import Navbar from "./components/customer/Navbar/Navbar";
 import Footer from "./components/customer/Footer/Footer";
-import ItemDetails from "./components/customer/ItemDetails/ItemDetails";
 
 import AdminDashboard from './pages/admin/AdminDashboard'
 import AdminUsers from "./pages/admin/AdminUsers";

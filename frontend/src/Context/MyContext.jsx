@@ -5,8 +5,8 @@ import { useNavigate } from 'react-router-dom';
 export const MyContext = createContext();
 
 export function MyContextProvider({ children }) {
-  const navigate = useNavigate()
-  
+  const navigate = useNavigate();
+
   const [viewItem, setViewItem] = useState({});
   const [cardItems, setCardItems] = useState([]);
   const [favoriteItems, setFavoriteItems] = useState([]);
@@ -14,23 +14,29 @@ export function MyContextProvider({ children }) {
     const storedUser = localStorage.getItem('user');
     return storedUser ? JSON.parse(storedUser) : null;
   });
+  const [cartItems, setCartItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
 
   axios.defaults.withCredentials = true;
 
-  // ------------ Helper Functions ------------
+  // Show item in view
   const showItem = (newItem) => setViewItem(newItem);
 
+  // Add item to cart
   const addToCard = (item, quantity) => {
-    const existingItemIndex = cardItems.findIndex(ci => ci.Name === item.Name);
-    if (existingItemIndex !== -1) {
-      const updatedItems = [...cardItems];
-      updatedItems[existingItemIndex].quantity += quantity;
-      setCardItems(updatedItems);
+    const existingIndex = cardItems.findIndex(ci => ci.Name === item.Name);
+    if (existingIndex !== -1) {
+      const updated = [...cardItems];
+      updated[existingIndex].quantity += quantity;
+      setCardItems(updated);
     } else {
       setCardItems(prev => [...prev, { ...item, quantity }]);
     }
   };
 
+  // Toggle favorite items
   const toggleFavorite = (item) => {
     const exists = favoriteItems.find(fav => fav.id === item.id);
     if (exists) {
@@ -42,7 +48,7 @@ export function MyContextProvider({ children }) {
 
   const isFavorite = (item) => favoriteItems.some(fav => fav.id === item.id);
 
-  // ------------ Logout Function ------------
+  // Logout
   const logout = async () => {
     try {
       await axios.post('http://localhost:4000/api/auth/logout');
@@ -54,7 +60,7 @@ export function MyContextProvider({ children }) {
     }
   };
 
-  // ------------ Fetch Logged User Info on Load ------------
+  // Fetch logged-in user info
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -70,6 +76,7 @@ export function MyContextProvider({ children }) {
     fetchUser();
   }, []);
 
+  // Update localStorage on user change
   useEffect(() => {
     if (user) {
       localStorage.setItem('user', JSON.stringify(user));
@@ -78,8 +85,30 @@ export function MyContextProvider({ children }) {
     }
   }, [user]);
 
+  // Fetch user cart
+  const fetchCart = async () => {
+    if (!user?.id) return;
 
+    try {
+      const res = await axios.get(`http://localhost:4000/api/cart/get/${user.id}`);
+      setCartItems(
+        res.data.items.map(item => ({
+          ...item.item,
+          quantity: item.quantity,
+          total: item.total,
+          cartItemId: item._id,
+        }))
+      );
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching cart:", error);
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
+    fetchCart();
+  }, [cartItems]);
 
   return (
     <MyContext.Provider
@@ -87,7 +116,9 @@ export function MyContextProvider({ children }) {
         viewItem, showItem,
         cardItems, addToCard, setCardItems,
         favoriteItems, toggleFavorite, isFavorite,
-        user, logout, setUser
+        user, logout, setUser,
+        cartItems, setCartItems,
+        loading, setLoading
       }}
     >
       {children}

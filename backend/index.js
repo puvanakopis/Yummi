@@ -10,6 +10,7 @@ import authRouter from "./routes/authRouter.js";
 import itemRouter from "./routes/itemRouter.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRouter from "./routes/orderRouter.js";
+import cartItemRouter from "./routes/cartItemRouter.js";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -33,5 +34,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/items", itemRouter);
 app.use("/api/users", userRoutes);
 app.use("/api/orders", orderRouter);
+app.use("/api/cart", cartItemRouter);
+
 
 app.listen(PORT, () => console.log(`Server started on PORT: ${PORT}`));

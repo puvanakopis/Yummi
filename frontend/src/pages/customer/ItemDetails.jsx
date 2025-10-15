@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./ItemDetails.css";
-import { MyContext } from "../../../context/MyContext.jsx";
+import { MyContext } from "../../context/MyContext.jsx";
 
 const ItemDetails = () => {
   const { user } = useContext(MyContext);
@@ -12,19 +12,19 @@ const ItemDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentCount, setCurrentCount] = useState(1);
-  const [placingOrder, setPlacingOrder] = useState(false);
+  const [addingToCart, setAddingToCart] = useState(false);
 
-  // Fetch item details
   useEffect(() => {
     const fetchItem = async () => {
       try {
         setLoading(true);
-        const response = await axios.get(`http://localhost:4000/api/items/${id}`, {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          `http://localhost:4000/api/items/${id}`,
+          { withCredentials: true }
+        );
         setItem(response.data.item);
       } catch (err) {
-        setError(err.message || "Error fetching item details");
+        setError(err.response?.data?.message || "Error fetching item details");
       } finally {
         setLoading(false);
       }
@@ -34,52 +34,50 @@ const ItemDetails = () => {
   }, [id]);
 
   const handlePrev = () => {
-    if (currentCount > 1) setCurrentCount(currentCount - 1);
+    if (currentCount > 1) setCurrentCount(prev => prev - 1);
   };
 
   const handleNext = () => {
-    setCurrentCount(currentCount + 1);
+    setCurrentCount(prev => prev + 1);
   };
-
 
   const handleAddToCart = async () => {
     if (!user?.id) {
-      alert("You must be logged in to place an order");
+      alert("You must be logged in to add items to the cart");
       return;
     }
 
-    const orderData = {
+    const cartData = {
+      userId: user.id,
       items: [
         {
-          item: item._id,
+          itemId: item._id,
           quantity: currentCount,
-          total: item.Price * currentCount,
         },
       ],
-      subtotal: item.Price * currentCount,
-      deliveryFee: 100,
-      grandTotal: item.Price * currentCount + 100,
     };
 
     try {
-      setPlacingOrder(true);
+      setAddingToCart(true);
       const response = await axios.post(
-        `http://localhost:4000/api/orders/${user.id}`,
-        orderData,
+        `http://localhost:4000/api/cart/add`,
+        cartData,
         { withCredentials: true }
       );
-      console.log('ytiuych')
-      alert(`Order ${response.data._id} placed successfully!`);
+      alert("Item added to cart successfully!");
+      console.log(response.data.cart);
     } catch (err) {
-      alert(err.response?.data?.message || "Error placing order");
+      alert(err.response?.data?.message || "Error adding item to cart");
     } finally {
-      setPlacingOrder(false);
+      setAddingToCart(false);
     }
   };
 
   if (loading) return <p className="loading">Loading item details...</p>;
   if (error) return <p className="error">Error: {error}</p>;
   if (!item) return <p className="error">Item not found</p>;
+
+  const ratingStars = "⭐".repeat(item.Rating || 5);
 
   return (
     <div className="ItemDetails">
@@ -94,60 +92,53 @@ const ItemDetails = () => {
           </div>
 
           <div className="itemDecText w-4/7">
-            <div className="itemDecText1">{item.desc}</div>
+            <p className="itemDecText1">{item.desc}</p>
 
             <div className="itemDecText2">
-              <div className="itemDecText2-1">
-                <div className="itemDecText2-1-1">Brand</div>
-                <div className="itemDecText2-1-2">: {item.Brand}</div>
-              </div>
-              <div className="itemDecText2-1">
-                <div className="itemDecText2-1-1">Flavour</div>
-                <div className="itemDecText2-1-2">: {item.Flavour}</div>
-              </div>
-              <div className="itemDecText2-1">
-                <div className="itemDecText2-1-1">Diet Type</div>
-                <div className="itemDecText2-1-2">: {item.DietType}</div>
-              </div>
-              <div className="itemDecText2-1">
-                <div className="itemDecText2-1-1">Weight</div>
-                <div className="itemDecText2-1-2">: {item.Weight}</div>
-              </div>
-              <div className="itemDecText2-1">
-                <div className="itemDecText2-1-1">Speciality</div>
-                <div className="itemDecText2-1-2">: {item.Speciality}</div>
-              </div>
-              <div className="itemDecText2-1">
-                <div className="itemDecText2-1-1">Info</div>
-                <div className="itemDecText2-1-2">: {item.Info}</div>
-              </div>
+              {[
+                { label: "Brand", value: item.Brand },
+                { label: "Flavour", value: item.Flavour },
+                { label: "Diet Type", value: item.DietType },
+                { label: "Weight", value: item.Weight },
+                { label: "Speciality", value: item.Speciality },
+                { label: "Info", value: item.Info },
+              ].map((field, idx) => (
+                <div className="itemDecText2-1" key={idx}>
+                  <div className="itemDecText2-1-1">{field.label}</div>
+                  <div className="itemDecText2-1-2">: {field.value || "-"}</div>
+                </div>
+              ))}
             </div>
 
             <div className="itemDecText3">
               <div className="itemDecText3-1">
                 <div className="flex items-center gap-1 mt-3">
-                  {"⭐".repeat(item.Rating || 5)}
+                  {ratingStars}
                   <span className="text-sm text-gray-700">
                     ({item.Reviews || 0} Reviews)
                   </span>
                 </div>
               </div>
+
               <div className="itemDecText3-2">Rs {item.Price}.00</div>
+
               <div className="itemDecText3-3">
                 <div className="w-1/2">
                   <div className="ProductCard mainButton">
-                    <button onClick={handlePrev}>&lt;</button>
+                    <button onClick={handlePrev} disabled={currentCount <= 1}> &lt;</button>
                     <span>{currentCount}</span>
                     <button onClick={handleNext}>&gt;</button>
                   </div>
                 </div>
 
-
-                <div
-                  className="w-full mainButton mt-2"
-                  onClick={handleAddToCart}
-                >
-                  {placingOrder ? "Adding..." : "Add To Cart"}
+                <div className="w-full mt-2">
+                  <button
+                    className="mainButton w-full"
+                    onClick={handleAddToCart}
+                    disabled={addingToCart}
+                  >
+                    {addingToCart ? "Adding..." : "Add To Cart"}
+                  </button>
                 </div>
               </div>
             </div>
