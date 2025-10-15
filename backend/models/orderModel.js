@@ -18,14 +18,6 @@ const orderSchema = new mongoose.Schema(
     deliveryFee: { type: Number, required: true },
     grandTotal: { type: Number, required: true },
 
-    deliveryInfo: {
-      firstName: { type: String, required: true },
-      lastName: { type: String, required: true },
-      address: { type: String, required: true },
-      postalCode: { type: String, required: true },
-      phoneNumber: { type: String, required: true },
-    },
-
     orderDate: { type: Date, default: Date.now },
   },
   { timestamps: true }

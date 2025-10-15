@@ -4,7 +4,7 @@ import { createOrder, getAllOrders, getOrders, getOrderById, updateOrder, delete
 const router = express.Router();
 
 router.get("/", getAllOrders);
-router.post("/:userId", createOrder); 
+router.post("/:userId", createOrder);
 router.get("/:userId", getOrders);
 router.get("/:userId/:orderId", getOrderById);
 router.put("/:userId/:orderId", updateOrder);
