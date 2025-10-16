@@ -1,0 +1,163 @@
+.admin-orders {
+  display: flex;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+  gap: 30px;
+  margin: 30px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+/* Header */
+.admin-orders .header h1 {
+  color: #ea641a;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.admin-orders .header p {
+  color: #666;
+}
+
+/* Controls */
+.admin-orders .orders-controls {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.admin-orders .search-box {
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  padding: 10px 15px;
+  width: 250px;
+}
+
+.admin-orders .search-box:focus {
+  border-color: #ea641a;
+  box-shadow: 0 0 5px rgba(234, 100, 26, 0.3);
+}
+
+/* Orders Table */
+.admin-orders .orders-table {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.admin-orders .table-header,
+.admin-orders .table-row {
+  align-items: center;
+  border-radius: 12px;
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+  padding: 12px 15px;
+}
+
+.admin-orders .table-header {
+  background: rgba(234, 100, 26, 0.15);
+  color: #ea641a;
+  font-weight: 700;
+}
+
+.admin-orders .table-row {
+  background: #fff;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+}
+
+.admin-orders .table-row:hover {
+  background: rgba(234, 100, 26, 0.08);
+}
+
+/* Actions */
+.admin-orders .actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.admin-orders .btn {
+  background: rgba(234, 100, 26, 0.1);
+  border: none;
+  border-radius: 8px;
+  color: #ea641a;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 6px 14px;
+}
+
+.admin-orders .btn.view:hover {
+  background: rgba(234, 100, 26, 0.25);
+}
+
+/* Modal */
+.admin-orders .modal-overlay {
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  inset: 0;
+  justify-content: center;
+  position: fixed;
+  z-index: 100;
+}
+
+.admin-orders .modal {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  max-height: 80vh;
+  max-width: 90%;
+  overflow-y: auto;
+  padding: 30px;
+  width: 600px;
+}
+
+.admin-orders .modal h2 {
+  color: #ea641a;
+  margin-bottom: 20px;
+}
+
+.admin-orders .modal .details-content p {
+  border-bottom: 1px solid #f0f0f0;
+  margin: 8px 0;
+  padding-bottom: 4px;
+}
+
+.admin-orders .modal .details-content strong {
+  color: #ea641a;
+}
+
+.admin-orders .modal-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.admin-orders .modal .btn {
+  background-color: #ea641a;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 10px 20px;
+  transition: all 0.3s;
+}
+
+.admin-orders .modal .btn:hover {
+  background-color: #d8530f;
+}
+
+.admin-orders .table-cell.clickable {
+  color: #ea641a;
+  cursor: pointer;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.admin-orders .table-cell.clickable:hover {
+  color: #d8530f;
+  text-decoration: underline;
+}

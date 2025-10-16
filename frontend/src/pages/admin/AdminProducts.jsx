@@ -13,7 +13,7 @@ const AdminProducts = () => {
     Name: '',
     desc: '',
     Price: '',
-    Stock: '', // 🔹 Added Stock
+    Stock: '', 
     Brand: '',
     Flavour: '',
     DietType: '',
@@ -85,7 +85,7 @@ const AdminProducts = () => {
         Name: '',
         desc: '',
         Price: '',
-        Stock: '', // 🔹 Reset Stock
+        Stock: '', 
         Brand: '',
         Flavour: '',
         DietType: '',
@@ -108,7 +108,7 @@ const AdminProducts = () => {
       Name: product.Name,
       desc: product.desc,
       Price: product.Price,
-      Stock: product.Stock || '', // 🔹 Added Stock
+      Stock: product.Stock || '', 
       Brand: product.Brand || '',
       Flavour: product.Flavour || '',
       DietType: product.DietType || '',
@@ -116,6 +116,7 @@ const AdminProducts = () => {
       Speciality: product.Speciality || '',
       Info: product.Info || '',
       Img: null,
+      
     });
     setShowForm(true);
   };
@@ -178,7 +179,7 @@ const AdminProducts = () => {
         <div className="table-header">
           <div className="table-cell">Name</div>
           <div className="table-cell">Price</div>
-          <div className="table-cell">Stock</div> {/* 🔹 Added column */}
+          <div className="table-cell">Stock</div> 
           <div className="table-cell">Image</div>
           <div className="table-cell">Actions</div>
         </div>
@@ -189,7 +190,7 @@ const AdminProducts = () => {
               {product.Name}
             </div>
             <div className="table-cell">Rs {product.Price}</div>
-            <div className="table-cell">{product.Stock || 0}</div> {/* 🔹 Show Stock */}
+            <div className="table-cell">{product.Stock || 0}</div> 
             <div className="table-cell">
               {product.Img && (
                 <img src={`http://localhost:4000/${product.Img}`} alt={product.Name} width="50" />
@@ -277,7 +278,7 @@ const AdminProducts = () => {
               <p><strong>Name:</strong> {selectedProduct.Name}</p>
               <p><strong>Description:</strong> {selectedProduct.desc}</p>
               <p><strong>Price:</strong> Rs {selectedProduct.Price}</p>
-              <p><strong>Stock:</strong> {selectedProduct.Stock}</p> {/* 🔹 Added Stock */}
+              <p><strong>Stock:</strong> {selectedProduct.Stock}</p> 
               <p><strong>Brand:</strong> {selectedProduct.Brand || 'N/A'}</p>
               <p><strong>Flavour:</strong> {selectedProduct.Flavour || 'N/A'}</p>
               <p><strong>Diet Type:</strong> {selectedProduct.DietType || 'N/A'}</p>

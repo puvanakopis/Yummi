@@ -20,6 +20,7 @@ import Footer from "./components/customer/Footer/Footer";
 import AdminDashboard from './pages/admin/AdminDashboard'
 import AdminUsers from "./pages/admin/AdminUsers";
 import AdminProducts from "./pages/admin/AdminProducts";
+import AdminOrders from "./pages/admin/AdminOrders";
 
 import AdminNavbar from './components/admin/navbar/AdminNavbar'
 
@@ -38,6 +39,7 @@ const AppContent = () => {
           <Route path="/" element={<AdminDashboard />} />
           <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/admin/products" element={<AdminProducts />} />
+          <Route path="/admin/orders" element={<AdminOrders />} />
           <Route path="/admin/profile" element={<Account />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />
