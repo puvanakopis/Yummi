@@ -1,12 +1,13 @@
 import "./OrderItems.css";
 import { FiMinusCircle } from "react-icons/fi";
 import { MyContext } from "../../context/MyContext";
-import { useContext} from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import LoadingPage from "../LoadingPage.jsx";
 
 const OrderItem = () => {
-    const { user , cartItems,loading, setCartItems } = useContext(MyContext);
+    const { user, cartItems, loading, setCartItems } = useContext(MyContext);
     const navigate = useNavigate();
 
 
@@ -54,7 +55,7 @@ const OrderItem = () => {
         navigate("/DeliveryInfor");
     };
 
-    if (loading) return <div>Loading cart...</div>;
+    if (loading) return <LoadingPage />;
 
     return (
         <div className="order-item-page">

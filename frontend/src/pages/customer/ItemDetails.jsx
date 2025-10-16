@@ -3,16 +3,17 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./ItemDetails.css";
 import { MyContext } from "../../context/MyContext.jsx";
+import LoadingPage from "../LoadingPage.jsx";
 
 const ItemDetails = () => {
-  const { user } = useContext(MyContext);
+  const { user , loading , setLoading } = useContext(MyContext);
   const { id } = useParams();
 
   const [item, setItem] = useState(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentCount, setCurrentCount] = useState(1);
   const [addingToCart, setAddingToCart] = useState(false);
+
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -73,7 +74,7 @@ const ItemDetails = () => {
     }
   };
 
-  if (loading) return <p className="loading">Loading item details...</p>;
+  if (loading) return <LoadingPage />;
   if (error) return <p className="error">Error: {error}</p>;
   if (!item) return <p className="error">Item not found</p>;
 
