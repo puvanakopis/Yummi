@@ -2,11 +2,12 @@ import Order from "../models/orderModel.js";
 import Item from "../models/itemModel.js";
 import User from "../models/userModel.js";
 
-// Create a new order
+
+// ------------ Create a new order ------------
 export const createOrder = async (req, res) => {
   try {
     const { userId } = req.params;
-    const { items, subtotal, deliveryFee, grandTotal } = req.body;
+    const { items, subtotal, deliveryFee, grandTotal, deliveryInfo } = req.body;
 
     const userExists = await User.findById(userId);
     if (!userExists) return res.status(404).json({ message: "User not found" });
@@ -17,12 +18,21 @@ export const createOrder = async (req, res) => {
         return res.status(404).json({ message: `Item ${orderItem.item} not found` });
     }
 
+    const requiredFields = ["firstName", "lastName", "address", "postalCode", "phoneNumber"];
+    for (const field of requiredFields) {
+      if (!deliveryInfo?.[field]) {
+        return res.status(400).json({ message: `Missing delivery info: ${field}` });
+      }
+    }
+
     const newOrder = new Order({
       userId,
       items,
       subtotal,
       deliveryFee,
       grandTotal,
+      deliveryInfo,
+      status: "pending", 
     });
 
     const savedOrder = await newOrder.save();
@@ -35,7 +45,7 @@ export const createOrder = async (req, res) => {
 
 
 
-// Get all orders of a specific user
+// ------------ Get all orders ------------
 export const getOrders = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -56,7 +66,7 @@ export const getOrders = async (req, res) => {
 
 
 
-// Get all orders (no user filter)
+// ------------ Get all orders ------------
 export const getAllOrders = async (req, res) => {
   try {
     const orders = await Order.find()
@@ -71,8 +81,7 @@ export const getAllOrders = async (req, res) => {
 
 
 
-
-// Get a single order by ID for a specific user
+// ------------ Get single order by ID ------------
 export const getOrderById = async (req, res) => {
   try {
     const { userId, orderId } = req.params;
@@ -92,11 +101,12 @@ export const getOrderById = async (req, res) => {
 
 
 
-// Update an order for a specific user
+
+// ------------ Update an order ------------
 export const updateOrder = async (req, res) => {
   try {
     const { userId, orderId } = req.params;
-    const { items, subtotal, deliveryFee, grandTotal } = req.body;
+    const { items, subtotal, deliveryFee, grandTotal, deliveryInfo, status } = req.body;
 
     const order = await Order.findOne({ _id: orderId, userId });
     if (!order)
@@ -106,6 +116,11 @@ export const updateOrder = async (req, res) => {
     order.subtotal = subtotal ?? order.subtotal;
     order.deliveryFee = deliveryFee ?? order.deliveryFee;
     order.grandTotal = grandTotal ?? order.grandTotal;
+    order.deliveryInfo = deliveryInfo || order.deliveryInfo;
+
+    if (status && ["pending", "confirmed", "cancelled"].includes(status)) {
+      order.status = status;
+    }
 
     const updatedOrder = await order.save();
     res.status(200).json(updatedOrder);
@@ -117,7 +132,8 @@ export const updateOrder = async (req, res) => {
 
 
 
-// Delete an order for a specific user
+
+// ------------ Delete an order ------------
 export const deleteOrder = async (req, res) => {
   try {
     const { userId, orderId } = req.params;
@@ -128,6 +144,32 @@ export const deleteOrder = async (req, res) => {
 
     await order.deleteOne();
     res.status(200).json({ message: "Order deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+
+
+
+
+// ------------ Update order status ------------
+export const updateOrderStatus = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const { status } = req.body;
+
+    if (!["pending", "confirmed", "cancelled"].includes(status)) {
+      return res.status(400).json({ message: "Invalid status value" });
+    }
+
+    const order = await Order.findById(orderId);
+    if (!order) return res.status(404).json({ message: "Order not found" });
+
+    order.status = status;
+    const updated = await order.save();
+
+    res.status(200).json(updated);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

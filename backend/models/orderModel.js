@@ -4,7 +4,7 @@ const orderSchema = new mongoose.Schema(
   {
     _id: { type: String },
 
-    userId: { type: String, ref: "user", required: true },
+    userId: { type: String, ref: "User", required: true },
 
     items: [
       {
@@ -18,6 +18,20 @@ const orderSchema = new mongoose.Schema(
     deliveryFee: { type: Number, required: true },
     grandTotal: { type: Number, required: true },
 
+    deliveryInfo: {
+      firstName: { type: String, required: true },
+      lastName: { type: String, required: true },
+      address: { type: String, required: true },
+      postalCode: { type: String, required: true },
+      phoneNumber: { type: String, required: true },
+    },
+
+    status: {
+      type: String,
+      enum: ["pending", "confirmed", "cancelled"],
+      default: "pending",
+    },
+
     orderDate: { type: Date, default: Date.now },
   },
   { timestamps: true }
@@ -27,8 +41,7 @@ orderSchema.pre("save", async function (next) {
   if (!this.isNew || this._id) return next();
 
   try {
-    const lastOrder = await mongoose.models.Order
-      .findOne({}, { _id: 1 })
+    const lastOrder = await mongoose.models.Order.findOne({}, { _id: 1 })
       .sort({ _id: -1 })
       .lean()
       .exec();
