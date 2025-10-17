@@ -75,7 +75,6 @@
 .admin-orders .actions {
   display: flex;
   gap: 8px;
-  justify-content: flex-end;
 }
 
 .admin-orders .btn {
@@ -115,10 +114,14 @@
 }
 
 .admin-orders .modal h2 {
+  display: flex;
+  justify-self: center;
   color: #ea641a;
   margin-bottom: 20px;
 }
-
+.padding-top{
+  margin-top: 40px;
+}
 .admin-orders .modal .details-content p {
   border-bottom: 1px solid #f0f0f0;
   margin: 8px 0;

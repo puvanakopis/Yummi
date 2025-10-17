@@ -90,7 +90,7 @@ export function MyContextProvider({ children }) {
     if (!user?.id) return;
 
     try {
-      const res = await axios.get(`http://localhost:4000/api/cart/get/${user.id}`);
+      const res = await axios.get(`http://localhost:4000/api/cart/${user.id}`);
       setCartItems(
         res.data.items.map(item => ({
           ...item.item,
