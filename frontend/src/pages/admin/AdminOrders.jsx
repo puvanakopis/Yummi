@@ -8,13 +8,12 @@ const AdminOrders = () => {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
-  const API_URL = "http://localhost:4000/api/orders"; // adjust if needed
 
   // Fetch all orders
   const fetchOrders = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(API_URL, { withCredentials: true });
+      const response = await axios.get('http://localhost:4000/api/orders', { withCredentials: true });
       setOrders(response.data);
       setLoading(false);
     } catch (error) {
@@ -27,15 +26,33 @@ const AdminOrders = () => {
     fetchOrders();
   }, []);
 
-  // Filter orders based on search term
+
+
+  // Update order status
+  const handleStatusChange = async (orderId, newStatus) => {
+    try {
+      await axios.put(
+        `${'http://localhost:4000/api/orders'}/status/${orderId}`,
+        { status: newStatus },
+        { withCredentials: true }
+      );
+      fetchOrders();
+    } catch (error) {
+      console.error("Error updating status:", error);
+      alert("Failed to update order status");
+    }
+  };
+
+
+
+
+  // Filter orders
   const filteredOrders = orders.filter(
     (order) =>
       order._id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      order.userId?.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      order.userId?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       order.status.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  console.log(selectedOrder)
 
   return (
     <div className="admin-orders">
@@ -61,6 +78,7 @@ const AdminOrders = () => {
           <div className="table-header">
             <div className="table-cell">Order ID</div>
             <div className="table-cell">User</div>
+            <div className="table-cell">Order Date</div>
             <div className="table-cell">Status</div>
             <div className="table-cell">Grand Total</div>
             <div className="table-cell">Actions</div>
@@ -75,8 +93,32 @@ const AdminOrders = () => {
                 {order._id}
               </div>
               <div className="table-cell">{order.userId?.name}</div>
-              <div className="table-cell">{order.status}</div>
+              <div className="table-cell">
+                {new Date(order.createdAt).toLocaleString("en-GB", {
+                  day: "2-digit",
+                  month: "short",
+                  year: "numeric",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </div>
+
+              <div className="table-cell">
+                <select
+                  value={order.status}
+                  onChange={(e) =>
+                    handleStatusChange(order._id, e.target.value)
+                  }
+                  className={`status-select ${order.status}`}
+                >
+                  <option value="pending">Pending</option>
+                  <option value="confirmed">Confirmed</option>
+                  <option value="cancelled">Cancelled</option>
+                </select>
+              </div>
+
               <div className="table-cell">Rs {order.grandTotal}</div>
+
               <div className="table-cell actions">
                 <button
                   className="btn view"
@@ -136,7 +178,7 @@ const AdminOrders = () => {
                     <strong>ID:</strong> {item.item._id}
                   </p>
                   <p>
-                    <strong>Item:</strong> {item.item.Name }
+                    <strong>Item:</strong> {item.item.Name}
                   </p>
                   <p>
                     <strong>Quantity:</strong> {item.quantity}

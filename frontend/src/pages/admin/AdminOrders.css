@@ -52,7 +52,7 @@
   align-items: center;
   border-radius: 12px;
   display: grid;
-  grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
   padding: 12px 15px;
 }
 
@@ -94,6 +94,7 @@
 /* Modal */
 .admin-orders .modal-overlay {
   align-items: center;
+  margin-top: 5%;
   background: rgba(0, 0, 0, 0.4);
   display: flex;
   inset: 0;
@@ -162,5 +163,21 @@
 
 .admin-orders .table-cell.clickable:hover {
   color: #d8530f;
-  text-decoration: underline;
+}
+
+.status-select {
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+  outline: none;
+}
+
+.table-cell {
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  text-align: center; 
+  padding: 8px 12px;
+  vertical-align: middle;
 }
