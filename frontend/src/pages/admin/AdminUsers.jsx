@@ -3,13 +3,7 @@ import { MyContext } from "../../Context/MyContext";
 import './AdminUsers.css';
 
 const AdminUsers = () => {
-  const {
-    users,
-    updateUserStatus,
-    deleteUser,
-    createUser,
-    updateUser
-  } = useContext(MyContext);
+  const { users, updateUserStatus, deleteUser, createUser, updateUser } = useContext(MyContext);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [editingUser, setEditingUser] = useState(null);
@@ -22,7 +16,9 @@ const AdminUsers = () => {
     password: ''
   });
 
-  // -------- Edit / Add User --------
+
+
+  // -------- Edit User --------
   const handleEdit = (user) => {
     setEditingUser(user);
     setFormData({
@@ -33,6 +29,8 @@ const AdminUsers = () => {
     });
   };
 
+
+  // -------- Add User --------
   const handleAddUser = () => {
     setAddingUser(true);
     setFormData({
@@ -44,11 +42,15 @@ const AdminUsers = () => {
     });
   };
 
+
+  // Handle the Change
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
+
+  // Handle the Submit
   const handleSubmit = async () => {
     if (editingUser) {
       await updateUser(editingUser._id, formData);
@@ -59,6 +61,7 @@ const AdminUsers = () => {
     }
   };
 
+  // filter Users
   const filteredUsers = users.filter(user =>
     user.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.email?.toLowerCase().includes(searchTerm.toLowerCase())
@@ -85,8 +88,8 @@ const AdminUsers = () => {
 
       <div className="users-table">
         <div className="table-header">
+          <div className="table-cell">User ID</div>
           <div className="table-cell">Name</div>
-          <div className="table-cell">Email</div>
           <div className="table-cell">Role</div>
           <div className="table-cell">Status</div>
           <div className="table-cell">Join Date</div>
@@ -95,8 +98,8 @@ const AdminUsers = () => {
 
         {filteredUsers.map(user => (
           <div key={user._id} className="table-row">
+            <div className="table-cell clickable">{user._id}</div>
             <div className="table-cell">{user.name}</div>
-            <div className="table-cell">{user.email}</div>
             <div className="table-cell">
               <span className={`role-badge ${user.role}`}>{user.role}</span>
             </div>

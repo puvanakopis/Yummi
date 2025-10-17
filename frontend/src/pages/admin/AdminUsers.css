@@ -67,7 +67,7 @@
 .admin-users .table-header,
 .admin-users .table-row {
   display: grid;
-  grid-template-columns: 1.5fr 2fr 1fr 1fr 1fr 2fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 2fr;
   padding: 12px 15px;
   border-radius: 12px;
   align-items: center;
@@ -77,9 +77,11 @@
   background: rgba(234, 100, 26, 0.15);
   color: #ea641a;
   font-weight: 700;
+  text-align: center;
 }
 
 .admin-users .table-row {
+  text-align: center;
   background: #fff;
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
 }
@@ -87,6 +89,14 @@
 .admin-users .table-row:hover {
   background: rgba(234, 100, 26, 0.08);
 }
+
+.admin-users .table-cell.clickable {
+    color: #ea641a;
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
 
 /* Badges */
 .admin-users .role-badge {

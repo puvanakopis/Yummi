@@ -4,10 +4,11 @@ import "./AdminOrders.css";
 
 const AdminOrders = () => {
   const { orders, ordersLoading, handleStatusChange } = useContext(MyContext);
+
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
-  console.log(orders)
+  // filter Orders
   const filteredOrders = orders.filter(
     (order) =>
       order._id.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -51,16 +52,7 @@ const AdminOrders = () => {
                 {order._id}
               </div>
               <div className="table-cell">{order.userId?.name}</div>
-              <div className="table-cell">
-                {new Date(order.createdAt).toLocaleString("en-GB", {
-                  day: "2-digit",
-                  month: "short",
-                  year: "numeric",
-                  hour: "2-digit",
-                  minute: "2-digit",
-                })}
-              </div>
-
+              <div className="table-cell">{new Date(order.createdAt).toLocaleDateString()}</div>
               <div className="table-cell">
                 <select
                   value={order.status}

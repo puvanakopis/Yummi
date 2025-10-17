@@ -244,6 +244,59 @@ export function MyContextProvider({ children }) {
 
 
 
+  // ----------- Create Place Order -----------
+  const placeOrder = async (deliveryInfo) => {
+    if (!loggedInUser || !loggedInUser.id) {
+      alert("Please log in before placing an order.");
+      return false;
+    }
+
+    if (!cartItems || cartItems.length === 0) {
+      alert("Your cart is empty.");
+      return false;
+    }
+
+    try {
+      const subtotal = cartItems.reduce((sum, item) => sum + item.total, 0);
+      const deliveryFee = 300;
+      const grandTotal = subtotal + deliveryFee;
+
+      const items = cartItems.map((item) => ({
+        item: item._id,
+        quantity: item.quantity,
+        total: item.total,
+      }));
+
+      const orderData = {
+        items,
+        subtotal,
+        deliveryFee,
+        grandTotal,
+        deliveryInfo,
+      };
+
+      const response = await axios.post(
+        `${API_URL}/orders/${loggedInUser.id}`,
+        orderData
+      );
+
+      if (response.status === 201) {
+        await axios.delete(`${API_URL}/cart/delete-all`, {
+          data: { userId: loggedInUser.id },
+        });
+        setCartItems([]);
+        alert("Your order has been placed successfully!");
+        return true;
+      } else {
+        alert("Something went wrong while placing the order.");
+        return false;
+      }
+    } catch (error) {
+      console.error("Error creating order:", error);
+      alert("Failed to place order. Please try again later.");
+      return false;
+    }
+  };
 
   // ---------------- Orders ----------------
   const fetchOrders = async () => {
@@ -291,6 +344,7 @@ export function MyContextProvider({ children }) {
   return (
     <MyContext.Provider
       value={{
+        placeOrder,
         cartLoading, setCartLoading,
         users, setUsers,
         viewItem, setViewItem,

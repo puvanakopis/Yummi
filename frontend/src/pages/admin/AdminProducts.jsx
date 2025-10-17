@@ -3,14 +3,7 @@ import { MyContext } from '../../Context/MyContext.jsx';
 import './AdminProducts.css';
 
 const AdminProducts = () => {
-  const {
-    itemsLoading,
-    items,
-    addItems,
-    updateItems,
-    deleteItems,
-    fetchItemsDetails
-  } = useContext(MyContext);
+  const { itemsLoading, items, addItems, updateItems, deleteItems, fetchItemsDetails } = useContext(MyContext);
 
   const [showForm, setShowForm] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
@@ -39,6 +32,7 @@ const AdminProducts = () => {
     }
   }, [showForm]);
 
+
   // -------- Handle input change --------
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -48,6 +42,7 @@ const AdminProducts = () => {
       setFormData(prev => ({ ...prev, [name]: value }));
     }
   };
+
 
   // -------- Add or update product --------
   const handleSubmit = async (e) => {
@@ -85,6 +80,8 @@ const AdminProducts = () => {
     }
   };
 
+
+
   // -------- Edit product --------
   const handleEdit = (product) => {
     setEditingProduct(product);
@@ -104,8 +101,12 @@ const AdminProducts = () => {
     setShowForm(true);
   };
 
+
+
   // -------- Delete product --------
   const handleDelete = (id) => deleteItems(id);
+
+
 
   // -------- View product details --------
   const handleViewDetails = async (id) => {
@@ -113,6 +114,8 @@ const AdminProducts = () => {
     if (product) setSelectedProduct(product);
   };
 
+
+  
   // -------- Filtered Products --------
   const filteredItems = items.filter(
     product =>
@@ -147,6 +150,7 @@ const AdminProducts = () => {
       {/* Product Table */}
       <div className="products-table">
         <div className="table-header">
+          <div className="table-cell">Product ID</div>
           <div className="table-cell">Name</div>
           <div className="table-cell">Price</div>
           <div className="table-cell">Stock</div>
@@ -157,6 +161,9 @@ const AdminProducts = () => {
         {filteredItems.map((item) => (
           <div key={item._id} className="table-row">
             <div className="table-cell clickable" onClick={() => handleViewDetails(item._id)}>
+              {item._id}
+            </div>
+            <div className="table-cell">
               {item.Name}
             </div>
             <div className="table-cell">Rs {item.Price}</div>

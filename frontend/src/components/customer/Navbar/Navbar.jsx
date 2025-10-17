@@ -12,6 +12,7 @@ const Navbar = () => {
   const currentPath = location.pathname;
 
   const { favoriteItems, loggedInUser, logout , cartItems  } = useContext(MyContext);
+  
   const [numberOfFavorites, setNumberOfFavorites] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAccountOpen, setIsAccountOpen] = useState(false);

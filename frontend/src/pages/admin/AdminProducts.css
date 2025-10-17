@@ -68,7 +68,7 @@
     align-items: center;
     border-radius: 12px;
     display: grid;
-    grid-template-columns: 2fr 1.5fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1.5fr;
     padding: 12px 15px;
 }
 
@@ -242,7 +242,6 @@
 
 .admin-products .table-cell.clickable:hover {
     color: #d8530f;
-    text-decoration: underline;
 }
 
 @keyframes fadeIn {
