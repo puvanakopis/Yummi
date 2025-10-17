@@ -1,11 +1,11 @@
 import './DeliveryInfor.css';
-import { MyContext } from "../../context/MyContext";
+import { MyContext } from "../../Context/MyContext";
 import { useContext, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 const DeliveryInfor = () => {
-  const { user, cartItems, setCartItems } = useContext(MyContext);
+  const { loggedInUser, cartItems, setCartItems } = useContext(MyContext);
   const navigate = useNavigate();
   const [deliveryInfo, setDeliveryInfo] = useState({
     firstName: "",
@@ -31,7 +31,7 @@ const DeliveryInfor = () => {
     e.preventDefault();
 
     try {
-      if (!user || !user.id) {
+      if (!loggedInUser || !loggedInUser.id) {
         alert("Please log in before placing an order.");
         return;
       }
@@ -60,13 +60,13 @@ const DeliveryInfor = () => {
       };
 
       const response = await axios.post(
-        `http://localhost:4000/api/orders/${user.id}`,
+        `http://localhost:4000/api/orders/${loggedInUser.id}`,
         orderData
       );
 
       if (response.status === 201) {
         await axios.delete("http://localhost:4000/api/cart/delete-all", {
-          data: { userId: user.id },
+          data: { userId: loggedInUser.id },
         });
         setCartItems([]);
 

@@ -2,7 +2,7 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { LiaShoppingBagSolid } from "react-icons/lia";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
-import { MyContext } from "../../../context/MyContext";
+import { MyContext } from "../../../Context/MyContext";
 import { useContext, useEffect, useState, useRef } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import './Navbar.css'
@@ -11,7 +11,7 @@ const Navbar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  const { cartItems, favoriteItems, user, logout  } = useContext(MyContext);
+  const { favoriteItems, loggedInUser, logout , cartItems  } = useContext(MyContext);
   const [numberOfFavorites, setNumberOfFavorites] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAccountOpen, setIsAccountOpen] = useState(false);
@@ -74,7 +74,7 @@ const Navbar = () => {
             </div>
             {isAccountOpen && (
               <div className="dropdown-menu">
-                {user ? (
+                {loggedInUser ? (
                   <>
                     <Link to="/Account" className="dropdown-item">My Account</Link>
                     <span
@@ -116,7 +116,7 @@ const Navbar = () => {
             <Link to="/Favorites" className={`list ${currentPath === "/Favorites" ? "active" : ""}`} onClick={toggleMenu}>
               Favorites {numberOfFavorites > 0 && `(${numberOfFavorites})`}
             </Link>
-            {user ? (
+            {loggedInUser ? (
               <>
                 <Link to="/Account" className="list" onClick={toggleMenu}>My Account</Link>
                 <span className="list" onClick={() => { logout(); toggleMenu(); }}>Logout</span>

@@ -1,10 +1,17 @@
-import { useState, useEffect, useRef } from 'react';
-import axios from 'axios';
+import { useState, useEffect, useRef, useContext } from 'react';
+import { MyContext } from '../../Context/MyContext.jsx';
 import './AdminProducts.css';
 
 const AdminProducts = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const {
+    itemsLoading,
+    items,
+    addItems,
+    updateItems,
+    deleteItems,
+    fetchItemsDetails
+  } = useContext(MyContext);
+
   const [showForm, setShowForm] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -13,7 +20,7 @@ const AdminProducts = () => {
     Name: '',
     desc: '',
     Price: '',
-    Stock: '', 
+    Stock: '',
     Brand: '',
     Flavour: '',
     DietType: '',
@@ -24,23 +31,6 @@ const AdminProducts = () => {
   });
 
   const modalRef = useRef(null);
-  const API_URL = 'http://localhost:4000/api/items';
-
-  // -------- Fetch all products --------
-  const fetchProducts = async () => {
-    try {
-      const res = await axios.get(API_URL);
-      setProducts(res.data.items);
-    } catch (error) {
-      console.error('Error fetching products:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    fetchProducts();
-  }, []);
 
   // -------- Scroll modal into view --------
   useEffect(() => {
@@ -53,9 +43,9 @@ const AdminProducts = () => {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (name === 'Img') {
-      setFormData((prev) => ({ ...prev, Img: files[0] }));
+      setFormData(prev => ({ ...prev, Img: files[0] }));
     } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
+      setFormData(prev => ({ ...prev, [name]: value }));
     }
   };
 
@@ -69,23 +59,17 @@ const AdminProducts = () => {
       }
 
       if (editingProduct) {
-        const res = await axios.put(`${API_URL}/${editingProduct._id}`, data, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
-        setProducts(products.map((p) => (p._id === editingProduct._id ? res.data.item : p)));
+        await updateItems(editingProduct._id, data);
         setEditingProduct(null);
       } else {
-        const res = await axios.post(API_URL, data, {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        });
-        setProducts([...products, res.data.item]);
+        await addItems(data);
       }
 
       setFormData({
         Name: '',
         desc: '',
         Price: '',
-        Stock: '', 
+        Stock: '',
         Brand: '',
         Flavour: '',
         DietType: '',
@@ -108,7 +92,7 @@ const AdminProducts = () => {
       Name: product.Name,
       desc: product.desc,
       Price: product.Price,
-      Stock: product.Stock || '', 
+      Stock: product.Stock || '',
       Brand: product.Brand || '',
       Flavour: product.Flavour || '',
       DietType: product.DietType || '',
@@ -116,42 +100,28 @@ const AdminProducts = () => {
       Speciality: product.Speciality || '',
       Info: product.Info || '',
       Img: null,
-      
     });
     setShowForm(true);
   };
 
   // -------- Delete product --------
-  const handleDelete = async (id) => {
-    if (!window.confirm('Are you sure you want to delete this product?')) return;
-    try {
-      await axios.delete(`${API_URL}/${id}`);
-      setProducts(products.filter((p) => p._id !== id));
-    } catch (error) {
-      console.error(error);
-      alert('Failed to delete product');
-    }
-  };
+  const handleDelete = (id) => deleteItems(id);
 
   // -------- View product details --------
   const handleViewDetails = async (id) => {
-    try {
-      const res = await axios.get(`${API_URL}/${id}`);
-      setSelectedProduct(res.data.item);
-    } catch (error) {
-      console.error('Failed to load product details:', error);
-    }
+    const product = await fetchItemsDetails(id);
+    if (product) setSelectedProduct(product);
   };
 
   // -------- Filtered Products --------
-  const filteredProducts = products.filter(
-    (product) =>
+  const filteredItems = items.filter(
+    product =>
       product.Name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.Brand?.toLowerCase().includes(searchTerm.toLowerCase()) ||
       product.Flavour?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  if (loading) return <p>Loading products...</p>;
+  if (itemsLoading) return <p>Loading products...</p>;
 
   return (
     <div className="admin-products">
@@ -179,27 +149,27 @@ const AdminProducts = () => {
         <div className="table-header">
           <div className="table-cell">Name</div>
           <div className="table-cell">Price</div>
-          <div className="table-cell">Stock</div> 
+          <div className="table-cell">Stock</div>
           <div className="table-cell">Image</div>
           <div className="table-cell">Actions</div>
         </div>
 
-        {filteredProducts.map((product) => (
-          <div key={product._id} className="table-row">
-            <div className="table-cell clickable" onClick={() => handleViewDetails(product._id)}>
-              {product.Name}
+        {filteredItems.map((item) => (
+          <div key={item._id} className="table-row">
+            <div className="table-cell clickable" onClick={() => handleViewDetails(item._id)}>
+              {item.Name}
             </div>
-            <div className="table-cell">Rs {product.Price}</div>
-            <div className="table-cell">{product.Stock || 0}</div> 
+            <div className="table-cell">Rs {item.Price}</div>
+            <div className="table-cell">{item.Stock || 0}</div>
             <div className="table-cell">
-              {product.Img && (
-                <img src={`http://localhost:4000/${product.Img}`} alt={product.Name} width="50" />
+              {item.Img && (
+                <img src={`http://localhost:4000/${item.Img}`} alt={item.Name} width="50" />
               )}
             </div>
             <div className="table-cell actions">
-              <button className="btn view" onClick={() => handleViewDetails(product._id)}>View</button>
-              <button className="btn edit" onClick={() => handleEdit(product)}>Edit</button>
-              <button className="btn delete" onClick={() => handleDelete(product._id)}>Delete</button>
+              <button className="btn view" onClick={() => handleViewDetails(item._id)}>View</button>
+              <button className="btn edit" onClick={() => handleEdit(item)}>Edit</button>
+              <button className="btn delete" onClick={() => handleDelete(item._id)}>Delete</button>
             </div>
           </div>
         ))}
@@ -278,7 +248,7 @@ const AdminProducts = () => {
               <p><strong>Name:</strong> {selectedProduct.Name}</p>
               <p><strong>Description:</strong> {selectedProduct.desc}</p>
               <p><strong>Price:</strong> Rs {selectedProduct.Price}</p>
-              <p><strong>Stock:</strong> {selectedProduct.Stock}</p> 
+              <p><strong>Stock:</strong> {selectedProduct.Stock}</p>
               <p><strong>Brand:</strong> {selectedProduct.Brand || 'N/A'}</p>
               <p><strong>Flavour:</strong> {selectedProduct.Flavour || 'N/A'}</p>
               <p><strong>Diet Type:</strong> {selectedProduct.DietType || 'N/A'}</p>

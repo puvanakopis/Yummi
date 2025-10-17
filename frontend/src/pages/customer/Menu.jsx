@@ -3,7 +3,7 @@ import axios from 'axios';
 import './Menu.css';
 import { FaStar, FaBars, FaTimes, FaHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-import { MyContext } from '../../context/MyContext.jsx';
+import { MyContext } from '../../Context/MyContext.jsx';
 import LoadingPage from "../LoadingPage.jsx";
 
 const Menu = () => {

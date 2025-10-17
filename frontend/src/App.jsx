@@ -25,13 +25,13 @@ import AdminOrders from "./pages/admin/AdminOrders";
 import AdminNavbar from './components/admin/navbar/AdminNavbar'
 
 
-import { MyContextProvider } from './context/MyContext'
-import { MyContext } from './context/MyContext';
+import { MyContextProvider } from './Context/MyContext'
+import { MyContext } from './Context/MyContext';
 
 const AppContent = () => {
-  const { user } = useContext(MyContext);
+  const { loggedInUser } = useContext(MyContext);
 
-  if (user?.role === 'admin') {
+  if (loggedInUser?.role === 'admin') {
     return (
       <>
         <AdminNavbar />

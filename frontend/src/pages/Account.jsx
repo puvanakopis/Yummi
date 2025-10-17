@@ -1,10 +1,10 @@
 import './Account.css';
 import { useContext } from 'react';
-import { MyContext } from '../context/MyContext';
+import { MyContext } from '../Context/MyContext';
 import { useNavigate } from 'react-router-dom';
 
 const Account = () => {
-  const { user, logout } = useContext(MyContext);
+  const { loggedInUser, logout } = useContext(MyContext);
   const navigate = useNavigate();
 
 
@@ -13,7 +13,7 @@ const Account = () => {
     navigate('/');
   };
 
-  if (!user) {
+  if (!loggedInUser) {
     return (
       <div className='account-page'>
         <div className="container">
@@ -33,19 +33,19 @@ const Account = () => {
           <div className="account_details">
             <div className="detail">
               <label>Name</label>
-              <input type="text" value={user.name} readOnly />
+              <input type="text" value={loggedInUser.name} readOnly />
             </div>
             <div className="detail">
               <label>Email</label>
-              <input type="text" value={user.email} readOnly />
+              <input type="text" value={loggedInUser.email} readOnly />
             </div>
             <div className="detail">
               <label>User ID</label>
-              <input type="text" value={user.id} readOnly />
+              <input type="text" value={loggedInUser.id} readOnly />
             </div>
             <div className="detail">
               <label>Role</label>
-              <input type="text" value={user.role} readOnly />
+              <input type="text" value={loggedInUser.role} readOnly />
             </div>
           </div>
           <div className='account-button'>

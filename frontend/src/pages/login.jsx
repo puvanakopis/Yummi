@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 import { useContext, useState } from "react";
 import axios from 'axios';
-import { MyContext } from '../context/MyContext';
+import { MyContext } from '../Context/MyContext';
 import './Login.css';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { setUser } = useContext(MyContext);
+  const { setLoggedInUser } = useContext(MyContext);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,7 +34,7 @@ const Login = () => {
           email: email,
           role: res.data.role,
         };
-        setUser(userData);
+        setLoggedInUser(userData);
         return { success: true, message: res.data.message };
       } else {
         return { success: false, message: res.data.message };

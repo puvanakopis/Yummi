@@ -1,13 +1,13 @@
 import "./OrderItems.css";
 import { FiMinusCircle } from "react-icons/fi";
-import { MyContext } from "../../context/MyContext";
+import { MyContext } from "../../Context/MyContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import LoadingPage from "../LoadingPage.jsx";
 
 const OrderItem = () => {
-    const { user, cartItems, loading, setCartItems } = useContext(MyContext);
+    const { loggedInUser, cartItems, cartLoading, setCartItems } = useContext(MyContext);
     const navigate = useNavigate();
 
 
@@ -16,7 +16,7 @@ const OrderItem = () => {
     const removeItem = async (itemId) => {
         try {
             await axios.delete("http://localhost:4000/api/cart/delete", {
-                data: { userId: user.id, itemId },
+                data: { userId: loggedInUser.id, itemId },
             });
             setCartItems(prev => prev.filter(item => item._id !== itemId));
         } catch (error) {
@@ -29,7 +29,7 @@ const OrderItem = () => {
         if (newQuantity < 1) return;
         try {
             await axios.put("http://localhost:4000/api/cart/update", {
-                userId: user.id,
+                userId: loggedInUser.id,
                 itemId,
                 quantity: newQuantity,
             });
@@ -55,7 +55,7 @@ const OrderItem = () => {
         navigate("/DeliveryInfor");
     };
 
-    if (loading) return <LoadingPage />;
+    if (cartLoading) return <LoadingPage />;
 
     return (
         <div className="order-item-page">

@@ -2,11 +2,11 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./ItemDetails.css";
-import { MyContext } from "../../context/MyContext.jsx";
+import { MyContext } from "../../Context/MyContext.jsx";
 import LoadingPage from "../LoadingPage.jsx";
 
 const ItemDetails = () => {
-  const { user , loading , setLoading } = useContext(MyContext);
+  const { loggedInUser , loading , setLoading } = useContext(MyContext);
   const { id } = useParams();
 
   const [item, setItem] = useState(null);
@@ -43,13 +43,13 @@ const ItemDetails = () => {
   };
 
   const handleAddToCart = async () => {
-    if (!user?.id) {
+    if (!loggedInUser?.id) {
       alert("You must be logged in to add items to the cart");
       return;
     }
 
     const cartData = {
-      userId: user.id,
+      userId: loggedInUser.id,
       items: [
         {
           itemId: item._id,

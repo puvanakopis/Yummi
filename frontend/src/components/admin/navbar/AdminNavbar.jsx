@@ -1,6 +1,6 @@
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
-import { MyContext } from "../../../context/MyContext";
+import { MyContext } from "../../../Context/MyContext";
 import { useContext, useEffect, useState, useRef } from "react";
 import { HiMenu, HiX } from "react-icons/hi";
 import './AdminNavbar.css'
@@ -9,7 +9,7 @@ const AdminNavbar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  const { user, logout } = useContext(MyContext);
+  const { loggedInUser, logout } = useContext(MyContext);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAccountOpen, setIsAccountOpen] = useState(false);
@@ -57,7 +57,7 @@ const AdminNavbar = () => {
             </div>
             {isAccountOpen && (
               <div className="dropdown-menu">
-                {user ? (
+                {loggedInUser ? (
                   <>
                     <Link to="/admin/profile" className="dropdown-item">My Account</Link>
                     <span
@@ -96,7 +96,7 @@ const AdminNavbar = () => {
             <Link to="/Menu" className={`list ${currentPath === "/Menu" ? "active" : ""}`} onClick={toggleMenu}>Menu</Link>
             <Link to="/About" className={`list ${currentPath === "/About" ? "active" : ""}`} onClick={toggleMenu}>About</Link>
             <Link to="/Contact" className={`list ${currentPath === "/Contact" ? "active" : ""}`} onClick={toggleMenu}>Contact</Link>
-            {user ? (
+            {loggedInUser ? (
               <>
                 <Link to="/admin/profile" className="list" onClick={toggleMenu}>My Account</Link>
                 <span className="list" onClick={() => { logout(); toggleMenu(); }}>Logout</span>

@@ -1,12 +1,9 @@
 import './AdminDashboard.css';
+import { useContext } from 'react';
+import { MyContext } from "../../Context/MyContext";
 
 const AdminDashboard = () => {
-  const stats = [
-    { title: 'Total Users', value: '1,234' },
-    { title: 'Total Products', value: '567' },
-    { title: 'Total Orders', value: '890' },
-    { title: 'Revenue', value: 'Rs 1,234,567' }
-  ];
+  const { users, items, orders } = useContext(MyContext);
 
   const recentActivities = [
     { id: 1, activity: 'New order #1234 received', time: '2 min ago' },
@@ -24,12 +21,25 @@ const AdminDashboard = () => {
 
       {/* ----------- Stats Cards ----------- */}
       <div className="stats-grid">
-        {stats.map((stat, index) => (
-          <div key={index} className='stat-card'>
-            <h3>{stat.title}</h3>
-            <div className="stat-value">{stat.value}</div>
-          </div>
-        ))}
+        <div className='stat-card'>
+          <h3>Total Users</h3>
+          <div className="stat-value">{users.length}</div>
+        </div>
+
+        <div className='stat-card'>
+          <h3>Total Products</h3>
+          <div className="stat-value">{items.length}</div>
+        </div>
+
+        <div className='stat-card'>
+          <h3>Total Orders</h3>
+          <div className="stat-value">{orders.length}</div>
+        </div>
+
+        <div className='stat-card'>
+          <h3>Revenue</h3>
+          <div className="stat-value">Rs {orders.reduce((total, order) => total + order.grandTotal, 0)}.00</div>
+        </div>
       </div>
 
       {/* ----------- Recent Activities ----------- */}

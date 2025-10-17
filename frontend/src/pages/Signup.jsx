@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
-import { MyContext } from "../context/MyContext";
+import { MyContext } from "../Context/MyContext";
 import './Signup.css'
 import axios from 'axios';
 
 const Signup = () => {
     const navigate = useNavigate();
-    const { setUser } = useContext(MyContext);
+    const { setLoggedInUser } = useContext(MyContext);
 
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -39,7 +39,7 @@ const Signup = () => {
             axios.defaults.withCredentials = true;
             const res = await axios.post('http://localhost:4000/api/auth/register', { name, email, password }, { withCredentials: true });
             if (res.data.success) {
-                setUser({ name, email, id: res.data.userId });
+                setLoggedInUser({ name, email, id: res.data.userId });
                 return { success: true, message: res.data.message };
             } else {
                 return { success: false, message: res.data.message };
