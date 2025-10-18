@@ -3,7 +3,7 @@ import Item from '../models/itemModel.js';
 
 
 // ----------- Create new item -----------
-export const createItem = async (req, res) => {
+export const addItems = async (req, res) => {
   try {
     const { Name, desc, Price, Stock, Brand, Flavour, DietType, Weight, Speciality, Info } = req.body;
 
@@ -46,7 +46,7 @@ export const getItems = async (req, res) => {
 
 
 // ----------- Get single item by ID -----------
-export const getItem = async (req, res) => {
+export const getOneItem = async (req, res) => {
   try {
     const item = await Item.findById(req.params.id);
     if (!item) return res.status(404).json({ success: false, message: 'Item not found' });

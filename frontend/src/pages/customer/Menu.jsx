@@ -1,5 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
-import axios from 'axios';
+import { useContext, useRef, useState } from 'react';
 import './Menu.css';
 import { FaStar, FaBars, FaTimes, FaHeart } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
@@ -7,14 +6,13 @@ import { MyContext } from '../../Context/MyContext.jsx';
 import LoadingPage from "../LoadingPage.jsx";
 
 const Menu = () => {
-    const { showItem, toggleFavorite, isFavorite } = useContext(MyContext);
+    const { items, itemsLoading, toggleFavorite, isFavorite, showItem, } = useContext(MyContext);
+
+    const menuRef = useRef(null);
+    const navigate = useNavigate();
 
     const [category, setCategory] = useState('AllCategories');
-    const [items, setItems] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
-
     const itemsPerPage = 20;
     const categories = [
         "AllCategories",
@@ -27,27 +25,7 @@ const Menu = () => {
         "Biscuits",
     ];
 
-    const menuRef = useRef(null);
-    const navigate = useNavigate();
-
-    // Fetch items from API
-    useEffect(() => {
-        const fetchItems = async () => {
-            try {
-                setLoading(true);
-                const response = await axios.get('http://localhost:4000/api/items', { withCredentials: true });
-                setItems(response.data.items || []);
-            } catch (err) {
-                setError(err.message || 'Error fetching items');
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchItems();
-    }, []);
-
-    // Filter items by category
+    // Items filter
     const filteredItems = items.filter(
         (item) => category === 'AllCategories' || item.ItemCategory === category
     );
@@ -73,22 +51,21 @@ const Menu = () => {
 
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
-
-    if (loading) return <LoadingPage />;
+    if (itemsLoading) return <LoadingPage />;
 
     return (
         <div className='CategoryMenu'>
-            {/*  ---------------- Sidebar Toggle Button ---------------- */}
+            {/* Sidebar Toggle */}
             <div className='Sidebar'>
                 <button onClick={() => setSidebarOpen(!sidebarOpen)} className="menu-toggle">
                     <FaBars size={24} />
                 </button>
             </div>
 
-            {/* ---------------- Overlay ---------------- */}
+            {/* Overlay */}
             {sidebarOpen && <div className="overlay" onClick={() => setSidebarOpen(false)}></div>}
 
-            {/* ---------------- Sidebar ---------------- */}
+            {/* Sidebar */}
             <div className={`Menu ${sidebarOpen ? "open" : ""}`}>
                 <div className="sidebar-header">
                     <h2>Categories</h2>
@@ -115,9 +92,8 @@ const Menu = () => {
                 </div>
             </div>
 
-            {/* ---------------- Items ---------------- */}
+            {/* Items */}
             <div className="all-items">
-
                 <div ref={menuRef} className='items'>
                     {currentItems.map((item) => (
                         <div key={item._id} className="itemsList">
@@ -144,19 +120,20 @@ const Menu = () => {
                     ))}
                 </div>
 
-
-                {/* ---------------- Pagination ---------------- */}
-                {!loading && !error && (
-                    <div className="pagination">
-                        <button className='pre' onClick={() => handlePageChange(currentPage - 1)}>Pre</button>
-                        {[...Array(totalPages)].map((_, index) =>
-                            <button key={index} onClick={() => handlePageChange(index + 1)} className={`pageNumber ${currentPage === index + 1 ? "currentPage" : ""}`}>
-                                {index + 1}
-                            </button>
-                        )}
-                        <button onClick={() => handlePageChange(currentPage + 1)} className='next'>Next</button>
-                    </div>
-                )}
+                {/* Pagination */}
+                <div className="pagination">
+                    <button className='pre' onClick={() => handlePageChange(currentPage - 1)}>Pre</button>
+                    {[...Array(totalPages)].map((_, index) =>
+                        <button
+                            key={index}
+                            onClick={() => handlePageChange(index + 1)}
+                            className={`pageNumber ${currentPage === index + 1 ? "currentPage" : ""}`}
+                        >
+                            {index + 1}
+                        </button>
+                    )}
+                    <button onClick={() => handlePageChange(currentPage + 1)} className='next'>Next</button>
+                </div>
             </div>
         </div>
     );

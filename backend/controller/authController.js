@@ -110,28 +110,3 @@ export const logout = (req, res) => {
   res.clearCookie('token');
   res.json({ success: true, message: 'Logged out successfully' });
 };
-
-
-
-// ------------ Get User Info ------------
-export const getUser = async (req, res) => {
-  try {
-    const token = req.cookies.token;
-    if (!token) {
-      return res.json({ success: false, message: 'No token found' });
-    }
-
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await userModel.findById(decoded.id).select('-password');
-    if (!user) {
-      return res.json({ success: false, message: 'User not found' });
-    }
-
-    res.json({
-      success: true,
-      user,
-    });
-  } catch (error) {
-    res.json({ success: false, message: error.message });
-  }
-};

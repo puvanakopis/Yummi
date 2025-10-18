@@ -3,7 +3,7 @@ import { MyContext } from '../../Context/MyContext.jsx';
 import './AdminProducts.css';
 
 const AdminProducts = () => {
-  const { itemsLoading, items, addItems, updateItems, deleteItems, fetchItemsDetails } = useContext(MyContext);
+  const { itemsLoading, items, addItems, updateItems, deleteItems, getOneItem } = useContext(MyContext);
 
   const [showForm, setShowForm] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
@@ -110,7 +110,7 @@ const AdminProducts = () => {
 
   // -------- View product details --------
   const handleViewDetails = async (id) => {
-    const product = await fetchItemsDetails(id);
+    const product = await getOneItem(id);
     if (product) setSelectedProduct(product);
   };
 

@@ -6,14 +6,13 @@ import { MyContext } from "../../Context/MyContext.jsx";
 import LoadingPage from "../LoadingPage.jsx";
 
 const ItemDetails = () => {
-  const { loggedInUser , loading , setLoading } = useContext(MyContext);
+  const { loggedInUser, loading, setLoading } = useContext(MyContext);
   const { id } = useParams();
 
   const [item, setItem] = useState(null);
   const [error, setError] = useState(null);
   const [currentCount, setCurrentCount] = useState(1);
   const [addingToCart, setAddingToCart] = useState(false);
-
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -30,9 +29,8 @@ const ItemDetails = () => {
         setLoading(false);
       }
     };
-
     fetchItem();
-  }, [id]);
+  }, [id, setLoading]);
 
   const handlePrev = () => {
     if (currentCount > 1) setCurrentCount(prev => prev - 1);
@@ -66,9 +64,10 @@ const ItemDetails = () => {
         { withCredentials: true }
       );
       alert("Item added to cart successfully!");
-      console.log(response.data.cart);
+      console.log(response.message);
     } catch (err) {
       alert(err.response?.data?.message || "Error adding item to cart");
+      console.error(err);
     } finally {
       setAddingToCart(false);
     }

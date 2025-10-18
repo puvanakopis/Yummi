@@ -1,9 +1,10 @@
 import './DeliveryInfor.css';
 import { MyContext } from "../../Context/MyContext";
 import { useContext, useState } from 'react';
+import axios from 'axios';
 
 const DeliveryInfor = () => {
-  const {  placeOrder } = useContext(MyContext);
+  const { loggedInUser, cartItems, setCartItems } = useContext(MyContext);
 
   const [deliveryInfo, setDeliveryInfo] = useState({
     firstName: "",
@@ -13,6 +14,12 @@ const DeliveryInfor = () => {
     phoneNumber: "",
   });
 
+  const [loading, setLoading] = useState(false);
+
+  const subtotal = cartItems.reduce((acc, item) => acc + (item.total || 0), 0);
+  const deliveryFee = cartItems.length > 0 ? 300 : 0;
+  const grandTotal = subtotal + deliveryFee;
+
   const handleChange = (e) => {
     const { id, value } = e.target;
     setDeliveryInfo(prev => ({ ...prev, [id]: value }));
@@ -20,7 +27,37 @@ const DeliveryInfor = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await placeOrder(deliveryInfo);
+    if (cartItems.length === 0) {
+      alert("Your cart is empty.");
+      return;
+    }
+
+    const orderPayload = {
+      items: cartItems.map(item => ({
+        item: item.item._id || item.item,
+        quantity: item.quantity,
+        total: item.total,
+      })),
+      subtotal,
+      deliveryFee,
+      grandTotal,
+      deliveryInfo,
+    };
+
+    try {
+      setLoading(true);
+      const response = await axios.post(
+        `http://localhost:4000/api/orders/${loggedInUser.id}`,
+        orderPayload,
+        { withCredentials: true }
+      );
+      alert(response.message || "Order placed successfully!");
+      setCartItems([])
+    } catch (err) {
+      alert(err.response?.data?.message || "Something went wrong while placing your order.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -81,9 +118,10 @@ const DeliveryInfor = () => {
                 />
               </div>
             </div>
+
             <div className='button'>
-              <button type="submit" className="mainButton">
-                Delivery Confirmed
+              <button type="submit" className="mainButton" disabled={loading}>
+                {loading ? "Placing Order..." : "Confirm Delivery"}
               </button>
             </div>
           </form>

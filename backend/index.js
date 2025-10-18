@@ -33,8 +33,8 @@ app.get("/", (req, res) => res.send("API is working..."));
 app.use("/api/auth", authRouter);
 app.use("/api/items", itemRouter);
 app.use("/api/users", userRoutes);
-app.use("/api/orders", orderRouter);
 app.use("/api/cart", cartItemRouter);
+app.use("/api/orders", orderRouter);
 
 
 app.listen(PORT, () => console.log(`Server started on PORT: ${PORT}`));

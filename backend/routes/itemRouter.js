@@ -1,6 +1,6 @@
 import express from 'express';
 import multer from 'multer';
-import { createItem, getItems, getItem, updateItem, deleteItem } from '../controller/itemController.js';
+import { addItems, getItems, getOneItem, updateItem, deleteItem } from '../controller/itemController.js';
 
 const router = express.Router();
 
@@ -16,9 +16,9 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Routes
-router.post('/', upload.single('Img'), createItem);
 router.get('/', getItems);
-router.get('/:id', getItem);
+router.post('/', upload.single('Img'), addItems);
+router.get('/:id', getOneItem);
 router.put('/:id', upload.single('Img'), updateItem);
 router.delete('/:id', deleteItem);
 
