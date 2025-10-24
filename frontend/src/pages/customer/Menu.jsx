@@ -12,7 +12,7 @@ const Menu = () => {
 
   const [category, setCategory] = useState('AllCategories');
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 20;
+  const itemsPerPage = 28;
 
   const categories = [
     'AllCategories',

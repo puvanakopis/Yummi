@@ -319,6 +319,7 @@ export function MyContextProvider({ children }) {
     getItems();
     getAllOrders();
     fetchCart();
+    getFavorites()
   }, []);
 
   useEffect(() => {
