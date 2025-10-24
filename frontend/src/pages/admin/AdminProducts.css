@@ -68,7 +68,7 @@
     align-items: center;
     border-radius: 12px;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1.5fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1.5fr;
     padding: 12px 15px;
 }
 
@@ -158,11 +158,42 @@
     width: 100%;
 }
 
+.admin-products .modal input:focus,
+.admin-products .modal textarea:focus {
+    border-color: #ea641a;
+    box-shadow: 0 0 5px rgba(234, 100, 26, 0.3);
+    outline: none;
+}
+
 .admin-products .modal-actions {
     display: flex;
     gap: 10px;
     justify-content: flex-end;
 }
+
+.admin-products .modal select {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    width: 100%;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.admin-products .modal select:focus {
+    border-color: #ea641a;
+    box-shadow: 0 0 5px rgba(234, 100, 26, 0.3);
+    outline: none;
+}
+
+.admin-products .modal select option {
+    padding: 5px 10px;
+}
+
 
 /* -------------  Product Details Modal ------------- */
 .admin-products .product-details {

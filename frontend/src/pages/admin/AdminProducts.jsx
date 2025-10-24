@@ -21,9 +21,22 @@ const AdminProducts = () => {
     Speciality: '',
     Info: '',
     Img: null,
+    ItemCategory: 'Other',
   });
 
   const modalRef = useRef(null);
+
+  const categories = [
+    'AllCategories',
+    'Breakfast',
+    'Lunch',
+    'Dinner',
+    'Drinks',
+    'Snacks',
+    'Ice Cream',
+    'Biscuits',
+    'Other'
+  ];
 
   // -------- Scroll modal into view --------
   useEffect(() => {
@@ -31,7 +44,6 @@ const AdminProducts = () => {
       modalRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   }, [showForm]);
-
 
   // -------- Handle input change --------
   const handleChange = (e) => {
@@ -43,14 +55,21 @@ const AdminProducts = () => {
     }
   };
 
-
   // -------- Add or update product --------
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const data = new FormData();
-      for (let key in formData) {
-        if (formData[key]) data.append(key, formData[key]);
+      const preparedData = { ...formData };
+
+      // Convert Price and Stock to numbers
+      if (preparedData.Price) preparedData.Price = Number(preparedData.Price);
+      if (preparedData.Stock) preparedData.Stock = Number(preparedData.Stock);
+
+      for (let key in preparedData) {
+        if (preparedData[key] !== null && preparedData[key] !== undefined) {
+          data.append(key, preparedData[key]);
+        }
       }
 
       if (editingProduct) {
@@ -72,6 +91,7 @@ const AdminProducts = () => {
         Speciality: '',
         Info: '',
         Img: null,
+        ItemCategory: 'Other',
       });
       setShowForm(false);
     } catch (error) {
@@ -79,8 +99,6 @@ const AdminProducts = () => {
       alert('Error saving product');
     }
   };
-
-
 
   // -------- Edit product --------
   const handleEdit = (product) => {
@@ -97,16 +115,13 @@ const AdminProducts = () => {
       Speciality: product.Speciality || '',
       Info: product.Info || '',
       Img: null,
+      ItemCategory: product.ItemCategory || 'Other',
     });
     setShowForm(true);
   };
 
-
-
   // -------- Delete product --------
   const handleDelete = (id) => deleteItems(id);
-
-
 
   // -------- View product details --------
   const handleViewDetails = async (id) => {
@@ -114,8 +129,6 @@ const AdminProducts = () => {
     if (product) setSelectedProduct(product);
   };
 
-
-  
   // -------- Filtered Products --------
   const filteredItems = items.filter(
     product =>
@@ -152,6 +165,7 @@ const AdminProducts = () => {
         <div className="table-header">
           <div className="table-cell">Product ID</div>
           <div className="table-cell">Name</div>
+          <div className="table-cell">Category</div>
           <div className="table-cell">Price</div>
           <div className="table-cell">Stock</div>
           <div className="table-cell">Image</div>
@@ -163,15 +177,12 @@ const AdminProducts = () => {
             <div className="table-cell clickable" onClick={() => handleViewDetails(item._id)}>
               {item._id}
             </div>
-            <div className="table-cell">
-              {item.Name}
-            </div>
+            <div className="table-cell">{item.Name}</div>
+            <div className="table-cell">{item.ItemCategory || 'Other'}</div>
             <div className="table-cell">Rs {item.Price}</div>
             <div className="table-cell">{item.Stock || 0}</div>
             <div className="table-cell">
-              {item.Img && (
-                <img src={`http://localhost:4000/${item.Img}`} alt={item.Name} width="50" />
-              )}
+              {item.Img && <img src={`http://localhost:4000/${item.Img}`} alt={item.Name} width="50" />}
             </div>
             <div className="table-cell actions">
               <button className="btn view" onClick={() => handleViewDetails(item._id)}>View</button>
@@ -194,11 +205,18 @@ const AdminProducts = () => {
               <label>Description</label>
               <textarea name="desc" value={formData.desc} onChange={handleChange} required />
 
+              <label>Category</label>
+              <select name="ItemCategory" value={formData.ItemCategory} onChange={handleChange}>
+                {categories.map((cat, index) => (
+                  <option key={index} value={cat}>{cat}</option>
+                ))}
+              </select>
+
               <label>Price</label>
               <input name="Price" type="number" value={formData.Price} onChange={handleChange} required />
 
               <label>Stock</label>
-              <input name="Stock" type="number" value={formData.Stock} onChange={handleChange} required /> {/* 🔹 Stock input */}
+              <input name="Stock" type="number" value={formData.Stock} onChange={handleChange} required />
 
               <label>Brand</label>
               <input name="Brand" value={formData.Brand} onChange={handleChange} />
@@ -253,6 +271,7 @@ const AdminProducts = () => {
             />
             <div className="details-content">
               <p><strong>Name:</strong> {selectedProduct.Name}</p>
+              <p><strong>Category:</strong> {selectedProduct.ItemCategory || 'Other'}</p>
               <p><strong>Description:</strong> {selectedProduct.desc}</p>
               <p><strong>Price:</strong> Rs {selectedProduct.Price}</p>
               <p><strong>Stock:</strong> {selectedProduct.Stock}</p>

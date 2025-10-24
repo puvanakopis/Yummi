@@ -1,11 +1,12 @@
 import Item from '../models/itemModel.js';
 
-
-
 // ----------- Create new item -----------
 export const addItems = async (req, res) => {
   try {
-    const { Name, desc, Price, Stock, Brand, Flavour, DietType, Weight, Speciality, Info } = req.body;
+    const {
+      Name, desc, Price, Stock, Brand, Flavour, DietType, Weight,
+      Speciality, Info, ItemCategory
+    } = req.body;
 
     if (!req.file) return res.status(400).json({ success: false, message: 'Image is required' });
 
@@ -21,6 +22,7 @@ export const addItems = async (req, res) => {
       Weight,
       Speciality,
       Info,
+      ItemCategory: ItemCategory || 'Other'
     });
 
     await item.save();
@@ -29,9 +31,6 @@ export const addItems = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
-
-
-
 
 // ----------- Get all items -----------
 export const getItems = async (req, res) => {
@@ -43,8 +42,6 @@ export const getItems = async (req, res) => {
   }
 };
 
-
-
 // ----------- Get single item by ID -----------
 export const getOneItem = async (req, res) => {
   try {
@@ -55,8 +52,6 @@ export const getOneItem = async (req, res) => {
     res.status(500).json({ success: false, message: error.message });
   }
 };
-
-
 
 // ----------- Update item -----------
 export const updateItem = async (req, res) => {
@@ -72,8 +67,6 @@ export const updateItem = async (req, res) => {
     res.status(400).json({ success: false, message: error.message });
   }
 };
-
-
 
 // ----------- Delete item -----------
 export const deleteItem = async (req, res) => {

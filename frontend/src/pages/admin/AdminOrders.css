@@ -120,9 +120,11 @@
   color: #ea641a;
   margin-bottom: 20px;
 }
-.padding-top{
+
+.padding-top {
   margin-top: 40px;
 }
+
 .admin-orders .modal .details-content p {
   border-bottom: 1px solid #f0f0f0;
   margin: 8px 0;
@@ -175,9 +177,9 @@
 
 .table-cell {
   display: flex;
-  justify-content:center;
+  justify-content: center;
   align-items: center;
-  text-align: center; 
+  text-align: center;
   padding: 8px 12px;
   vertical-align: middle;
 }

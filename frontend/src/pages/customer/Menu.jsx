@@ -1,4 +1,3 @@
-// src/pages/customer/Menu.jsx
 import { useContext, useRef, useState } from 'react';
 import './Menu.css';
 import { FaStar, FaBars, FaTimes, FaHeart } from 'react-icons/fa';
@@ -24,6 +23,7 @@ const Menu = () => {
     'Snacks',
     'Ice Cream',
     'Biscuits',
+    'Other'
   ];
 
   const filteredItems = items.filter(
@@ -54,7 +54,6 @@ const Menu = () => {
 
   return (
     <div className='CategoryMenu'>
-      {/* Sidebar Toggle */}
       <div className='Sidebar'>
         <button onClick={() => setSidebarOpen(!sidebarOpen)} className='menu-toggle'>
           <FaBars size={24} />
@@ -92,7 +91,6 @@ const Menu = () => {
         </div>
       </div>
 
-      {/* Items */}
       <div className='all-items'>
         <div ref={menuRef} className='items'>
           {currentItems.map((item) => (
@@ -120,11 +118,8 @@ const Menu = () => {
           ))}
         </div>
 
-        {/* Pagination */}
         <div className='pagination'>
-          <button className='pre' onClick={() => handlePageChange(currentPage - 1)}>
-            Pre
-          </button>
+          <button className='pre' onClick={() => handlePageChange(currentPage - 1)}>Pre</button>
           {[...Array(totalPages)].map((_, index) => (
             <button
               key={index}
@@ -134,9 +129,7 @@ const Menu = () => {
               {index + 1}
             </button>
           ))}
-          <button onClick={() => handlePageChange(currentPage + 1)} className='next'>
-            Next
-          </button>
+          <button className='next' onClick={() => handlePageChange(currentPage + 1)}>Next</button>
         </div>
       </div>
     </div>
