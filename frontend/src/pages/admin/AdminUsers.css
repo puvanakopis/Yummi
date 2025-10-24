@@ -7,6 +7,33 @@
   gap: 30px;
   font-family: "Poppins", sans-serif;
 }
+/* Role Filter */
+.admin-users .role-filter {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #333;
+}
+
+.admin-users .role-filter label {
+  font-size: 0.95rem;
+}
+
+.admin-users .role-filter select {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.admin-users .role-filter select:focus {
+  border-color: #ea641a;
+  box-shadow: 0 0 5px rgba(234, 100, 26, 0.3);
+}
+
 
 /* Header */
 .admin-users .header h1 {

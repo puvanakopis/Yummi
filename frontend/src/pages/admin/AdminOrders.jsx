@@ -3,7 +3,7 @@ import { MyContext } from "../../Context/MyContext";
 import "./AdminOrders.css";
 
 const AdminOrders = () => {
-  const { orders, ordersLoading, handleStatusChange } = useContext(MyContext);
+  const { orders, updateOrderStatus } = useContext(MyContext);
 
   const [selectedOrder, setSelectedOrder] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -33,47 +33,43 @@ const AdminOrders = () => {
         />
       </div>
 
-      {ordersLoading ? (
-        <p>Loading orders...</p>
-      ) : (
-        <div className="orders-table">
-          <div className="table-header">
-            <div className="table-cell">Order ID</div>
-            <div className="table-cell">User</div>
-            <div className="table-cell">Order Date</div>
-            <div className="table-cell">Status</div>
-            <div className="table-cell">Grand Total</div>
-            <div className="table-cell">Actions</div>
-          </div>
-
-          {filteredOrders.map((order) => (
-            <div key={order._id} className="table-row">
-              <div className="table-cell clickable" onClick={() => setSelectedOrder(order)}>
-                {order._id}
-              </div>
-              <div className="table-cell">{order.userId?.name}</div>
-              <div className="table-cell">{new Date(order.createdAt).toLocaleDateString()}</div>
-              <div className="table-cell">
-                <select
-                  value={order.status}
-                  onChange={(e) => handleStatusChange(order._id, e.target.value)}
-                  className={`status-select ${order.status}`}
-                >
-                  <option value="pending">Pending</option>
-                  <option value="confirmed">Confirmed</option>
-                  <option value="cancelled">Cancelled</option>
-                </select>
-              </div>
-
-              <div className="table-cell">Rs {order.grandTotal}</div>
-
-              <div className="table-cell actions">
-                <button className="btn view" onClick={() => setSelectedOrder(order)}>View</button>
-              </div>
-            </div>
-          ))}
+      <div className="orders-table">
+        <div className="table-header">
+          <div className="table-cell">Order ID</div>
+          <div className="table-cell">User</div>
+          <div className="table-cell">Order Date</div>
+          <div className="table-cell">Status</div>
+          <div className="table-cell">Grand Total</div>
+          <div className="table-cell">Actions</div>
         </div>
-      )}
+
+        {filteredOrders.map((order) => (
+          <div key={order._id} className="table-row">
+            <div className="table-cell clickable" onClick={() => setSelectedOrder(order)}>
+              {order._id}
+            </div>
+            <div className="table-cell">{order.userId?.name}</div>
+            <div className="table-cell">{new Date(order.createdAt).toLocaleDateString()}</div>
+            <div className="table-cell">
+              <select
+                value={order.status}
+                onChange={(e) => updateOrderStatus(order._id, e.target.value)}
+                className={`status-select ${order.status}`}
+              >
+                <option value="pending">Pending</option>
+                <option value="confirmed">Confirmed</option>
+                <option value="cancelled">Cancelled</option>
+              </select>
+            </div>
+
+            <div className="table-cell">Rs {order.grandTotal}</div>
+
+            <div className="table-cell actions">
+              <button className="btn view" onClick={() => setSelectedOrder(order)}>View</button>
+            </div>
+          </div>
+        ))}
+      </div>
 
       {selectedOrder && (
         <div className="modal-overlay">

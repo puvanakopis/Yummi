@@ -38,7 +38,12 @@ const AdminDashboard = () => {
 
         <div className='stat-card'>
           <h3>Revenue</h3>
-          <div className="stat-value">Rs {orders.reduce((total, order) => total + order.grandTotal, 0)}.00</div>
+          <div className="stat-value">
+            Rs {orders
+              .filter(order => order.status === "confirmed")
+              .reduce((total, order) => total + order.grandTotal, 0)
+            }.00
+          </div>
         </div>
       </div>
 

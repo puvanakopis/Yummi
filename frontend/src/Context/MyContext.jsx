@@ -40,16 +40,7 @@ export function MyContextProvider({ children }) {
 
 
 
-  // ---------------- Logged In User ----------------
-  const createUser = async (data) => {
-    try {
-      await axios.post(`${API_URL}/auth/register`, data);
-      getAllUsers();
-    } catch (err) {
-      console.error('Error creating user:', err);
-    }
-  };
-
+  // ---------------- Logged Out ----------------
   const logout = async () => {
     try {
       await axios.post(`${API_URL}/auth/logout`);
@@ -126,6 +117,15 @@ export function MyContextProvider({ children }) {
 
 
   // ---------------- All Users ----------------
+  const createUser = async (data) => {
+    try {
+      await axios.post(`${API_URL}/auth/register`, data);
+      getAllUsers();
+    } catch (err) {
+      console.error('Error creating user:', err);
+    }
+  };
+
   const getAllUsers = async () => {
     try {
       const res = await axios.get(`${API_URL}/users`);
