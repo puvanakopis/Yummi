@@ -11,8 +11,8 @@ const Navbar = () => {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  const { favoriteItems, loggedInUser, logout , cartItems  } = useContext(MyContext);
-  
+  const { favoriteItems, loggedInUser, logout, cartItems } = useContext(MyContext);
+
   const [numberOfFavorites, setNumberOfFavorites] = useState(0);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAccountOpen, setIsAccountOpen] = useState(false);
@@ -21,7 +21,7 @@ const Navbar = () => {
 
   useEffect(() => {
     setNumberOfFavorites(favoriteItems.length);
-  }, [ favoriteItems]);
+  }, [favoriteItems]);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -55,15 +55,19 @@ const Navbar = () => {
 
         {/* ---------------- Right Icons ---------------- */}
         <div className="nav-icons">
-          <Link to='/Favorites' className="like-item">
-            <MdFavoriteBorder />
-            <div className="dot">{numberOfFavorites}</div>
-          </Link>
+          {loggedInUser && (
+            <Link to='/Favorites' className="like-item">
+              <MdFavoriteBorder />
+              <div className="dot">{numberOfFavorites}</div>
+            </Link>
+          )}
 
-          <Link to='/addToCard' className="order-item">
-            <LiaShoppingBagSolid />
-            <div className="dot">{cartItems.length}</div>
-          </Link>
+          {loggedInUser && (
+            <Link to='/addToCard' className="order-item">
+              <LiaShoppingBagSolid />
+              <div className="dot">{cartItems.length}</div>
+            </Link>
+          )}
 
           {/* -------- Account Dropdown -------- */}
           <div className="account-dropdown" ref={accountRef}>

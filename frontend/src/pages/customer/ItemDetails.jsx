@@ -6,13 +6,12 @@ import { MyContext } from "../../Context/MyContext.jsx";
 import LoadingPage from "../LoadingPage.jsx";
 
 const ItemDetails = () => {
-  const { loggedInUser, loading, setLoading } = useContext(MyContext);
+  const { loading, setLoading, addToCart } = useContext(MyContext);
   const { id } = useParams();
 
   const [item, setItem] = useState(null);
   const [error, setError] = useState(null);
   const [currentCount, setCurrentCount] = useState(1);
-  const [addingToCart, setAddingToCart] = useState(false);
 
   useEffect(() => {
     const fetchItem = async () => {
@@ -29,6 +28,7 @@ const ItemDetails = () => {
         setLoading(false);
       }
     };
+
     fetchItem();
   }, [id, setLoading]);
 
@@ -41,36 +41,7 @@ const ItemDetails = () => {
   };
 
   const handleAddToCart = async () => {
-    if (!loggedInUser?.id) {
-      alert("You must be logged in to add items to the cart");
-      return;
-    }
-
-    const cartData = {
-      userId: loggedInUser.id,
-      items: [
-        {
-          itemId: item._id,
-          quantity: currentCount,
-        },
-      ],
-    };
-
-    try {
-      setAddingToCart(true);
-      const response = await axios.post(
-        `http://localhost:4000/api/cart/add`,
-        cartData,
-        { withCredentials: true }
-      );
-      alert("Item added to cart successfully!");
-      console.log(response.message);
-    } catch (err) {
-      alert(err.response?.data?.message || "Error adding item to cart");
-      console.error(err);
-    } finally {
-      setAddingToCart(false);
-    }
+    await addToCart(item._id, currentCount);
   };
 
   if (loading) return <LoadingPage />;
@@ -125,19 +96,17 @@ const ItemDetails = () => {
               <div className="itemDecText3-3">
                 <div className="w-1/2">
                   <div className="ProductCard mainButton">
-                    <button onClick={handlePrev} disabled={currentCount <= 1}> &lt;</button>
+                    <button onClick={handlePrev} disabled={currentCount <= 1}>
+                      &lt;
+                    </button>
                     <span>{currentCount}</span>
                     <button onClick={handleNext}>&gt;</button>
                   </div>
                 </div>
 
                 <div className="w-full mt-2">
-                  <button
-                    className="mainButton w-full"
-                    onClick={handleAddToCart}
-                    disabled={addingToCart}
-                  >
-                    {addingToCart ? "Adding..." : "Add To Cart"}
+                  <button className="mainButton w-full" onClick={handleAddToCart}>
+                    Add To Cart
                   </button>
                 </div>
               </div>

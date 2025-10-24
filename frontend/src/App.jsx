@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useContext } from "react";
 
 import SignUp from "./pages/Signup";
@@ -43,6 +43,7 @@ const AppContent = () => {
           <Route path="/admin/profile" element={<Account />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </>
     );
@@ -55,13 +56,26 @@ const AppContent = () => {
           <Route path="/Menu" element={<Menu />} />
           <Route path="/About" element={<About />} />
           <Route path="/Contact" element={<Contact />} />
-          <Route path="/AddToCard" element={<OrderItems />} />
           <Route path="/Login" element={<Login />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/ItemDetails/:id" element={<ItemDetails />} />
-          <Route path="/DeliveryInfor" element={<DeliveryInfor />} />
-          <Route path="/Account" element={<Account />} />
-          <Route path="/Favorites" element={<Favorites />} />
+          <Route
+            path="/AddToCard"
+            element={loggedInUser ? <OrderItems /> : <Login />}
+          />
+          <Route
+            path="/DeliveryInfor"
+            element={loggedInUser ? <DeliveryInfor /> : <Login />}
+          />
+          <Route
+            path="/Account"
+            element={loggedInUser ? <Account /> : <Login />}
+          />
+          <Route
+            path="/Favorites"
+            element={loggedInUser ? <Favorites /> : <Login />}
+          />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
         <Footer />
       </>

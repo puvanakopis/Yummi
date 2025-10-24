@@ -247,6 +247,40 @@ export function MyContextProvider({ children }) {
 
 
   // ---------------- cart ----------------
+  const addToCart = async (itemId, quantity = 1) => {
+    if (!loggedInUser?.id) {
+      alert("You must be logged in to add items to the cart");
+      return;
+    }
+
+    const cartData = {
+      userId: loggedInUser.id,
+      items: [
+        {
+          itemId,
+          quantity,
+        },
+      ],
+    };
+
+    try {
+      setCartLoading(true);
+      const response = await axios.post(
+        `${API_URL}/cart/add`,
+        cartData,
+        { withCredentials: true }
+      );
+      fetchCart();
+      alert("Item added to cart successfully!");
+      console.log(response.data.message || response.data);
+    } catch (err) {
+      alert(err.response?.data?.message || "Error adding item to cart");
+      console.error(err);
+    } finally {
+      setCartLoading(false);
+    }
+  };
+
   const fetchCart = async () => {
     try {
       setCartLoading(true);
@@ -312,7 +346,6 @@ export function MyContextProvider({ children }) {
 
 
 
-
   // ---------------- Effects ----------------
   useEffect(() => {
     getAllUsers();
@@ -333,6 +366,7 @@ export function MyContextProvider({ children }) {
   return (
     <MyContext.Provider
       value={{
+        addToCart,
         removeItem, updateQuantity,
         cartLoading, setCartLoading,
         cartItems,
