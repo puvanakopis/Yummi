@@ -192,18 +192,55 @@ export function MyContextProvider({ children }) {
 
 
 
-  // ---------------- Favorites ----------------
-  const toggleFavorite = (item) => {
-    const exists = favoriteItems.find(fav => fav._id === item._id);
-    if (exists) {
-      setFavoriteItems(favoriteItems.filter(fav => fav._id !== item._id));
-    } else {
-      setFavoriteItems([...favoriteItems, item]);
+  // ---------------- Favourites ----------------
+  const getFavorites = async () => {
+    if (!loggedInUser?.id) return;
+    try {
+      const res = await axios.get(`${API_URL}/favourite/${loggedInUser.id}`);
+      setFavoriteItems(res.data.items.map((fav) => fav.item));
+    } catch (err) {
+      if (err.response?.status !== 404)
+        console.error('Error fetching favorites:', err);
     }
   };
 
-  const isFavorite = (item) => favoriteItems.some(fav => fav._id === item._id);
+  const addToFavorites = async (itemId) => {
+    try {
+      await axios.post(`${API_URL}/favourite/add`, {
+        userId: loggedInUser.id,
+        itemId,
+      });
+      getFavorites();
+    } catch (err) {
+      console.error('Error adding favorite:', err);
+    }
+  };
 
+  const removeFromFavorites = async (itemId) => {
+    try {
+      await axios.delete(`${API_URL}/favourite/remove`, {
+        data: { userId: loggedInUser.id, itemId },
+      });
+      getFavorites();
+    } catch (err) {
+      console.error('Error removing favorite:', err);
+    }
+  };
+
+  const toggleFavorite = (item) => {
+    if (!loggedInUser) {
+      alert('Please log in to manage favourites.');
+      return;
+    }
+
+    const exists = favoriteItems.some((fav) => fav._id === item._id);
+    if (exists) removeFromFavorites(item._id);
+    else addToFavorites(item._id);
+  };
+
+  const isFavorite = (item) => {
+    return favoriteItems.some((fav) => fav._id === item._id);
+  };
 
 
 
@@ -273,10 +310,6 @@ export function MyContextProvider({ children }) {
     }
   };
 
-
-
-
-  // ----------- Place Order -----------
 
 
 

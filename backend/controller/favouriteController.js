@@ -1,4 +1,4 @@
-import Favourite from "../models/favouriteItem.js";
+import Favourite from "../models/favouriteItemModel.js";
 
 
 // Add item to favourites

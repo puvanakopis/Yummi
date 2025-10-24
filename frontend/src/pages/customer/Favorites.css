@@ -1,40 +1,28 @@
-.favorites-page {
+.FavoritesPage {
     font-weight: 400;
     font-style: normal;
     margin: 0 auto;
     max-width: 1300px;
-    padding: 40px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 80vh;
-    background-color: rgba(234, 100, 26, 0.2);
-    margin-bottom: 100px;
-    border-radius: 12px;
 }
 
-.favorites-page .MainHeading {
-    text-align: center;
-    font-size: 35px;
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-.favorites-page .empty-msg {
+.FavoritesPage .empty-msg {
     text-align: center;
     font-size: 18px;
     color: #555;
 }
 
-/* Grid layout */
-.favorites-page .favorites-grid {
+/* --------------- Items --------------- */
+.FavoritesPage .items {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 28px;
+    gap: 28px 28px;
 }
 
-/* Single favorite item */
-.favorites-page .favoriteItem {
+.FavoritesPage .itemsList {
     position: relative;
     border: rgba(0, 0, 0, 0.123) 2px solid;
     border-radius: 5px;
@@ -43,66 +31,70 @@
     background-color: #fff;
 }
 
-.favorites-page .favoriteItem:hover {
+.FavoritesPage .itemsList:hover {
     transform: scale(1.02);
 }
 
-/* Favorite heart icon */
-.favorites-page .favoriteIcon {
+/* --------------- Favorite Icon --------------- */
+.FavoritesPage .favoriteIcon {
     position: absolute;
     top: 10px;
     right: 10px;
     font-size: 20px;
     cursor: pointer;
-    transition: transform 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.522);
 }
 
-.favorites-page .favoriteIcon:hover {
-    transform: scale(1.2);
+.FavoritesPage .favoriteIcon:hover {
+    transform: scale(1.3);
 }
 
-/* Item image */
-.favorites-page .favoriteItem img {
+/* --------------- Item Image --------------- */
+.FavoritesPage .itemsList img {
     width: 100%;
     height: 150px;
     object-fit: cover;
     border-radius: 5px 5px 0 0;
 }
 
-/* Item description */
-.favorites-page .itemsDesc {
+/* --------------- Item Description --------------- */
+.FavoritesPage .itemsDesc {
     padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
 }
 
-.favorites-page .itemsDesc .flex {
+.FavoritesPage .itemsDesc .flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.favorites-page .name {
+.FavoritesPage .name {
     font-size: 16px;
     font-weight: bold;
 }
 
-.favorites-page .rate {
+.FavoritesPage .rate {
     display: flex;
     align-items: center;
     font-size: 14px;
 }
 
-.favorites-page .price {
+.FavoritesPage .price {
     font-size: 15px;
     font-weight: bold;
     color: #EA641A;
 }
 
-.favorites-page .order {
+.FavoritesPage .order {
     font-size: 14px;
-    background-color: #ea641a;
+    background-color: #e07c47;
     color: white;
     padding: 4px 2px;
     border-radius: 5px;
@@ -110,12 +102,12 @@
     text-align: center;
 }
 
-.favorites-page .order:hover {
+.FavoritesPage .order:hover {
     background-color: #c55215;
 }
 
-/* Pagination */
-.favorites-page .pagination {
+/* --------------- Pagination --------------- */
+.FavoritesPage .pagination {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -123,7 +115,7 @@
     flex-wrap: wrap;
 }
 
-.favorites-page .pagination button {
+.FavoritesPage .pagination button {
     padding: 8px 16px;
     min-width: 50px;
     border-top: 2px solid #EA641A;
@@ -137,51 +129,51 @@
     transition: all 0.3s ease;
 }
 
-.favorites-page .pagination button:hover {
+.FavoritesPage .pagination button:hover {
     background-color: #ea641a;
     color: #fff;
 }
 
-.favorites-page .pagination .currentPage {
+.FavoritesPage .pagination .currentPage {
     background-color: #EA641A !important;
     color: white;
     border: 2px solid #EA641A;
 }
 
-.favorites-page .pagination .pre,
-.favorites-page .pagination .next {
+.FavoritesPage .pagination .pre,
+.FavoritesPage .pagination .next {
     background-color: #ffffff;
     color: #EA641A;
     font-weight: bold;
 }
 
-.favorites-page .pagination .next {
+.FavoritesPage .pagination .next {
     border-right: 2px solid #EA641A;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
 
-.favorites-page .pagination .pre {
+.FavoritesPage .pagination .pre {
     border-left: 2px solid #EA641A;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
 }
 
-.favorites-page .pagination .pre:hover,
-.favorites-page .pagination .next:hover {
+.FavoritesPage .pagination .pre:hover,
+.FavoritesPage .pagination .next:hover {
     background-color: #EA641A;
     color: #fff;
 }
 
-/* Responsive breakpoints */
+/* --------------- Responsive --------------- */
 @media (max-width: 1024px) {
-    .favorites-page .favorites-grid {
+    .FavoritesPage .items {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 480px) {
-    .favorites-page .favorites-grid {
+    .FavoritesPage .items {
         grid-template-columns: 1fr;
     }
 }

@@ -36,6 +36,6 @@ app.use("/api/items", itemRouter);
 app.use("/api/users", userRoutes);
 app.use("/api/cart", cartItemRouter);
 app.use("/api/orders", orderRouter);
-app.use("/api/favourites", favouriteRoutes);
+app.use("/api/favourite", favouriteRoutes);
 
 app.listen(PORT, () => console.log(`Server started on PORT: ${PORT}`));

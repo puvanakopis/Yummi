@@ -1,124 +1,110 @@
-import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FaStar, FaHeart } from 'react-icons/fa';
-import { MyContext } from '../../Context/MyContext.jsx';
-import './Favorites.css';
+import { useContext, useRef, useState } from "react";
+import "./Favorites.css";
+import { FaStar, FaHeart } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { MyContext } from "../../Context/MyContext.jsx";
+import LoadingPage from "../LoadingPage.jsx";
 
 const Favorites = () => {
-    const { favoriteItems, toggleFavorite, isFavorite, showItem } = useContext(MyContext);
-    const navigate = useNavigate();
+  const { favoriteItems, toggleFavorite, isFavorite, setViewItem, itemsLoading } =
+    useContext(MyContext);
+  const menuRef = useRef(null);
+  const navigate = useNavigate();
 
-    // Pagination state
-    const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 16;
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 20;
 
-    // Calculate pagination values
-    const totalPages = Math.ceil(favoriteItems.length / itemsPerPage);
-    const startIndex = (currentPage - 1) * itemsPerPage;
-    const currentItems = favoriteItems.slice(startIndex, startIndex + itemsPerPage);
+  // Pagination
+  const totalPages = Math.ceil(favoriteItems.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const currentItems = favoriteItems.slice(startIndex, endIndex);
 
-    // Navigate to Item Details page
-    const navigateToItemDetails = (item) => {
-        showItem(item);
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        navigate('/ItemDetails');
-    };
+  const handlePageChange = (newPage) => {
+    if (newPage > 0 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }
+  };
 
-    // Handle pagination navigation
-    const handlePageChange = (newPage) => {
-        if (newPage >= 1 && newPage <= totalPages) {
-            setCurrentPage(newPage);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    };
+  const navigateToItemDetails = (item) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    navigate(`/ItemDetails/${item._id}`);
+    setViewItem(item);
+  };
 
-    return (
-        <div className="favorites-page">
-            <h2 className="MainHeading">My Favorites</h2>
+  if (itemsLoading) return <LoadingPage />;
 
-            {favoriteItems.length === 0 ? (
-                <p className="empty-msg">No favorite items yet!</p>
-            ) : (
-                <>
-                    {/* ---------- Favorites Grid ---------- */}
-                    <div className="favorites-grid">
-                        {currentItems.map((item) => (
-                            <div key={item.id} className="favoriteItem">
+  return (
+    <div className="FavoritesPage">
+      <h2 className="MainHeading">My Favorite Items</h2>
 
-                                {/* Favorite toggle icon */}
-                                <div
-                                    className="favoriteIcon"
-                                    onClick={() => toggleFavorite(item)}
-                                >
-                                    <FaHeart color={isFavorite(item) ? "#ea641a" : "#fff"} />
-                                </div>
+      {favoriteItems.length === 0 ? (
+        <p className="empty-msg">No favorite items yet!</p>
+      ) : (
+        <>
+          <div ref={menuRef} className="items">
+            {currentItems.map((item) => (
+              <div key={item._id} className="itemsList">
+                {/* Favorite toggle */}
+                <div className="favoriteIcon" onClick={() => toggleFavorite(item)}>
+                  {isFavorite(item) ? (
+                    <FaHeart color="#ea641a" />
+                  ) : (
+                    <FaHeart color="#fff" />
+                  )}
+                </div>
 
-                                {/* Item Image */}
-                                <img
-                                    src={item.Img}
-                                    alt={item.Name}
-                                    className="itemImage"
-                                    onClick={() => navigateToItemDetails(item)}
-                                />
+                {/* Image */}
+                <img src={`http://localhost:4000/${item.Img}`} alt={item.Name} />
 
-                                {/* Item Details */}
-                                <div className="itemsDesc grid grid-row-2">
-                                    <div className="flex">
-                                        <div className="name w-3/4">{item.Name}</div>
-                                        <div className="rate w-1/4 flex">
-                                            <FaStar color="gold" style={{ marginRight: 5 }} />
-                                            {item.Rate}
-                                        </div>
-                                    </div>
-                                    <div className="flex">
-                                        <div className="price w-3/5">Rs {item.Price}.00</div>
-                                        <button
-                                            className="order w-2/5"
-                                            onClick={() => navigateToItemDetails(item)}
-                                        >
-                                            Order Now
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
+                {/* Description */}
+                <div className="itemsDesc grid grid-row-2">
+                  <div className="flex">
+                    <div className="name w-3/4">{item.Name}</div>
+                    <div className="rate w-1/4 flex">
+                      <FaStar color="gold" style={{ marginRight: "5px" }} />
+                      {item.Rating || 0}
                     </div>
+                  </div>
+                  <div className="flex">
+                    <div className="price w-3/5">Rs {item.Price}.00</div>
+                    <button
+                      className="order w-2/5"
+                      onClick={() => navigateToItemDetails(item)}
+                    >
+                      Order Now
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
 
-
-
-                    {/* ---------- Pagination Controls ---------- */}
-                    <div className="pagination">
-                        <button
-                            className="pre"
-                            onClick={() => handlePageChange(currentPage - 1)}
-                            disabled={currentPage === 1}
-                        >
-                            Pre
-                        </button>
-
-                        {[...Array(totalPages)].map((_, index) => (
-                            <button
-                                key={index}
-                                className={`pageNumber ${currentPage === index + 1 ? 'currentPage' : ''
-                                    }`}
-                                onClick={() => handlePageChange(index + 1)}
-                            >
-                                {index + 1}
-                            </button>
-                        ))}
-
-                        <button
-                            className="next"
-                            onClick={() => handlePageChange(currentPage + 1)}
-                            disabled={currentPage === totalPages}
-                        >
-                            Next
-                        </button>
-                    </div>
-                </>
-            )}
-        </div>
-    );
+          {/* Pagination */}
+          <div className="pagination">
+            <button className="pre" onClick={() => handlePageChange(currentPage - 1)}>
+              Pre
+            </button>
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handlePageChange(index + 1)}
+                className={`pageNumber ${
+                  currentPage === index + 1 ? "currentPage" : ""
+                }`}
+              >
+                {index + 1}
+              </button>
+            ))}
+            <button onClick={() => handlePageChange(currentPage + 1)} className="next">
+              Next
+            </button>
+          </div>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default Favorites;
