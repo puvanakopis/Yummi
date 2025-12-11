@@ -5,6 +5,8 @@ import './AdminProducts.css';
 const AdminProducts = () => {
   const { itemsLoading, items, addItems, updateItems, deleteItems, getOneItem } = useContext(MyContext);
 
+  const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000';
+
   const [showForm, setShowForm] = useState(false);
   const [editingProduct, setEditingProduct] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -182,7 +184,7 @@ const AdminProducts = () => {
             <div className="table-cell">Rs {item.Price}</div>
             <div className="table-cell">{item.Stock || 0}</div>
             <div className="table-cell">
-              {item.Img && <img src={`http://localhost:4000/${item.Img}`} alt={item.Name} width="50" />}
+              {item.Img && <img src={`${API_URL}/${item.Img}`} alt={item.Name} width="50" />}
             </div>
             <div className="table-cell actions">
               <button className="btn view" onClick={() => handleViewDetails(item._id)}>View</button>
@@ -265,7 +267,7 @@ const AdminProducts = () => {
           <div className="modal product-details">
             <h2>Product Details</h2>
             <img
-              src={`http://localhost:4000/${selectedProduct.Img}`}
+              src={`${API_URL}/${selectedProduct.Img}`}
               alt={selectedProduct.Name}
               className="details-img"
             />

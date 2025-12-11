@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 export const MyContext = createContext();
 
 export function MyContextProvider({ children }) {
+
+  const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000';
+
   const navigate = useNavigate();
 
   // Logged In User
@@ -36,14 +39,11 @@ export function MyContextProvider({ children }) {
 
   axios.defaults.withCredentials = true;
 
-  const API_URL = 'http://localhost:4000/api';
-
-
 
   // ---------------- Logged Out ----------------
   const logout = async () => {
     try {
-      await axios.post(`${API_URL}/auth/logout`);
+      await axios.post(`${API_URL}/api/auth/logout`);
       setLoggedInUser(null);
       localStorage.removeItem('loggedInUser');
       navigate('/');
@@ -60,7 +60,7 @@ export function MyContextProvider({ children }) {
   const getItems = async () => {
     try {
       setItemsLoading(true);
-      const res = await axios.get(`${API_URL}/items`);
+      const res = await axios.get(`${API_URL}/api/items`);
       setItems(res.data.items || []);
     } catch (error) {
       console.error('Error fetching items:', error);
@@ -71,7 +71,7 @@ export function MyContextProvider({ children }) {
 
   const addItems = async (data) => {
     try {
-      const res = await axios.post(`${API_URL}/items`, data, {
+      const res = await axios.post(`${API_URL}/api/items`, data, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setItems(prev => [...prev, res.data.item]);
@@ -83,7 +83,7 @@ export function MyContextProvider({ children }) {
 
   const getOneItem = async (id) => {
     try {
-      const res = await axios.get(`${API_URL}/items/${id}`);
+      const res = await axios.get(`${API_URL}/api/items/${id}`);
       return res.data.item;
     } catch (err) {
       console.error('Failed to fetch item details:', err);
@@ -93,7 +93,7 @@ export function MyContextProvider({ children }) {
 
   const updateItems = async (id, data) => {
     try {
-      const res = await axios.put(`${API_URL}/items/${id}`, data, {
+      const res = await axios.put(`${API_URL}/api/items/${id}`, data, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       setItems(items.map(p => (p._id === id ? res.data.item : p)));
@@ -106,7 +106,7 @@ export function MyContextProvider({ children }) {
   const deleteItems = async (id) => {
     if (!window.confirm('Are you sure you want to delete this item?')) return;
     try {
-      await axios.delete(`${API_URL}/items/${id}`);
+      await axios.delete(`${API_URL}/api/items/${id}`);
       setItems(items.filter(p => p._id !== id));
     } catch (err) {
       console.error('Error deleting item:', err);
@@ -119,7 +119,7 @@ export function MyContextProvider({ children }) {
   // ---------------- All Users ----------------
   const createUser = async (data) => {
     try {
-      await axios.post(`${API_URL}/auth/register`, data);
+      await axios.post(`${API_URL}/api/auth/register`, data);
       getAllUsers();
     } catch (err) {
       console.error('Error creating user:', err);
@@ -128,7 +128,7 @@ export function MyContextProvider({ children }) {
 
   const getAllUsers = async () => {
     try {
-      const res = await axios.get(`${API_URL}/users`);
+      const res = await axios.get(`${API_URL}/api/users`);
       setUsers(res.data.users || []);
     } catch (err) {
       console.error('Error fetching users:', err);
@@ -138,7 +138,7 @@ export function MyContextProvider({ children }) {
   const deleteUser = async (id) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
       try {
-        await axios.delete(`${API_URL}/users/${id}`);
+        await axios.delete(`${API_URL}/api/users/${id}`);
         getAllUsers();
       } catch (err) {
         console.error('Error deleting user:', err);
@@ -148,7 +148,7 @@ export function MyContextProvider({ children }) {
 
   const updateUser = async (id, data) => {
     try {
-      await axios.put(`${API_URL}/users/${id}`, data);
+      await axios.put(`${API_URL}/api/users/${id}`, data);
       getAllUsers();
     } catch (err) {
       console.error('Error updating user:', err);
@@ -158,7 +158,7 @@ export function MyContextProvider({ children }) {
   const updateUserStatus = async (id, currentStatus) => {
     try {
       const newStatus = currentStatus === 'activate' ? 'inactivate' : 'activate';
-      await axios.put(`${API_URL}/users/${id}`, { status: newStatus });
+      await axios.put(`${API_URL}/api/users/${id}`, { status: newStatus });
       getAllUsers();
     } catch (err) {
       console.error('Error updating user status:', err);
@@ -171,7 +171,7 @@ export function MyContextProvider({ children }) {
   const getAllOrders = async () => {
     try {
       setOrdersLoading(true);
-      const res = await axios.get(`${API_URL}/orders`, { withCredentials: true });
+      const res = await axios.get(`${API_URL}/api/orders`, { withCredentials: true });
       setOrders(res.data);
     } catch (err) {
       console.error('Error fetching orders:', err);
@@ -182,7 +182,7 @@ export function MyContextProvider({ children }) {
 
   const updateOrderStatus = async (orderId, newStatus) => {
     try {
-      await axios.put(`${API_URL}/orders/status/${orderId}`, { status: newStatus }, { withCredentials: true });
+      await axios.put(`${API_URL}/api/orders/status/${orderId}`, { status: newStatus }, { withCredentials: true });
       getAllOrders();
     } catch (err) {
       console.error('Error updating status:', err);
@@ -196,7 +196,7 @@ export function MyContextProvider({ children }) {
   const getFavorites = async () => {
     if (!loggedInUser?.id) return;
     try {
-      const res = await axios.get(`${API_URL}/favourite/${loggedInUser.id}`);
+      const res = await axios.get(`${API_URL}/api/favourite/${loggedInUser.id}`);
       setFavoriteItems(res.data.items.map((fav) => fav.item));
     } catch (err) {
       if (err.response?.status !== 404)
@@ -206,7 +206,7 @@ export function MyContextProvider({ children }) {
 
   const addToFavorites = async (itemId) => {
     try {
-      await axios.post(`${API_URL}/favourite/add`, {
+      await axios.post(`${API_URL}/api/favourite/add`, {
         userId: loggedInUser.id,
         itemId,
       });
@@ -218,7 +218,7 @@ export function MyContextProvider({ children }) {
 
   const removeFromFavorites = async (itemId) => {
     try {
-      await axios.delete(`${API_URL}/favourite/remove`, {
+      await axios.delete(`${API_URL}/api/favourite/remove`, {
         data: { userId: loggedInUser.id, itemId },
       });
       getFavorites();
@@ -266,7 +266,7 @@ export function MyContextProvider({ children }) {
     try {
       setCartLoading(true);
       const response = await axios.post(
-        `${API_URL}/cart/add`,
+        `${API_URL}/api/cart/add`,
         cartData,
         { withCredentials: true }
       );
@@ -285,7 +285,7 @@ export function MyContextProvider({ children }) {
     try {
       setCartLoading(true);
       const res = await axios.get(
-        `http://localhost:4000/api/cart/${loggedInUser.id}`
+        `${API_URL}/api/cart/${loggedInUser.id}`
       );
       setCartItems(res.data.items || []);
     } catch (error) {
@@ -298,7 +298,7 @@ export function MyContextProvider({ children }) {
 
   const removeItem = async (itemId) => {
     try {
-      await axios.delete("http://localhost:4000/api/cart/delete", {
+      await axios.delete(`${API_URL}/api/cart/delete`, {
         data: { userId: loggedInUser.id, itemId },
       });
 
@@ -317,7 +317,7 @@ export function MyContextProvider({ children }) {
     if (newQuantity < 1) return;
 
     try {
-      const res = await axios.put("http://localhost:4000/api/cart/update", {
+      const res = await axios.put(`${API_URL}/api/cart/update`, {
         userId: loggedInUser.id,
         itemId,
         quantity: newQuantity,

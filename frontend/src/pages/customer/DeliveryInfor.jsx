@@ -6,6 +6,8 @@ import axios from 'axios';
 const DeliveryInfor = () => {
   const { loggedInUser, cartItems, setCartItems } = useContext(MyContext);
 
+  const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000';
+
   const [deliveryInfo, setDeliveryInfo] = useState({
     firstName: "",
     lastName: "",
@@ -47,7 +49,7 @@ const DeliveryInfor = () => {
     try {
       setLoading(true);
       const response = await axios.post(
-        `http://localhost:4000/api/orders/${loggedInUser.id}`,
+        `${API_URL}/api/orders/${loggedInUser.id}`,
         orderPayload,
         { withCredentials: true }
       );

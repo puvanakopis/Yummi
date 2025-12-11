@@ -6,10 +6,10 @@ import { MyContext } from "../../Context/MyContext.jsx";
 import LoadingPage from "../LoadingPage.jsx";
 
 const Favorites = () => {
-  const { favoriteItems, toggleFavorite, isFavorite, setViewItem, itemsLoading } =
-    useContext(MyContext);
+  const { favoriteItems, toggleFavorite, isFavorite, setViewItem, itemsLoading } = useContext(MyContext);
   const menuRef = useRef(null);
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000';
 
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 20;
@@ -56,7 +56,7 @@ const Favorites = () => {
                 </div>
 
                 {/* Image */}
-                <img src={`http://localhost:4000/${item.Img}`} alt={item.Name} />
+                <img src={`${API_URL}/${item.Img}`} alt={item.Name} />
 
                 {/* Description */}
                 <div className="itemsDesc grid grid-row-2">
@@ -90,9 +90,8 @@ const Favorites = () => {
               <button
                 key={index}
                 onClick={() => handlePageChange(index + 1)}
-                className={`pageNumber ${
-                  currentPage === index + 1 ? "currentPage" : ""
-                }`}
+                className={`pageNumber ${currentPage === index + 1 ? "currentPage" : ""
+                  }`}
               >
                 {index + 1}
               </button>

@@ -9,6 +9,7 @@ const Menu = () => {
   const { items, itemsLoading, toggleFavorite, isFavorite, setViewItem } = useContext(MyContext);
   const menuRef = useRef(null);
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000';
 
   const [category, setCategory] = useState('AllCategories');
   const [currentPage, setCurrentPage] = useState(1);
@@ -98,7 +99,7 @@ const Menu = () => {
               <div className='favoriteIcon' onClick={() => toggleFavorite(item)}>
                 {isFavorite(item) ? <FaHeart color='#ea641a' /> : <FaHeart color='#fff' />}
               </div>
-              <img src={`http://localhost:4000/${item.Img}`} alt={item.Name} />
+              <img src={`${API_URL}/${item.Img}`} alt={item.Name} />
               <div className='itemsDesc grid grid-row-2'>
                 <div className='flex'>
                   <div className='name w-3/4'>{item.Name}</div>

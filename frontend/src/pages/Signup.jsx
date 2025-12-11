@@ -5,7 +5,10 @@ import './Signup.css'
 import axios from 'axios';
 
 const Signup = () => {
+    const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000';
+
     const navigate = useNavigate();
+
     const { setLoggedInUser } = useContext(MyContext);
 
     const [name, setName] = useState("");
@@ -37,7 +40,7 @@ const Signup = () => {
     const signup = async (name, email, password) => {
         try {
             axios.defaults.withCredentials = true;
-            const res = await axios.post('http://localhost:4000/api/auth/register', { name, email, password }, { withCredentials: true });
+            const res = await axios.post(`${API_URL}/api/auth/register`, { name, email, password }, { withCredentials: true });
             if (res.data.success) {
                 setLoggedInUser({ name, email, id: res.data.userId });
                 return { success: true, message: res.data.message };

@@ -5,7 +5,10 @@ import { MyContext } from '../Context/MyContext';
 import './Login.css';
 
 const Login = () => {
+  const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000';
+
   const navigate = useNavigate();
+
   const { setLoggedInUser } = useContext(MyContext);
 
   const [email, setEmail] = useState("");
@@ -23,7 +26,7 @@ const Login = () => {
   const login = async (email, password) => {
     try {
       const res = await axios.post(
-        'http://localhost:4000/api/auth/login',
+        `${API_URL}/api/auth/login`,
         { email, password }
       );
 
@@ -52,7 +55,7 @@ const Login = () => {
     e.preventDefault();
     const result = await login(email, password);
     if (result.success) {
-      navigator("/"); 
+      navigator("/");
     } else {
       setError(result.message);
     }

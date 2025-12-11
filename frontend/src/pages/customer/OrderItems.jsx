@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom";
 import LoadingPage from "../LoadingPage.jsx";
 
 const OrderItem = () => {
-  const { cartLoading, cartItems,  removeItem  , updateQuantity} = useContext(MyContext);
+  const { cartLoading, cartItems, removeItem, updateQuantity } = useContext(MyContext);
   const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000';
   const subtotal = cartItems.reduce(
     (sum, item) => sum + (item.total || 0),
     0
@@ -44,7 +45,7 @@ const OrderItem = () => {
               <div key={itemData._id} className="TableItem TableScroll">
                 <div className="img w-1/6">
                   <img
-                    src={`http://localhost:4000/${itemData.Img || ""}`}
+                    src={`${API_URL}/${itemData.Img || ""}`}
                     alt={itemData.Name || "Product"}
                   />
                 </div>

@@ -8,6 +8,7 @@ import LoadingPage from "../LoadingPage.jsx";
 const ItemDetails = () => {
   const { loading, setLoading, addToCart } = useContext(MyContext);
   const { id } = useParams();
+  const API_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:4000';
 
   const [item, setItem] = useState(null);
   const [error, setError] = useState(null);
@@ -18,7 +19,7 @@ const ItemDetails = () => {
       try {
         setLoading(true);
         const response = await axios.get(
-          `http://localhost:4000/api/items/${id}`,
+          `${API_URL}/api/items/${id}`,
           { withCredentials: true }
         );
         setItem(response.data.item);
@@ -59,7 +60,7 @@ const ItemDetails = () => {
 
         <div className="itemDec">
           <div className="itemDecImg w-3/7">
-            <img src={`http://localhost:4000/${item.Img}`} alt={item.Name} />
+            <img src={`${API_URL}/${item.Img}`} alt={item.Name} />
           </div>
 
           <div className="itemDecText w-4/7">
